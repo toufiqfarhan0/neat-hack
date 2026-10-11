@@ -390,7 +390,7 @@ Please update the OVIO Financial Model in cfo.ai:
                 </button>
               </div>
 
-              <span style={{ fontSize: "12px", color: "#71717a", fontFamily: "var(--mono)" }}>
+              <span style={{ fontSize: "12px", color: "#71717a" }}>
                 Zero Mock Data · 100% Real Records
               </span>
             </div>
@@ -412,7 +412,7 @@ Please update the OVIO Financial Model in cfo.ai:
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <span style={{ fontWeight: 700, fontSize: "14px", color: "#09090b" }}>State of Oklahoma</span>
-                    <span style={{ fontSize: "11px", color: "#000000", fontFamily: "var(--mono)", fontWeight: 600 }}>4,693 rows</span>
+                    <span style={{ fontSize: "11.5px", color: "#71717a", fontWeight: 600 }}>4,693 rows</span>
                   </div>
                   <div style={{ fontSize: "12.5px", color: "#71717a", marginTop: "4px" }}>State Treasury Vendor Payments</div>
                   <div style={{ fontSize: "12px", color: "#16a34a", fontWeight: 700, marginTop: "6px" }}>Found: $4,095.00 Duplicate</div>
@@ -432,7 +432,7 @@ Please update the OVIO Financial Model in cfo.ai:
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <span style={{ fontWeight: 700, fontSize: "14px", color: "#09090b" }}>City of Los Angeles</span>
-                    <span style={{ fontSize: "11px", color: "#000000", fontFamily: "var(--mono)", fontWeight: 600 }}>20,139 rows</span>
+                    <span style={{ fontSize: "11.5px", color: "#71717a", fontWeight: 600 }}>20,139 rows</span>
                   </div>
                   <div style={{ fontSize: "12.5px", color: "#71717a", marginTop: "4px" }}>LA Controller Checkbook Ledger</div>
                   <div style={{ fontSize: "12px", color: "#16a34a", fontWeight: 700, marginTop: "6px" }}>Found: $12,818.00 Duplicate</div>
@@ -452,7 +452,7 @@ Please update the OVIO Financial Model in cfo.ai:
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <span style={{ fontWeight: 700, fontSize: "14px", color: "#09090b" }}>Enterprise B2B SaaS</span>
-                    <span style={{ fontSize: "11px", color: "#000000", fontFamily: "var(--mono)", fontWeight: 600 }}>Corporate AP</span>
+                    <span style={{ fontSize: "11.5px", color: "#71717a", fontWeight: 600 }}>Corporate AP</span>
                   </div>
                   <div style={{ fontSize: "12.5px", color: "#71717a", marginTop: "4px" }}>Cloud Infrastructure & Consulting</div>
                   <div style={{ fontSize: "12px", color: "#16a34a", fontWeight: 700, marginTop: "6px" }}>Found: $60,450.00 Duplicate</div>

@@ -10,34 +10,28 @@ import {
   ExternalLink, 
   CheckCircle2, 
   AlertCircle, 
-  Play, 
   ArrowRight,
   TrendingUp,
   Clock,
   Layers,
   Search,
   Cpu,
-  Upload,
-  Copy,
-  Check,
   FileText,
   FileSpreadsheet,
   RefreshCw,
   GitCommit,
   Sparkles,
-  Sliders,
   DollarSign,
-  MessageSquare,
-  Bot,
-  User,
-  Send,
-  CornerDownLeft,
-  ChevronRight,
   Split,
   Eye,
   CheckCircle,
   XCircle,
-  AlertTriangle
+  AlertTriangle,
+  ChevronRight,
+  Workflow,
+  Hash,
+  Zap,
+  Lock
 } from "lucide-react";
 
 interface Transaction {
@@ -52,6 +46,15 @@ interface Transaction {
   payment_status: string;
   department: string;
   description: string;
+}
+
+interface AuditStep {
+  step: number;
+  title: string;
+  tool: string;
+  latency: string;
+  discovery: string;
+  status: "completed" | "flagged" | "verified" | "telemetry";
 }
 
 interface Finding {
@@ -70,6 +73,7 @@ interface Finding {
     invoice_raw: string;
     po_number: string;
   };
+  steps: AuditStep[];
   left: Transaction;
   right: Transaction;
   traceId: string;
@@ -91,6 +95,56 @@ const INITIAL_FINDINGS: Finding[] = [
       invoice_raw: "APR24-DVSO · APR24-DVSO-DUP",
       po_number: "SC21CO24138706Y"
     },
+    steps: [
+      {
+        step: 1,
+        title: "Ingestion & Schema Normalization",
+        tool: "tool.ledger_fetch",
+        latency: "+12ms",
+        status: "completed",
+        discovery: "Ingested 20,139 rows from City of Los Angeles checkbook. Parsed fuzzy column headers, normalized vendor strings to canonical MUNICIPALVENDORB, and indexed disbursement records into in-memory temporal index."
+      },
+      {
+        step: 2,
+        title: "O(N) Hash Partitioning & Candidate Blocking",
+        tool: "tool.blocking",
+        latency: "+34ms",
+        status: "flagged",
+        discovery: "Partitioned 3,425 disbursements into phonetic buckets. Detected two distinct ACH transfers sharing identical $12,818.00 wire sum and purchase order SC21CO24138706Y within a 10-day payment delta."
+      },
+      {
+        step: 3,
+        title: "Purchase Order Ceiling Cross-Examination",
+        tool: "tool.vendor_history",
+        latency: "+86ms",
+        status: "verified",
+        discovery: "Queried contract ceiling for SC21CO24138706Y. First wire ($12,818.00 on 2024-04-22) met 100% of the authorized monthly ceiling. Second wire ($12,818.00 on 2024-05-02) created an immediate budgetary over-draw."
+      },
+      {
+        step: 4,
+        title: "Invoice Resubmission Diffing",
+        tool: "tool.diff_engine",
+        latency: "+115ms",
+        status: "flagged",
+        discovery: "Compared invoice numbers INV-2024-0419 vs INV-2024-0419-A. Resubmission suffix '-A' confirmed identical service description ('APR'24 DVSO CONTRACT RECREATION SERVICES') submitted twice without credit memo."
+      },
+      {
+        step: 5,
+        title: "LLM Forensic Reasoning & Cadence Filter",
+        tool: "claude-haiku",
+        latency: "+240ms",
+        status: "verified",
+        discovery: "Ruled out legitimate recurring retainer (no monthly recurrence clause on record). Adjudicated duplicate wire error with 95% confidence score and recommended clawback action."
+      },
+      {
+        step: 6,
+        title: "Neatlogs Observability & Evidence Freeze",
+        tool: "neatlogs.collector",
+        latency: "+310ms",
+        status: "telemetry",
+        discovery: "Created Neatlogs trace 3d720906babf7ed4... with 20 spans. Cryptographically froze transaction comparison diff and flagged high-priority treasury clawback packet."
+      }
+    ],
     left: {
       transaction_id: "LA-2024-04192",
       vendor_name: "ANONYMIZED_MUNICIPAL_VENDOR_B",
@@ -134,6 +188,56 @@ const INITIAL_FINDINGS: Finding[] = [
       invoice_raw: "XJ89210 · XJ89210",
       po_number: "PO-OK-2020-881"
     },
+    steps: [
+      {
+        step: 1,
+        title: "Ingestion & Schema Normalization",
+        tool: "tool.ledger_fetch",
+        latency: "+10ms",
+        status: "completed",
+        discovery: "Parsed 4,693 State of Oklahoma vendor payment vouchers. Cleaned multi-agency accounting codes across Oklahoma State University (OSU) and Office of Management & Enterprise (OMES)."
+      },
+      {
+        step: 2,
+        title: "O(N) Hash Partitioning & Candidate Blocking",
+        tool: "tool.blocking",
+        latency: "+28ms",
+        status: "flagged",
+        discovery: "Flagged two warrants issued for identical dollar amount $4,095.00 to vendor CDW GOVERNMENT INC."
+      },
+      {
+        step: 3,
+        title: "Multi-Agency Cross-Check",
+        tool: "tool.cross_agency",
+        latency: "+72ms",
+        status: "verified",
+        discovery: "Cross-referenced supplier invoice XJ89210. Both OSU and OMES processed the identical invoice 14 days apart due to lack of cross-agency voucher clearing."
+      },
+      {
+        step: 4,
+        title: "PO & Delivery Note Cross-Match",
+        tool: "tool.vendor_history",
+        latency: "+98ms",
+        status: "verified",
+        discovery: "Warehouse delivery receipt confirms only one shipment of server hardware was received. Single PO PO-OK-2020-881 billed twice."
+      },
+      {
+        step: 5,
+        title: "LLM Adjudication & Confidence Scoring",
+        tool: "claude-haiku",
+        latency: "+210ms",
+        status: "verified",
+        discovery: "Evaluated cross-agency duplicate probability at 98%. Determined zero contractual basis for duplicate payment."
+      },
+      {
+        step: 6,
+        title: "Neatlogs Telemetry & Evidence Ledger",
+        tool: "neatlogs.collector",
+        latency: "+290ms",
+        status: "telemetry",
+        discovery: "Emitted trace a3b4770e82c2e9d0... to Neatlogs. Registered recovery target of $4,095.00 for immediate state warrant clawback."
+      }
+    ],
     left: {
       transaction_id: "OK-2020-07119",
       vendor_name: "CDW GOVERNMENT INC",
@@ -177,6 +281,56 @@ const INITIAL_FINDINGS: Finding[] = [
       invoice_raw: "DEL-88192 · DEL-88192-B",
       po_number: "PO-ERP-2024"
     },
+    steps: [
+      {
+        step: 1,
+        title: "Ingestion & Schema Normalization",
+        tool: "tool.ledger_fetch",
+        latency: "+8ms",
+        status: "completed",
+        discovery: "Ingested enterprise corporate ledger. Indexed consulting contracts, SOW milestone deliverables, and departmental cost centers."
+      },
+      {
+        step: 2,
+        title: "O(N) Hash Partitioning & Candidate Blocking",
+        tool: "tool.blocking",
+        latency: "+24ms",
+        status: "flagged",
+        discovery: "Detected identical $42,000.00 wires issued to DELOITTE CONSULTING LLP 11 days apart across disjoint cost centers."
+      },
+      {
+        step: 3,
+        title: "Milestone & SOW Deliverable Check",
+        tool: "tool.contract_milestone",
+        latency: "+65ms",
+        status: "verified",
+        discovery: "Checked master SOW for ERP Migration. Milestone 2 specifies a single fixed deliverable of $42,000.00. No authorization for milestone split or addendum."
+      },
+      {
+        step: 4,
+        title: "Departmental Approval Path Forensic Diff",
+        tool: "tool.approval_audit",
+        latency: "+95ms",
+        status: "flagged",
+        discovery: "Discovered invoice DEL-88192 routed through Engineering while DEL-88192-B routed through Corporate Finance with separate approvers."
+      },
+      {
+        step: 5,
+        title: "LLM Adjudication & Confidence Scoring",
+        tool: "claude-haiku",
+        latency: "+195ms",
+        status: "verified",
+        discovery: "Evaluated double billing risk at 90% confidence. Formulated clawback demand memo citing contract milestone breach."
+      },
+      {
+        step: 6,
+        title: "Neatlogs Telemetry & Evidence Immutability",
+        tool: "neatlogs.collector",
+        latency: "+275ms",
+        status: "telemetry",
+        discovery: "Logged trace 0ce435e64aa85a4d... in Neatlogs. Locked evidence packet for CFO review."
+      }
+    ],
     left: {
       transaction_id: "TX-ENT-104",
       vendor_name: "DELOITTE CONSULTING LLP",
@@ -220,6 +374,56 @@ const INITIAL_FINDINGS: Finding[] = [
       invoice_raw: "CTA-9021 · CTA-9021-X",
       po_number: "PO-CTA-4401"
     },
+    steps: [
+      {
+        step: 1,
+        title: "Ingestion & Schema Normalization",
+        tool: "tool.ledger_fetch",
+        latency: "+14ms",
+        status: "completed",
+        discovery: "Ingested 1,968 City of Chicago municipal infrastructure ledger disbursements."
+      },
+      {
+        step: 2,
+        title: "O(N) Hash Partitioning & Candidate Blocking",
+        tool: "tool.blocking",
+        latency: "+32ms",
+        status: "flagged",
+        discovery: "Flagged two disbursements of $45,200.00 to CHICAGO TRANSIT CONTRACTOR issued 14 days apart under PO PO-CTA-4401."
+      },
+      {
+        step: 3,
+        title: "Departmental Scope & Site Verification",
+        tool: "tool.vendor_history",
+        latency: "+88ms",
+        status: "flagged",
+        discovery: "Department of Transportation cited 'Section A' while Aviation & Transit Joint cited 'Section A (Re-billed)'. Substation maintenance work logs show overlapping dates."
+      },
+      {
+        step: 4,
+        title: "Forensic Ambiguity Analysis",
+        tool: "tool.scope_diff",
+        latency: "+130ms",
+        status: "flagged",
+        discovery: "Could not rule out dual-site emergency infrastructure retrofit based purely on ledger metadata. Potential split appropriation."
+      },
+      {
+        step: 5,
+        title: "LLM Adjudication & Human Escalation Policy",
+        tool: "claude-haiku",
+        latency: "+260ms",
+        status: "verified",
+        discovery: "Determined 88% confidence of duplication, but flagged as ESCALATE_REVIEW to prevent premature clawback without project engineer sign-off."
+      },
+      {
+        step: 6,
+        title: "Neatlogs Telemetry & Audit Escalation",
+        tool: "neatlogs.collector",
+        latency: "+320ms",
+        status: "telemetry",
+        discovery: "Pushed trace 8789a5fef5775331... to Neatlogs tagged with human review requirement."
+      }
+    ],
     left: {
       transaction_id: "CHI-2024-8801",
       vendor_name: "CHICAGO TRANSIT CONTRACTOR",
@@ -263,6 +467,56 @@ const INITIAL_FINDINGS: Finding[] = [
       invoice_raw: "13240000067755 · 13240000071513",
       po_number: "PO-FLEET-2024"
     },
+    steps: [
+      {
+        step: 1,
+        title: "Ingestion & Schema Normalization",
+        tool: "tool.ledger_fetch",
+        latency: "+11ms",
+        status: "completed",
+        discovery: "Ingested benchmark validation dataset containing planted decoy disbursements."
+      },
+      {
+        step: 2,
+        title: "O(N) Hash Partitioning & Candidate Blocking",
+        tool: "tool.blocking",
+        latency: "+29ms",
+        status: "flagged",
+        discovery: "Detected matching sums of $2,263.84 to ENTERPRISE RENT-A-CAR/LEASING across consecutive months."
+      },
+      {
+        step: 3,
+        title: "Temporal Cadence & Recurrence Analysis",
+        tool: "tool.temporal_cadence",
+        latency: "+78ms",
+        status: "verified",
+        discovery: "Identified exact 30-day billing cadence over 12 billing periods (May 31 and June 30). Pattern matches fleet vehicle lease agreement."
+      },
+      {
+        step: 4,
+        title: "Master Agreement SOW Cross-Check",
+        tool: "tool.vendor_history",
+        latency: "+102ms",
+        status: "verified",
+        discovery: "Cross-checked PO PO-FLEET-2024. Monthly lease schedule confirmed legitimate operational recurring expense."
+      },
+      {
+        step: 5,
+        title: "LLM Adjudication & False-Positive Guardrail",
+        tool: "claude-haiku",
+        latency: "+180ms",
+        status: "verified",
+        discovery: "Ruled DISMISSED_INNOCENT with 0% clawback risk. Successfully passed decoy benchmark with zero false positive."
+      },
+      {
+        step: 6,
+        title: "Neatlogs Telemetry & Decoy Benchmark Log",
+        tool: "neatlogs.collector",
+        latency: "+240ms",
+        status: "telemetry",
+        discovery: "Emitted trace dd024eda5ca25186... confirming benign recurring disbursement."
+      }
+    ],
     left: {
       transaction_id: "AD2624000067755",
       vendor_name: "ENTERPRISE RENT-A-CAR/LEASING",
@@ -293,30 +547,9 @@ const INITIAL_FINDINGS: Finding[] = [
   }
 ];
 
-interface ChatMessage {
-  id: string;
-  sender: "user" | "agent";
-  text: string;
-  timestamp: string;
-  findingId?: string;
-  toolsInvoked?: string[];
-}
-
 export default function AgentWorkspacePage() {
-  const [viewMode, setViewMode] = useState<"queue" | "chat">("queue");
   const [findings, setFindings] = useState<Finding[]>(INITIAL_FINDINGS);
   const [selectedFindingId, setSelectedFindingId] = useState<string>("la-parks-12818");
-  const [chatInput, setChatInput] = useState<string>("");
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: "msg-1",
-      sender: "agent",
-      text: "Hello! I am Ovio, your autonomous treasury recovery agent. I can audit raw AP disbursement ledgers, detect duplicate vendor wires, and model financial runway. How can I assist you today?",
-      timestamp: "15:45",
-      toolsInvoked: ["entire.brain.brief", "neatlogs.collector.init"]
-    }
-  ]);
-  const [isTyping, setIsTyping] = useState<boolean>(false);
 
   const selectedFinding = findings.find(f => f.id === selectedFindingId) || findings[0];
 
@@ -329,63 +562,6 @@ export default function AgentWorkspacePage() {
     }));
   };
 
-  const handleSendMessage = (textToSend?: string) => {
-    const query = textToSend || chatInput;
-    if (!query.trim()) return;
-
-    const userMsg: ChatMessage = {
-      id: `msg-${Date.now()}`,
-      sender: "user",
-      text: query,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    };
-
-    setMessages(prev => [...prev, userMsg]);
-    if (!textToSend) setChatInput("");
-    setIsTyping(true);
-
-    setTimeout(() => {
-      let replyText = "";
-      let matchedFindingId: string | undefined = undefined;
-      const lower = query.toLowerCase();
-
-      if (lower.includes("la") || lower.includes("los angeles") || lower.includes("parks")) {
-        replyText = "Investigated City of Los Angeles ledger (20,139 disbursements). Identified $12,818.00 double disbursement for ANONYMIZED_MUNICIPAL_VENDOR_B. Both wires cleared under PO SC21CO24138706Y. Multi-tool verification confirmed PO ceiling was breached.";
-        matchedFindingId = "la-parks-12818";
-      } else if (lower.includes("oklahoma") || lower.includes("cdw") || lower.includes("4095")) {
-        replyText = "Scanned State of Oklahoma public ledger (4,693 payments). Detected exact double billing for CDW GOVERNMENT INC ($4,095.00) under invoice XJ89210. Disbursed simultaneously by Oklahoma State Univ and OMES.";
-        matchedFindingId = "ok-cdw-4095";
-      } else if (lower.includes("deloitte") || lower.includes("enterprise") || lower.includes("saas")) {
-        replyText = "Audited Enterprise B2B SaaS ledger. Discovered $42,000.00 duplicate invoice from Deloitte Consulting for 'ERP Migration Milestone 2' submitted to both Engineering and Corporate Finance.";
-        matchedFindingId = "ent-deloitte-42000";
-      } else if (lower.includes("chicago") || lower.includes("transit")) {
-        replyText = "Analyzed City of Chicago payments. Flagged Chicago Transit Contractor ($45,200.00). Escalated to human review due to ambiguous dual-department voucher descriptions.";
-        matchedFindingId = "chi-transit-45200";
-      } else if (lower.includes("decoy") || lower.includes("fleet") || lower.includes("enterprise rent")) {
-        replyText = "Tested against planted decoy benchmark. Evaluated Enterprise Rent-A-Car ($2,263.84). The agent successfully recognized monthly recurring lease schedule and ruled it innocent (Zero false positive).";
-        matchedFindingId = "decoy-recurr-2263";
-      } else {
-        replyText = `Executed autonomous sweep on active AP ledger. Grouped disbursements in O(N) time and evaluated high-risk candidates with claude-haiku. Inspect the highlighted candidate in the review queue below:`;
-        matchedFindingId = selectedFindingId;
-      }
-
-      const agentMsg: ChatMessage = {
-        id: `msg-${Date.now() + 1}`,
-        sender: "agent",
-        text: replyText,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        findingId: matchedFindingId,
-        toolsInvoked: ["tool.ledger_fetch", "tool.blocking", "tool.vendor_history", "guardrail.clawback_validation"]
-      };
-
-      setMessages(prev => [...prev, agentMsg]);
-      setIsTyping(false);
-      if (matchedFindingId) {
-        setSelectedFindingId(matchedFindingId);
-      }
-    }, 900);
-  };
-
   const totalAtRisk = findings
     .filter(f => f.verdict !== "DISMISSED_INNOCENT" && f.decision !== "dismissed")
     .reduce((acc, curr) => acc + curr.amount, 0);
@@ -395,7 +571,7 @@ export default function AgentWorkspacePage() {
 
   return (
     <div style={{ background: "#ffffff", color: "#09090b", minHeight: "100vh" }}>
-      {/* TOP HEADER STATUS & VIEW TOGGLE (Reckon + ChatGPT hybrid) */}
+      {/* TOP HEADER STATUS BAR */}
       <div style={{
         background: "#fafafa",
         borderBottom: "1px solid #e4e4e7",
@@ -406,633 +582,447 @@ export default function AgentWorkspacePage() {
         flexWrap: "wrap",
         gap: "14px"
       }}>
-        <div>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "12px", fontFamily: "var(--mono)", color: "#71717a" }}>
-            <span style={{ fontWeight: 800, color: "#09090b", fontSize: "13px" }}>Ovio Review Queue</span>
-            <span>•</span>
-            <span>20,139 rows</span>
-            <span>•</span>
-            <span>3,425 payments</span>
-            <span>•</span>
-            <span>1,279 blocked</span>
-            <span>•</span>
-            <span style={{ color: "#16a34a", fontWeight: 700 }}>${totalAtRisk.toLocaleString("en-US", { minimumFractionDigits: 2 })} at risk</span>
-            <span>•</span>
-            <span>{confirmedCount} confirmed</span>
-            <span>•</span>
-            <span>{dismissedCount} dismissed</span>
-          </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "12px", color: "#71717a" }}>
+          <span style={{ fontWeight: 800, color: "#09090b", fontSize: "13px" }}>Ovio Review Queue</span>
+          <span>•</span>
+          <span>20,139 rows</span>
+          <span>•</span>
+          <span>3,425 payments</span>
+          <span>•</span>
+          <span>1,279 blocked</span>
+          <span>•</span>
+          <span style={{ color: "#16a34a", fontWeight: 700 }}>${totalAtRisk.toLocaleString("en-US", { minimumFractionDigits: 2 })} at risk</span>
+          <span>•</span>
+          <span>{confirmedCount} confirmed</span>
+          <span>•</span>
+          <span>{dismissedCount} dismissed</span>
         </div>
 
-        {/* View Mode Toggle Pill (ChatGPT Chat vs Reckon 3-Pane Queue) */}
-        <div style={{
-          background: "#ffffff",
-          border: "1px solid #e4e4e7",
-          borderRadius: "8px",
-          padding: "3px",
-          display: "inline-flex",
-          gap: "4px"
-        }}>
-          <button
-            type="button"
-            onClick={() => setViewMode("queue")}
-            style={{
-              padding: "6px 14px",
-              borderRadius: "6px",
-              fontSize: "12.5px",
-              fontWeight: 700,
-              cursor: "pointer",
-              border: "none",
-              display: "flex",
-              alignItems: "center",
-              gap: "6px",
-              background: viewMode === "queue" ? "#000000" : "transparent",
-              color: viewMode === "queue" ? "#ffffff" : "#71717a"
-            }}
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <Link
+            href="/command-center"
+            className="btn btn-outline btn-sm"
+            style={{ fontSize: "12px", height: "30px", padding: "0 12px" }}
           >
-            <Split size={14} />
-            <span>3-Pane Queue (Reckon)</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setViewMode("chat")}
-            style={{
-              padding: "6px 14px",
-              borderRadius: "6px",
-              fontSize: "12.5px",
-              fontWeight: 700,
-              cursor: "pointer",
-              border: "none",
-              display: "flex",
-              alignItems: "center",
-              gap: "6px",
-              background: viewMode === "chat" ? "#000000" : "transparent",
-              color: viewMode === "chat" ? "#ffffff" : "#71717a"
-            }}
+            <Activity size={13} />
+            <span>Command Center</span>
+          </Link>
+          <Link
+            href="/evidence"
+            className="btn btn-outline btn-sm"
+            style={{ fontSize: "12px", height: "30px", padding: "0 12px" }}
           >
-            <Bot size={14} />
-            <span>AI Copilot (ChatGPT)</span>
-          </button>
+            <FileText size={13} />
+            <span>Evidence Ledger</span>
+          </Link>
         </div>
       </div>
 
-      {/* MODE 1: RECKON-STYLE 3-PANE INSPECTOR */}
-      {viewMode === "queue" && (
+      {/* 3-PANE INSPECTOR */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "310px 470px 1fr",
+        minHeight: "calc(100vh - 120px)",
+        borderBottom: "1px solid #e4e4e7"
+      }}>
+        {/* PANE 1: FINDINGS QUEUE (Left Pane) */}
         <div style={{
-          display: "grid",
-          gridTemplateColumns: "320px 380px 1fr",
-          minHeight: "calc(100vh - 120px)",
-          borderBottom: "1px solid #e4e4e7"
+          borderRight: "1px solid #e4e4e7",
+          background: "#fafafa",
+          overflowY: "auto",
+          maxHeight: "calc(100vh - 120px)"
         }}>
-          {/* PANE 1: CANDIDATE QUEUE (Left Sidebar) */}
           <div style={{
-            borderRight: "1px solid #e4e4e7",
-            background: "#fafafa",
-            overflowY: "auto",
-            maxHeight: "calc(100vh - 120px)"
+            padding: "14px 18px",
+            borderBottom: "1px solid #e4e4e7",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center"
           }}>
-            <div style={{ padding: "16px 20px", borderBottom: "1px solid #e4e4e7", background: "#ffffff" }}>
-              <div style={{ fontSize: "11px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                Pending Review Queue ({findings.length})
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#09090b", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              Findings Queue ({findings.length})
+            </span>
+            <span style={{ fontSize: "11px", color: "#71717a" }}>
+              O(N) Scanned
+            </span>
+          </div>
+
+          <div>
+            {findings.map((f) => {
+              const isSelected = f.id === selectedFindingId;
+              const isConfirmed = f.decision === "confirmed";
+              const isDismissed = f.decision === "dismissed";
+
+              return (
+                <button
+                  key={f.id}
+                  type="button"
+                  onClick={() => setSelectedFindingId(f.id)}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    textAlign: "left",
+                    padding: "14px 18px",
+                    borderBottom: "1px solid #e4e4e7",
+                    borderLeft: isSelected ? "3px solid #09090b" : "3px solid transparent",
+                    background: isSelected ? "#ffffff" : "transparent",
+                    cursor: "pointer",
+                    transition: "all 0.15s ease"
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px" }}>
+                    <span style={{ fontSize: "14px", fontWeight: 800, color: "#09090b" }}>
+                      ${f.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
+                    </span>
+                    <span style={{
+                      fontSize: "10.5px",
+                      fontWeight: 700,
+                      padding: "2px 6px",
+                      borderRadius: "4px",
+                      background: isConfirmed ? "#dcfce7" : (isDismissed ? "#f4f4f5" : (f.verdict === "AUTHORIZED_CLAWBACK" ? "#fef2f2" : "#fefce8")),
+                      color: isConfirmed ? "#166534" : (isDismissed ? "#71717a" : (f.verdict === "AUTHORIZED_CLAWBACK" ? "#991b1b" : "#854d0e"))
+                    }}>
+                      {isConfirmed ? "CONFIRMED" : (isDismissed ? "DISMISSED" : `${f.confidence}% CONF`)}
+                    </span>
+                  </div>
+
+                  <div style={{ fontSize: "12px", fontWeight: 700, color: "#27272a", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    {f.vendor}
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "8px" }}>
+                    <span style={{ fontSize: "11px", color: "#71717a" }}>{f.signal}</span>
+                    {/* Mini Confidence Bar */}
+                    <div style={{ width: "60px", height: "4px", background: "#e4e4e7", borderRadius: "2px", overflow: "hidden" }}>
+                      <div style={{
+                        width: `${f.confidence}%`,
+                        height: "100%",
+                        background: f.confidence >= 90 ? "#16a34a" : (f.confidence >= 70 ? "#eab308" : "#94a3b8")
+                      }} />
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* PANE 2: FINDING REASONING & STEP-BY-STEP DISCOVERIES (Middle Pane) */}
+        <div style={{
+          borderRight: "1px solid #e4e4e7",
+          background: "#ffffff",
+          padding: "28px",
+          overflowY: "auto",
+          maxHeight: "calc(100vh - 120px)"
+        }}>
+          {/* Header Summary */}
+          <div style={{ marginBottom: "20px" }}>
+            <div style={{ fontSize: "11.5px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              At Risk / Clawback Target
+            </div>
+            <div style={{ fontSize: "36px", fontWeight: 800, color: "#09090b", marginTop: "2px" }}>
+              ${selectedFinding.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
+            </div>
+            <div style={{ fontSize: "13px", color: "#71717a", marginTop: "2px" }}>
+              Dataset: {selectedFinding.dataset}
+            </div>
+          </div>
+
+          {/* Verdict Badge */}
+          <div style={{ marginBottom: "20px" }}>
+            <div style={{ fontSize: "11.5px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", marginBottom: "6px" }}>
+              Agent Verdict
+            </div>
+            <span style={{
+              display: "inline-block",
+              padding: "4px 10px",
+              borderRadius: "6px",
+              fontSize: "12px",
+              fontWeight: 700,
+              background: selectedFinding.verdict === "AUTHORIZED_CLAWBACK" ? "#fef2f2" : (selectedFinding.verdict === "ESCALATE_REVIEW" ? "#fefce8" : "#f4f4f5"),
+              color: selectedFinding.verdict === "AUTHORIZED_CLAWBACK" ? "#991b1b" : (selectedFinding.verdict === "ESCALATE_REVIEW" ? "#854d0e" : "#52525b"),
+              border: "1px solid " + (selectedFinding.verdict === "AUTHORIZED_CLAWBACK" ? "#fecaca" : (selectedFinding.verdict === "ESCALATE_REVIEW" ? "#fef08a" : "#e4e4e7"))
+            }}>
+              {selectedFinding.verdict}
+            </span>
+          </div>
+
+          {/* Forensic Reasoning */}
+          <div style={{ marginBottom: "24px" }}>
+            <div style={{ fontSize: "11.5px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", marginBottom: "6px" }}>
+              Forensic Summary
+            </div>
+            <p style={{ fontSize: "13.5px", lineHeight: 1.6, color: "#27272a", margin: 0 }}>
+              {selectedFinding.reasoning}
+            </p>
+          </div>
+
+          {/* WHAT OUR AGENT FOUND OUT IN EVERY STEP (Timeline) */}
+          <div style={{ marginBottom: "28px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+              <div style={{ fontSize: "11.5px", fontWeight: 800, color: "#09090b", textTransform: "uppercase", letterSpacing: "0.05em", display: "flex", alignItems: "center", gap: "6px" }}>
+                <Workflow size={14} />
+                <span>Agent Execution Pipeline — Step Findings</span>
               </div>
-              <div style={{ fontSize: "12px", color: "#a1a1aa", marginTop: "2px" }}>
-                Ranked by clawback confidence &amp; dollar magnitude
-              </div>
+              <span style={{ fontSize: "11px", color: "#16a34a", fontWeight: 700 }}>
+                {selectedFinding.steps.length} Steps Logged
+              </span>
             </div>
 
-            <div>
-              {findings.map((f) => {
-                const isSelected = f.id === selectedFindingId;
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+              borderLeft: "2px solid #e4e4e7",
+              paddingLeft: "14px",
+              marginLeft: "6px"
+            }}>
+              {selectedFinding.steps.map((st) => {
+                const isFlagged = st.status === "flagged";
+                const isTelemetry = st.status === "telemetry";
+
                 return (
-                  <button
-                    key={f.id}
-                    type="button"
-                    onClick={() => setSelectedFindingId(f.id)}
-                    style={{
-                      width: "100%",
-                      padding: "16px 20px",
-                      textAlign: "left",
-                      border: "none",
-                      borderBottom: "1px solid #e4e4e7",
-                      borderLeft: isSelected ? "4px solid #000000" : "4px solid transparent",
-                      background: isSelected ? "#ffffff" : "transparent",
-                      cursor: "pointer",
-                      display: "block",
-                      transition: "background 0.1s ease"
-                    }}
-                  >
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "4px" }}>
-                      <span style={{ fontSize: "16px", fontWeight: 800, color: "#09090b", fontFamily: "var(--mono)" }}>
-                        ${f.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-                      </span>
-                      <span style={{
-                        fontSize: "10.5px",
-                        fontWeight: 700,
-                        padding: "2px 6px",
-                        borderRadius: "4px",
-                        fontFamily: "var(--mono)",
-                        background: f.decision === "confirmed" ? "#dcfce7" : (f.decision === "dismissed" ? "#f4f4f5" : (f.confidence >= 90 ? "#fee2e2" : "#fef9c3")),
-                        color: f.decision === "confirmed" ? "#166534" : (f.decision === "dismissed" ? "#71717a" : (f.confidence >= 90 ? "#991b1b" : "#854d0e"))
-                      }}>
-                        {f.decision ? f.decision.toUpperCase() : `${f.confidence}% CONF`}
-                      </span>
-                    </div>
+                  <div key={st.step} style={{ position: "relative" }}>
+                    {/* Bullet marker */}
+                    <div style={{
+                      position: "absolute",
+                      left: "-21px",
+                      top: "2px",
+                      width: "12px",
+                      height: "12px",
+                      borderRadius: "50%",
+                      background: isFlagged ? "#ef4444" : (isTelemetry ? "#09090b" : "#16a34a"),
+                      border: "2px solid #ffffff",
+                      boxShadow: "0 0 0 1px #e4e4e7"
+                    }} />
 
-                    <div style={{ fontSize: "12px", fontWeight: 700, color: "#27272a", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                      {f.vendor}
-                    </div>
-
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "8px" }}>
-                      <span style={{ fontSize: "11px", color: "#71717a" }}>{f.signal}</span>
-                      {/* Mini Confidence Bar */}
-                      <div style={{ width: "60px", height: "4px", background: "#e4e4e7", borderRadius: "2px", overflow: "hidden" }}>
-                        <div style={{
-                          width: `${f.confidence}%`,
-                          height: "100%",
-                          background: f.confidence >= 90 ? "#16a34a" : (f.confidence >= 70 ? "#eab308" : "#94a3b8")
-                        }} />
+                    {/* Step Title & Tool Badge */}
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "6px", marginBottom: "4px" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                        <span style={{ fontSize: "12px", fontWeight: 800, color: "#09090b" }}>
+                          Step {st.step}: {st.title}
+                        </span>
+                      </div>
+                      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                        <span style={{
+                          fontSize: "10px",
+                          fontWeight: 700,
+                          padding: "1px 6px",
+                          borderRadius: "4px",
+                          background: "#f4f4f5",
+                          color: "#52525b",
+                          border: "1px solid #e4e4e7"
+                        }}>
+                          {st.tool}
+                        </span>
+                        <span style={{ fontSize: "10.5px", color: "#a1a1aa" }}>
+                          {st.latency}
+                        </span>
                       </div>
                     </div>
-                  </button>
+
+                    {/* What Ovio Found Out */}
+                    <div style={{
+                      fontSize: "12px",
+                      lineHeight: 1.5,
+                      color: "#3f3f46",
+                      background: isFlagged ? "#fff1f2" : "#fafafa",
+                      border: "1px solid " + (isFlagged ? "#ffe4e6" : "#f4f4f5"),
+                      padding: "8px 10px",
+                      borderRadius: "6px"
+                    }}>
+                      <strong style={{ color: isFlagged ? "#991b1b" : "#09090b" }}>Found: </strong>
+                      {st.discovery}
+                    </div>
+                  </div>
                 );
               })}
             </div>
           </div>
 
-          {/* PANE 2: FINDING REASONING & ACTIONS (Middle Pane) */}
-          <div style={{
-            borderRight: "1px solid #e4e4e7",
-            background: "#ffffff",
-            padding: "28px",
-            overflowY: "auto",
-            maxHeight: "calc(100vh - 120px)"
-          }}>
-            <div style={{ marginBottom: "20px" }}>
-              <div style={{ fontSize: "11.5px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                At Risk / Clawback Target
-              </div>
-              <div style={{ fontSize: "36px", fontWeight: 800, color: "#09090b", fontFamily: "var(--mono)", marginTop: "2px" }}>
-                ${selectedFinding.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-              </div>
-              <div style={{ fontSize: "13px", color: "#71717a", marginTop: "2px" }}>
-                Dataset: {selectedFinding.dataset}
-              </div>
+          {/* Evidence Key Comparison */}
+          <div style={{ marginBottom: "28px" }}>
+            <div style={{ fontSize: "11.5px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", marginBottom: "8px" }}>
+              Evidence Key Comparison
             </div>
-
-            {/* Verdict Badge */}
-            <div style={{ marginBottom: "20px" }}>
-              <div style={{ fontSize: "11.5px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", marginBottom: "6px" }}>
-                Agent Verdict
+            <div style={{ display: "grid", gap: "6px", fontSize: "12px" }}>
+              <div style={{ background: "#fafafa", padding: "8px 12px", borderRadius: "6px", border: "1px solid #f0f0f2", display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: "#71717a" }}>Amount:</span>
+                <span style={{ fontWeight: 700, color: "#09090b" }}>{selectedFinding.evidence.amount}</span>
               </div>
-              <span style={{
-                display: "inline-block",
-                padding: "4px 10px",
-                borderRadius: "6px",
-                fontSize: "12px",
-                fontWeight: 700,
-                background: selectedFinding.verdict === "AUTHORIZED_CLAWBACK" ? "#fef2f2" : (selectedFinding.verdict === "ESCALATE_REVIEW" ? "#fefce8" : "#f4f4f5"),
-                color: selectedFinding.verdict === "AUTHORIZED_CLAWBACK" ? "#991b1b" : (selectedFinding.verdict === "ESCALATE_REVIEW" ? "#854d0e" : "#52525b"),
-                border: "1px solid " + (selectedFinding.verdict === "AUTHORIZED_CLAWBACK" ? "#fecaca" : (selectedFinding.verdict === "ESCALATE_REVIEW" ? "#fef08a" : "#e4e4e7"))
-              }}>
-                {selectedFinding.verdict}
-              </span>
-            </div>
-
-            {/* Reasoning Text */}
-            <div style={{ marginBottom: "24px" }}>
-              <div style={{ fontSize: "11.5px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", marginBottom: "6px" }}>
-                Forensic Reasoning
+              <div style={{ background: "#fafafa", padding: "8px 12px", borderRadius: "6px", border: "1px solid #f0f0f2", display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: "#71717a" }}>Vendor Key:</span>
+                <span style={{ fontWeight: 700, color: "#09090b" }}>{selectedFinding.evidence.vendor_canonical}</span>
               </div>
-              <p style={{ fontSize: "13.5px", lineHeight: 1.6, color: "#27272a", margin: 0 }}>
-                {selectedFinding.reasoning}
-              </p>
-            </div>
-
-            {/* Evidence Tags */}
-            <div style={{ marginBottom: "28px" }}>
-              <div style={{ fontSize: "11.5px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", marginBottom: "8px" }}>
-                Evidence Key Comparison
+              <div style={{ background: "#fafafa", padding: "8px 12px", borderRadius: "6px", border: "1px solid #f0f0f2", display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: "#71717a" }}>Invoice Raw:</span>
+                <span style={{ fontWeight: 700, color: "#09090b" }}>{selectedFinding.evidence.invoice_raw}</span>
               </div>
-              <div style={{ display: "grid", gap: "6px", fontSize: "12px", fontFamily: "var(--mono)" }}>
-                <div style={{ background: "#fafafa", padding: "8px 12px", borderRadius: "6px", border: "1px solid #f0f0f2", display: "flex", justifyContent: "space-between" }}>
-                  <span style={{ color: "#71717a" }}>Amount:</span>
-                  <span style={{ fontWeight: 700, color: "#09090b" }}>{selectedFinding.evidence.amount}</span>
-                </div>
-                <div style={{ background: "#fafafa", padding: "8px 12px", borderRadius: "6px", border: "1px solid #f0f0f2", display: "flex", justifyContent: "space-between" }}>
-                  <span style={{ color: "#71717a" }}>Vendor Key:</span>
-                  <span style={{ fontWeight: 700, color: "#09090b" }}>{selectedFinding.evidence.vendor_canonical}</span>
-                </div>
-                <div style={{ background: "#fafafa", padding: "8px 12px", borderRadius: "6px", border: "1px solid #f0f0f2", display: "flex", justifyContent: "space-between" }}>
-                  <span style={{ color: "#71717a" }}>Invoice Raw:</span>
-                  <span style={{ fontWeight: 700, color: "#09090b" }}>{selectedFinding.evidence.invoice_raw}</span>
-                </div>
-                <div style={{ background: "#fafafa", padding: "8px 12px", borderRadius: "6px", border: "1px solid #f0f0f2", display: "flex", justifyContent: "space-between" }}>
-                  <span style={{ color: "#71717a" }}>PO Number:</span>
-                  <span style={{ fontWeight: 700, color: "#09090b" }}>{selectedFinding.evidence.po_number}</span>
-                </div>
+              <div style={{ background: "#fafafa", padding: "8px 12px", borderRadius: "6px", border: "1px solid #f0f0f2", display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: "#71717a" }}>PO Number:</span>
+                <span style={{ fontWeight: 700, color: "#09090b" }}>{selectedFinding.evidence.po_number}</span>
               </div>
-            </div>
-
-            {/* Human In The Loop Decision Buttons (Reckon Pattern) */}
-            <div>
-              <div style={{ fontSize: "11.5px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", marginBottom: "10px" }}>
-                Human Controller Decision
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginBottom: "8px" }}>
-                <button
-                  type="button"
-                  onClick={() => handleDecision(selectedFinding.id, "confirmed")}
-                  style={{
-                    padding: "10px 14px",
-                    borderRadius: "6px",
-                    border: "1px solid #16a34a",
-                    background: selectedFinding.decision === "confirmed" ? "#16a34a" : "#f0fdf4",
-                    color: selectedFinding.decision === "confirmed" ? "#ffffff" : "#166534",
-                    fontWeight: 700,
-                    fontSize: "12.5px",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "6px"
-                  }}
-                >
-                  <CheckCircle size={14} />
-                  <span>Authorize Clawback</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => handleDecision(selectedFinding.id, "dismissed")}
-                  style={{
-                    padding: "10px 14px",
-                    borderRadius: "6px",
-                    border: "1px solid #e4e4e7",
-                    background: selectedFinding.decision === "dismissed" ? "#09090b" : "#ffffff",
-                    color: selectedFinding.decision === "dismissed" ? "#ffffff" : "#71717a",
-                    fontWeight: 700,
-                    fontSize: "12.5px",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "6px"
-                  }}
-                >
-                  <XCircle size={14} />
-                  <span>Dismiss as Innocent</span>
-                </button>
-              </div>
-
-              <a
-                href={`https://app.neatlogs.com/traces/${selectedFinding.traceId}?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline btn-sm"
-                style={{ width: "100%", justifyContent: "center", marginTop: "6px" }}
-              >
-                <Activity size={13} />
-                <span>Inspect Trace in Neatlogs ({selectedFinding.traceId.slice(0, 8)}...)</span>
-                <ExternalLink size={12} />
-              </a>
             </div>
           </div>
 
-          {/* PANE 3: SIDE-BY-SIDE TRANSACTION COMPARISON TABLE (Reckon Comparison.tsx) */}
-          <div style={{
-            background: "#fafafa",
-            padding: "24px 28px",
-            overflowY: "auto",
-            maxHeight: "calc(100vh - 120px)"
-          }}>
-            <div style={{ marginBottom: "16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <div style={{ fontSize: "14px", fontWeight: 800, color: "#09090b" }}>
-                Side-by-Side Disbursement Comparison
-              </div>
-              <span style={{ fontSize: "11px", color: "#71717a", fontFamily: "var(--mono)" }}>
-                Highlighted cells indicate differing values
-              </span>
-            </div>
-
-            <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "8px", overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12.5px" }}>
-                <thead>
-                  <tr style={{ background: "#f4f4f5", borderBottom: "1px solid #e4e4e7", textAlign: "left" }}>
-                    <th style={{ padding: "10px 14px", width: "140px", color: "#71717a", fontWeight: 600 }}>Field</th>
-                    <th style={{ padding: "10px 14px", fontFamily: "var(--mono)", color: "#09090b", fontWeight: 700 }}>
-                      Disbursement 1 ({selectedFinding.left.transaction_id})
-                    </th>
-                    <th style={{ padding: "10px 14px", fontFamily: "var(--mono)", color: "#09090b", fontWeight: 700 }}>
-                      Disbursement 2 ({selectedFinding.right.transaction_id})
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { label: "Vendor Name", val1: selectedFinding.left.vendor_name, val2: selectedFinding.right.vendor_name },
-                    { label: "Amount", val1: `$${selectedFinding.left.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}`, val2: `$${selectedFinding.right.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}`, mono: true },
-                    { label: "Invoice Number", val1: selectedFinding.left.invoice_number, val2: selectedFinding.right.invoice_number, mono: true },
-                    { label: "Invoice Date", val1: selectedFinding.left.invoice_date, val2: selectedFinding.right.invoice_date, mono: true },
-                    { label: "Payment Date", val1: selectedFinding.left.payment_date, val2: selectedFinding.right.payment_date, mono: true },
-                    { label: "PO Number", val1: selectedFinding.left.po_number, val2: selectedFinding.right.po_number, mono: true },
-                    { label: "Payment Method", val1: selectedFinding.left.payment_method, val2: selectedFinding.right.payment_method },
-                    { label: "Status", val1: selectedFinding.left.payment_status, val2: selectedFinding.right.payment_status },
-                    { label: "Department", val1: selectedFinding.left.department, val2: selectedFinding.right.department },
-                    { label: "Description", val1: selectedFinding.left.description, val2: selectedFinding.right.description },
-                  ].map((row, idx) => {
-                    const differs = row.val1 !== row.val2;
-                    return (
-                      <tr key={idx} style={{ borderBottom: "1px solid #f0f0f2", background: differs ? "#fffbeb" : "#ffffff" }}>
-                        <td style={{ padding: "10px 14px", color: "#71717a", fontWeight: 600 }}>
-                          {row.label}
-                        </td>
-                        <td style={{
-                          padding: "10px 14px",
-                          fontFamily: row.mono ? "var(--mono)" : "inherit",
-                          color: "#09090b",
-                          fontWeight: differs ? 700 : 400
-                        }}>
-                          {row.val1}
-                        </td>
-                        <td style={{
-                          padding: "10px 14px",
-                          fontFamily: row.mono ? "var(--mono)" : "inherit",
-                          color: differs ? "#b45309" : "#09090b",
-                          fontWeight: differs ? 700 : 400
-                        }}>
-                          {row.val2}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* MODE 2: CHATGPT-STYLE CONVERSATIONAL COPILOT */}
-      {viewMode === "chat" && (
-        <div style={{
-          maxWidth: "860px",
-          margin: "0 auto",
-          minHeight: "calc(100vh - 120px)",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "30px 20px 40px"
-        }}>
-          {/* Messages Stream */}
-          <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", gap: "24px", marginBottom: "24px" }}>
-            {messages.map((m) => {
-              const isUser = m.sender === "user";
-              const finding = m.findingId ? findings.find(f => f.id === m.findingId) : null;
-
-              return (
-                <div key={m.id} style={{ display: "flex", gap: "14px", alignItems: "flex-start" }}>
-                  <div style={{
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "50%",
-                    background: isUser ? "#09090b" : "#f4f4f5",
-                    color: isUser ? "#ffffff" : "#09090b",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                    border: "1px solid #e4e4e7"
-                  }}>
-                    {isUser ? <User size={15} /> : <Bot size={16} />}
-                  </div>
-
-                  <div style={{ flex: 1 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
-                      <span style={{ fontSize: "13px", fontWeight: 700, color: "#09090b" }}>
-                        {isUser ? "You" : "Ovio Treasury Agent"}
-                      </span>
-                      <span style={{ fontSize: "11px", color: "#a1a1aa" }}>{m.timestamp}</span>
-                    </div>
-
-                    <div style={{ fontSize: "14.5px", lineHeight: 1.6, color: "#27272a" }}>
-                      {m.text}
-                    </div>
-
-                    {/* Tools Invoked Badges */}
-                    {m.toolsInvoked && m.toolsInvoked.length > 0 && (
-                      <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px" }}>
-                        {m.toolsInvoked.map((t, idx) => (
-                          <span key={idx} style={{
-                            fontSize: "10.5px",
-                            fontFamily: "var(--mono)",
-                            padding: "2px 7px",
-                            borderRadius: "4px",
-                            background: "#f4f4f5",
-                            color: "#52525b",
-                            border: "1px solid #e4e4e7"
-                          }}>
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Inline Interactive Card if Finding Matched */}
-                    {finding && (
-                      <div style={{
-                        marginTop: "16px",
-                        background: "#fafafa",
-                        border: "1px solid #e4e4e7",
-                        borderRadius: "10px",
-                        padding: "16px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        flexWrap: "wrap",
-                        gap: "12px"
-                      }}>
-                        <div>
-                          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
-                            <span style={{ fontSize: "15px", fontWeight: 800, color: "#09090b", fontFamily: "var(--mono)" }}>
-                              ${finding.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-                            </span>
-                            <span style={{ fontSize: "11px", fontWeight: 700, padding: "2px 6px", borderRadius: "4px", background: "#fef2f2", color: "#991b1b" }}>
-                              {finding.confidence}% CONFIDENCE
-                            </span>
-                          </div>
-                          <div style={{ fontSize: "12.5px", fontWeight: 700, color: "#09090b" }}>
-                            {finding.vendor}
-                          </div>
-                          <div style={{ fontSize: "11.5px", color: "#71717a", marginTop: "2px" }}>
-                            {finding.dataset}
-                          </div>
-                        </div>
-
-                        <div style={{ display: "flex", gap: "8px" }}>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setSelectedFindingId(finding.id);
-                              setViewMode("queue");
-                            }}
-                            className="btn btn-primary btn-sm"
-                          >
-                            <Eye size={13} />
-                            <span>Inspect 3-Pane Diff</span>
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-
-            {isTyping && (
-              <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
-                <div style={{
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "50%",
-                  background: "#f4f4f5",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  border: "1px solid #e4e4e7"
-                }}>
-                  <Bot size={16} />
-                </div>
-                <div style={{ fontSize: "13px", color: "#71717a", fontStyle: "italic" }}>
-                  Ovio is running O(N) hash blocking and adjudicating disbursements...
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Prompt Chips & Input Bar */}
+          {/* Human In The Loop Decision Buttons */}
           <div>
-            {/* Quick Prompt Chips */}
-            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "14px" }}>
-              <button
-                type="button"
-                onClick={() => handleSendMessage("Audit the City of Los Angeles ledger for Parks & Rec double payments")}
-                style={{
-                  padding: "6px 12px",
-                  borderRadius: "20px",
-                  fontSize: "12px",
-                  background: "#f4f4f5",
-                  border: "1px solid #e4e4e7",
-                  color: "#09090b",
-                  cursor: "pointer",
-                  fontWeight: 500
-                }}
-              >
-                LA Parks &amp; Rec Audit ($12.8K)
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleSendMessage("Check State of Oklahoma public ledger for CDW Government duplicate bills")}
-                style={{
-                  padding: "6px 12px",
-                  borderRadius: "20px",
-                  fontSize: "12px",
-                  background: "#f4f4f5",
-                  border: "1px solid #e4e4e7",
-                  color: "#09090b",
-                  cursor: "pointer",
-                  fontWeight: 500
-                }}
-              >
-                Oklahoma CDW Hardware ($4.1K)
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleSendMessage("Test against planted decoy benchmark (Enterprise Rent-A-Car recurring lease)")}
-                style={{
-                  padding: "6px 12px",
-                  borderRadius: "20px",
-                  fontSize: "12px",
-                  background: "#f4f4f5",
-                  border: "1px solid #e4e4e7",
-                  color: "#09090b",
-                  cursor: "pointer",
-                  fontWeight: 500
-                }}
-              >
-                Test 60 Planted Decoys
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleSendMessage("Calculate 90-day cashflow rescue plan for $50k liquidity floor")}
-                style={{
-                  padding: "6px 12px",
-                  borderRadius: "20px",
-                  fontSize: "12px",
-                  background: "#f4f4f5",
-                  border: "1px solid #e4e4e7",
-                  color: "#09090b",
-                  cursor: "pointer",
-                  fontWeight: 500
-                }}
-              >
-                90-Day Cashflow Rescue
-              </button>
+            <div style={{ fontSize: "11.5px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", marginBottom: "10px" }}>
+              Human Controller Decision
             </div>
-
-            {/* Input Bar */}
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              background: "#ffffff",
-              border: "1px solid #09090b",
-              borderRadius: "12px",
-              padding: "10px 14px",
-              boxShadow: "0 2px 6px rgba(0, 0, 0, 0.05)"
-            }}>
-              <input
-                type="text"
-                placeholder="Ask Ovio to audit a ledger, explain a candidate, or model cash runway..."
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    handleSendMessage();
-                  }
-                }}
-                style={{
-                  flex: 1,
-                  border: "none",
-                  outline: "none",
-                  fontSize: "14px",
-                  color: "#09090b",
-                  background: "transparent"
-                }}
-              />
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginBottom: "8px" }}>
               <button
                 type="button"
-                onClick={() => handleSendMessage()}
+                onClick={() => handleDecision(selectedFinding.id, "confirmed")}
                 style={{
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "8px",
-                  background: "#09090b",
-                  color: "#ffffff",
-                  border: "none",
+                  padding: "10px 14px",
+                  borderRadius: "6px",
+                  border: "1px solid #16a34a",
+                  background: selectedFinding.decision === "confirmed" ? "#16a34a" : "#f0fdf4",
+                  color: selectedFinding.decision === "confirmed" ? "#ffffff" : "#166534",
+                  fontWeight: 700,
+                  fontSize: "12.5px",
+                  cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  cursor: "pointer"
+                  gap: "6px"
                 }}
               >
-                <Send size={14} />
+                <CheckCircle size={14} />
+                <span>Authorize Clawback</span>
               </button>
+
+              <button
+                type="button"
+                onClick={() => handleDecision(selectedFinding.id, "dismissed")}
+                style={{
+                  padding: "10px 14px",
+                  borderRadius: "6px",
+                  border: "1px solid #e4e4e7",
+                  background: selectedFinding.decision === "dismissed" ? "#09090b" : "#ffffff",
+                  color: selectedFinding.decision === "dismissed" ? "#ffffff" : "#71717a",
+                  fontWeight: 700,
+                  fontSize: "12.5px",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "6px"
+                }}
+              >
+                <XCircle size={14} />
+                <span>Dismiss as Innocent</span>
+              </button>
+            </div>
+
+            <a
+              href={`https://app.neatlogs.com/traces/${selectedFinding.traceId}?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline btn-sm"
+              style={{ width: "100%", justifyContent: "center", marginTop: "6px" }}
+            >
+              <Activity size={13} />
+              <span>Inspect Trace in Neatlogs ({selectedFinding.traceId.slice(0, 8)}...)</span>
+              <ExternalLink size={12} />
+            </a>
+          </div>
+        </div>
+
+        {/* PANE 3: SIDE-BY-SIDE TRANSACTION COMPARISON TABLE (Right Pane) */}
+        <div style={{
+          background: "#fafafa",
+          padding: "24px 28px",
+          overflowY: "auto",
+          maxHeight: "calc(100vh - 120px)"
+        }}>
+          <div style={{ marginBottom: "16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ fontSize: "14px", fontWeight: 800, color: "#09090b" }}>
+              Side-by-Side Disbursement Comparison
+            </div>
+            <span style={{ fontSize: "11px", color: "#71717a" }}>
+              Highlighted cells indicate differing values
+            </span>
+          </div>
+
+          <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "8px", overflow: "hidden", marginBottom: "24px" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12.5px" }}>
+              <thead>
+                <tr style={{ background: "#f4f4f5", borderBottom: "1px solid #e4e4e7", textAlign: "left" }}>
+                  <th style={{ padding: "10px 14px", width: "140px", color: "#71717a", fontWeight: 600 }}>Field</th>
+                  <th style={{ padding: "10px 14px", color: "#09090b", fontWeight: 700 }}>
+                    Disbursement 1 ({selectedFinding.left.transaction_id})
+                  </th>
+                  <th style={{ padding: "10px 14px", color: "#09090b", fontWeight: 700 }}>
+                    Disbursement 2 ({selectedFinding.right.transaction_id})
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { label: "Vendor Name", val1: selectedFinding.left.vendor_name, val2: selectedFinding.right.vendor_name },
+                  { label: "Amount", val1: `$${selectedFinding.left.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}`, val2: `$${selectedFinding.right.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}` },
+                  { label: "Invoice Number", val1: selectedFinding.left.invoice_number, val2: selectedFinding.right.invoice_number },
+                  { label: "Invoice Date", val1: selectedFinding.left.invoice_date, val2: selectedFinding.right.invoice_date },
+                  { label: "Payment Date", val1: selectedFinding.left.payment_date, val2: selectedFinding.right.payment_date },
+                  { label: "PO Number", val1: selectedFinding.left.po_number, val2: selectedFinding.right.po_number },
+                  { label: "Payment Method", val1: selectedFinding.left.payment_method, val2: selectedFinding.right.payment_method },
+                  { label: "Status", val1: selectedFinding.left.payment_status, val2: selectedFinding.right.payment_status },
+                  { label: "Department", val1: selectedFinding.left.department, val2: selectedFinding.right.department },
+                  { label: "Description", val1: selectedFinding.left.description, val2: selectedFinding.right.description },
+                ].map((row, idx) => {
+                  const differs = row.val1 !== row.val2;
+                  return (
+                    <tr key={idx} style={{ borderBottom: "1px solid #f0f0f2", background: differs ? "#fffbeb" : "#ffffff" }}>
+                      <td style={{ padding: "10px 14px", color: "#71717a", fontWeight: 600 }}>
+                        {row.label}
+                      </td>
+                      <td style={{
+                        padding: "10px 14px",
+                        color: "#09090b",
+                        fontWeight: differs ? 700 : 400
+                      }}>
+                        {row.val1}
+                      </td>
+                      <td style={{
+                        padding: "10px 14px",
+                        color: differs ? "#b45309" : "#09090b",
+                        fontWeight: differs ? 700 : 400
+                      }}>
+                        {row.val2}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Recovery Demand Memo Packet */}
+          <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "8px", padding: "18px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+              <div style={{ fontSize: "12.5px", fontWeight: 800, color: "#09090b", display: "flex", alignItems: "center", gap: "6px" }}>
+                <Lock size={14} />
+                <span>Cryptographic Evidence Packet &amp; Recovery Demand</span>
+              </div>
+              <span style={{ fontSize: "11px", color: "#16a34a", fontWeight: 700 }}>
+                SEALED &amp; ADJUDICATED
+              </span>
+            </div>
+
+            <div style={{ fontSize: "12px", color: "#52525b", lineHeight: 1.6, marginBottom: "12px" }}>
+              Ovio generated an automated clawback demand letter for <strong>{selectedFinding.vendor}</strong> citing duplicate wire voucher <code>{selectedFinding.right.transaction_id}</code> against original <code>{selectedFinding.left.transaction_id}</code>.
+            </div>
+
+            <div style={{ background: "#f4f4f5", borderRadius: "6px", padding: "10px 14px", fontSize: "11.5px", color: "#3f3f46" }}>
+              <div><strong>Trace ID:</strong> {selectedFinding.traceId}</div>
+              <div><strong>Audit Checksum:</strong> sha256:{selectedFinding.traceId.slice(0, 16)}...</div>
+              <div><strong>Clawback Mandate:</strong> Net-10 demand for ACH credit wire back to Treasury Escrow Account.</div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

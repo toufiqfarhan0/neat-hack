@@ -1,6 +1,6 @@
 # Sample ledger attribution
 
-These files are public records, committed so Reckon runs without a download.
+These files are public records, committed so Ovio runs without a download.
 
 ## Los Angeles (`la_sample.csv`)
 
