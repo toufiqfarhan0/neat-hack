@@ -122,17 +122,6 @@ export default function RootLayout({
             }}>
               Evidence Ledger
             </Link>
-            <a href="https://app.neatlogs.com" target="_blank" rel="noopener noreferrer" style={{
-              color: '#71717a',
-              fontSize: '13px',
-              fontWeight: 500,
-              textDecoration: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '4px'
-            }}>
-              Neatlogs App ↗
-            </a>
           </nav>
         </header>
 
