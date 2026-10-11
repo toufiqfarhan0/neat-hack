@@ -3,7 +3,7 @@
 > **neatHack 2026 Submission** | Team Dot  
 > **Integrated Sponsors:** [Neatlogs](https://neatlogs.com) · [Entire](https://entire.io) · [cfo.ai](https://cfo.ai)  
 > **Repository:** [https://github.com/toufiqfarhan0/neat-hack](https://github.com/toufiqfarhan0/neat-hack)  
-> **Live Checkpoint:** [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260) (`01M4N5SZ3R63CM54T689X28JZ2`)
+> **Live Checkpoint:** [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4) (`01M4N70PHJF0EG8HC6MEDPW14W`)
 
 ---
 
@@ -173,7 +173,7 @@ pytest
 | Partner | Role in OVIO | Live Evidence & Links |
 |---|---|---|
 | **[Neatlogs](https://neatlogs.com)** | OpenInference hierarchical span tracing, latency profiling, pre-dispatch guardrails, and self-healing diagnostic probe (`ovio-doctor-probe`) | **[Investigator Trace (20 Spans)](https://app.neatlogs.com/traces/3d720906babf7ed470e690f68c4eedc5?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)**<br>**[Single-Shot Baseline Trace (11 Spans)](https://app.neatlogs.com/traces/dd024eda5ca251867f7f23cf768e6651?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)** |
-| **[Entire](https://entire.io)** | Continuous agent memory, capturing prompts, tool calls, and decisions across 26 Git commit checkpoints and 6 Trail evaluators | **[Live Entire Checkpoint](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260)** (`01M4N5SZ3R63CM54T689X28JZ2`) |
+| **[Entire](https://entire.io)** | Continuous agent memory, capturing prompts, tool calls, and decisions across 27 Git commit checkpoints and 6 Trail evaluators | **[Live Entire Checkpoint](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4)** (`01M4N70PHJF0EG8HC6MEDPW14W`) |
 | **[cfo.ai](https://cfo.ai)** | Strategic CFO scenario modeling, unit economics engine, and 24.7x fully-loaded ROI sensitivity analysis | **[cfo.ai Model Specification](file:///c:/Users/toufi/Desktop/neatlogs-hack/cfo_model.json)** & [`CFO_BUSINESS_PLAN.md`](file:///c:/Users/toufi/Desktop/neatlogs-hack/CFO_BUSINESS_PLAN.md) |
 
 ---

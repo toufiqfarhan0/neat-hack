@@ -6,8 +6,8 @@
 **Tracks & Focus:** Autonomous AI Agents, AP/Treasury Forensic Recovery, Observability, Financial Engineering  
 **Integrated Partners:** [Neatlogs](https://neatlogs.com) · [Entire](https://entire.io) · [cfo.ai](https://cfo.ai)  
 **Repository:** [https://github.com/toufiqfarhan0/neat-hack](https://github.com/toufiqfarhan0/neat-hack)  
-**Live Entire Checkpoint:** [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260)  
-**Checkpoint ID:** `01M4N5SZ3R63CM54T689X28JZ2`
+**Live Entire Checkpoint:** [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4)  
+**Checkpoint ID:** `01M4N70PHJF0EG8HC6MEDPW14W`
 
 ---
 
@@ -39,8 +39,8 @@ While existing ERP tools claim "100% population testing," they produce thousands
 
 ### B. Entire.io (Continuous Agent Provenance & Checkpoint Memory)
 * **Session Tracking**: Tracked under Antigravity CLI / IDE session `45f215bc-78e0-4e7b-bedf-b112d4595a4b`.
-* **26 Checkpoints Captured on `main`**: Every single commit automatically carries an `Entire-Checkpoint: <ID>` Git trailer linked to the session's prompt turns, tool calls, code diffs, and 6 Trail evaluators.
-* **Submission Checkpoint URL**: [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260) (`01M4N5SZ3R63CM54T689X28JZ2`).
+* **27 Checkpoints Captured on `main`**: Every single commit automatically carries an `Entire-Checkpoint: <ID>` Git trailer linked to the session's prompt turns, tool calls, code diffs, and 6 Trail evaluators.
+* **Submission Checkpoint URL**: [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4) (`01M4N70PHJF0EG8HC6MEDPW14W`).
 * **Cloud Repository Mirror**: `/et/gh:mirrors:.../neat-hack` on `aws-ap-south-1.entire.io`.
 
 ### C. cfo.ai (Financial Reality & Unit Economics Modeling)
