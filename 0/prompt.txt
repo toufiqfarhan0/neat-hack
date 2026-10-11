@@ -1,1 +1,5 @@
-after doing all those run an end to end live test please throght cli and also web by uploading an csv file a new download from the google
+and also mention what our agent found out in everystep
+
+---
+
+update the readme
