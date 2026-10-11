@@ -1,0 +1,15 @@
+and also this button must be in a disable until user paste he or drop the file
+
+---
+
+please change these type of fonts all over the website please i dont want that make it clean
+
+---
+
+http://localhost:3000/ here both http://localhost:3000/command-center this
+
+looking same can you please change the landing page wher user know what is our project all about and if he wants to test user can go to the commad center
+
+---
+
+why you have added these 2 button what they do??
