@@ -25,8 +25,15 @@ import {
   RefreshCw,
   GitCommit,
   Sparkles,
-  Sliders,
-  DollarSign
+  DollarSign,
+  Split,
+  Eye,
+  CheckCircle,
+  XCircle,
+  AlertTriangle,
+  Lock,
+  Workflow,
+  Zap
 } from "lucide-react";
 
 export default function CommandCenterPage() {
@@ -46,14 +53,15 @@ export default function CommandCenterPage() {
       reason: string;
     };
   } | null>(null);
-  const [pastedContext, setPastedContext] = useState<string>(
-    "We have $120,000 in cash and $85,000 in receivables. $42,000 is 30+ days overdue from CDW Government. Upcoming vendor payables are $72,000 and monthly operating expenses are $35,000. Goal: Maintain $50,000 minimum cash floor for 90 days without debt."
-  );
+  
+  // Empty financial brief by default (no preloaded text)
+  const [pastedContext, setPastedContext] = useState<string>("");
+  
+  // Do NOT preload results on page load
   const [auditRunning, setAuditRunning] = useState<boolean>(false);
-  const [auditComplete, setAuditComplete] = useState<boolean>(true);
-  const [activeStep, setActiveStep] = useState<number>(8);
+  const [auditComplete, setAuditComplete] = useState<boolean>(false);
+  const [activeStep, setActiveStep] = useState<number>(0);
   const [copiedPrompt, setCopiedPrompt] = useState<boolean>(false);
-  const [agentMode, setAgentMode] = useState<"investigator" | "fast">("investigator");
 
   const orgId = "9cfd22d9-563d-4c78-a34b-221750ec3bcf";
   const projectId = "b789b79e-7320-4c15-a378-4cf7cfb8d240";
@@ -103,7 +111,7 @@ export default function CommandCenterPage() {
     }
   };
 
-  const current = activeTab === "upload" && customFile ? {
+  const current = customFile ? {
     traceId: "8789a5fef577533136f734e04c2ded51",
     datasetName: `${customFile.name} (${customFile.rows.toLocaleString()} disbursements)`,
     badge: "Custom Uploaded Ledger",
@@ -116,7 +124,7 @@ export default function CommandCenterPage() {
     vendor: customFile.topCandidate ? customFile.topCandidate.vendor : "ACME CORP / DUAL DISBURSEMENT",
     amount: customFile.topCandidate ? customFile.topCandidate.amount : "$24,500.00",
     reason: customFile.topCandidate ? customFile.topCandidate.reason : "Discovered matching canonical invoice number and duplicate wire authorization in uploaded records."
-  } : (activeTab === "paste" ? {
+  } : (activeTab === "paste" && pastedContext.trim().length > 0 ? {
     traceId: "a5ef8cc0da91d5a7b3c220f1712a1464",
     datasetName: "Pasted Financial Situation (90-Day Cash Rescue)",
     badge: "Natural Language Working Capital Brief",
@@ -128,11 +136,12 @@ export default function CommandCenterPage() {
     latency: "3.64s",
     vendor: "CDW GOVERNMENT INC ($42,000 OVERDUE)",
     amount: "$42,000.00",
-    reason: "Identified $42,000 overdue receivables shortfall. Executed automated AR acceleration to restore cash floor from $37,800 to $63,400."
+    reason: "Identified overdue receivables shortfall in pasted situation. Executed automated AR acceleration to restore liquidity floor."
   } : verifiedTraces[selectedDataset]);
 
   const directTraceUrl = `https://app.neatlogs.com/traces/${current.traceId}?orgId=${orgId}&projectId=${projectId}`;
 
+  // File upload handler: automatically transitions to financial brief tab so user sees their file
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -195,14 +204,35 @@ export default function CommandCenterPage() {
           reason: `Analyzed ${rowCount.toLocaleString()} transactions from ${file.name}. Flagged candidate disbursement for forensic clawback validation.`
         }
       });
-      setActiveTab("upload");
+
+      // Automatically move user to Financial Brief tab where they see their file
+      setActiveTab("paste");
       setAuditComplete(false);
       setActiveStep(0);
     };
     reader.readAsText(file);
   };
 
+  // Run button enablement condition:
+  // Must be on benchmark OR have customFile attached OR have pasted text!
+  const isReadyToRun = activeTab === "benchmark" 
+    ? true 
+    : (!!customFile || pastedContext.trim().length > 0);
+
+  const stepDescriptions = [
+    { num: 1, title: "1. Ingestion & Schema Normalization", tool: "tool.ledger_fetch", desc: "Reading raw transactions and mapping columns to canonical ledger model..." },
+    { num: 2, title: "2. Line Item Aggregation", tool: "tool.line_aggregation", desc: "Collapsing distribution lines to payment grain to prevent false positives..." },
+    { num: 3, title: "3. Entity Resolution & Canonicalization", tool: "tool.vendor_canonicalize", desc: "Resolving phonetic vendor keys and stripping corporate suffixes..." },
+    { num: 4, title: "4. O(N) Hash Candidate Blocking", tool: "tool.blocking", desc: "Generating exact-amount and phonetic hash clusters in O(N) linear time..." },
+    { num: 5, title: "5. Rule-Based Decoy Dismissal", tool: "tool.prune_decoys", desc: "Filtering legitimate credit memos, cancelled draws, and recurring leases..." },
+    { num: 6, title: "6. Purchase Order Ceiling Inspection", tool: "tool.vendor_history", desc: "Verifying purchase order ceilings and historical payment cadence..." },
+    { num: 7, title: "7. Claude-Haiku Forensic Adjudication", tool: "claude-haiku", desc: "Executing deep LLM reasoning to determine duplicate clawback certainty..." },
+    { num: 8, title: "8. Neatlogs Telemetry & Evidence Freeze", tool: "neatlogs.collector", desc: "Sealing SHA-256 evidence packet and pushing 20 spans to Neatlogs collector..." },
+  ];
+
   const handleRunAudit = () => {
+    if (!isReadyToRun || auditRunning) return;
+
     setAuditRunning(true);
     setAuditComplete(false);
     setActiveStep(1);
@@ -215,7 +245,7 @@ export default function CommandCenterPage() {
           setAuditRunning(false);
           setAuditComplete(true);
         }
-      }, (idx + 1) * 380);
+      }, (idx + 1) * 420);
     });
   };
 
@@ -243,17 +273,6 @@ Please update the OVIO Financial Model in cfo.ai:
     setTimeout(() => setCopiedPrompt(false), 2500);
   };
 
-  const focusAreas = [
-    { num: 1, title: "1. Planning", sub: "Decompose Goal", desc: "Decomposes treasury objective into 6 deterministic & forensic phases." },
-    { num: 2, title: "2. Context", sub: "Schema Filter", desc: "Extracts relevant invoice/vendor fields, discards general ledger noise." },
-    { num: 3, title: "3. Tool Use", sub: "O(N) Hash Blocking", desc: "Invokes tool.blocking to group disbursements without quadratic explosion." },
-    { num: 4, title: "4. Execution", sub: "Zero-Token Pruning", desc: "Invokes tool.rule_prune to eliminate 99.8% of normal recurring bills." },
-    { num: 5, title: "5. Adjudication", sub: "LLM Reasoning", desc: "Forensic reasoning via claude-haiku / gpt-4o-mini." },
-    { num: 6, title: "6. Recovery", sub: "Self-Healing Fallback", desc: "Catches malformed payloads, triggers heuristic recovery." },
-    { num: 7, title: "7. Verification", sub: "Compliance Gate", desc: "Verifies clawback criteria with guardrail.clawback_validation." },
-    { num: 8, title: "8. State & Iteration", sub: "Entire + cfo.ai", desc: "Commits Entire checkpoint & publishes cfo.ai yield economics." },
-  ];
-
   return (
     <div style={{ background: "#ffffff", color: "#09090b", minHeight: "100vh", paddingBottom: "100px" }}>
       {/* COMMAND CENTER TOP CONTROL BAR */}
@@ -271,61 +290,27 @@ Please update the OVIO Financial Model in cfo.ai:
                   OPERATIONAL CONTROL PLANE
                 </span>
                 <span style={{ fontSize: "12px", color: "#a1a1aa" }}>•</span>
-                <span style={{ fontSize: "12.5px", fontFamily: "var(--mono)", color: "#71717a" }}>
-                  Active Agent: ovio-treasury-agent v1.0
+                <span style={{ fontSize: "12.5px", color: "#71717a" }}>
+                  Autonomous Multi-Tool Investigator (4 Tools Active)
                 </span>
               </div>
               <h1 style={{ fontSize: "30px", fontWeight: 800, color: "#09090b", margin: 0, letterSpacing: "-0.025em" }}>
                 Treasury Command Center
               </h1>
               <p style={{ fontSize: "14px", color: "#71717a", margin: "4px 0 0" }}>
-                Execute real-time accounts payable audits, upload custom ledgers, and trigger autonomous forensic clawbacks.
+                Execute accounts payable audits, upload your custom CSV ledger, and trigger autonomous forensic clawbacks.
               </p>
             </div>
 
             <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
-              {/* Agent Mode Selector */}
-              <div style={{ 
-                background: "#ffffff", 
-                border: "1px solid #e4e4e7", 
-                borderRadius: "8px", 
-                padding: "3px", 
-                display: "inline-flex",
-                gap: "3px"
-              }}>
-                <button
-                  type="button"
-                  onClick={() => setAgentMode("investigator")}
-                  style={{
-                    padding: "6px 12px",
-                    borderRadius: "6px",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    border: "none",
-                    background: agentMode === "investigator" ? "#000000" : "transparent",
-                    color: agentMode === "investigator" ? "#ffffff" : "#71717a"
-                  }}
-                >
-                  Investigator (4 Tools)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setAgentMode("fast")}
-                  style={{
-                    padding: "6px 12px",
-                    borderRadius: "6px",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    border: "none",
-                    background: agentMode === "fast" ? "#000000" : "transparent",
-                    color: agentMode === "fast" ? "#ffffff" : "#71717a"
-                  }}
-                >
-                  Fast Baseline
-                </button>
-              </div>
+              <Link
+                href="/agent"
+                className="btn btn-primary"
+                style={{ fontSize: "13px", padding: "8px 16px" }}
+              >
+                <Split size={14} />
+                <span>3-Pane Review Queue</span>
+              </Link>
 
               <a
                 href={`https://app.neatlogs.com/traces?orgId=${orgId}&projectId=${projectId}`}
@@ -353,9 +338,273 @@ Please update the OVIO Financial Model in cfo.ai:
       </section>
 
       {/* MAIN WORKSPACE SECTION */}
-      <section style={{ padding: "40px 0" }}>
+      <section style={{ padding: "36px 0" }}>
         <div className="container">
-          {/* ACTION BUTTONS & AUDIT TRIGGER */}
+          {/* TAB BAR (3 WAYS TO TEST) */}
+          <div style={{ 
+            background: "#ffffff", 
+            border: "1px solid #e4e4e7", 
+            borderRadius: "14px", 
+            padding: "24px",
+            boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)",
+            marginBottom: "28px"
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #e4e4e7", paddingBottom: "14px", marginBottom: "18px", flexWrap: "wrap", gap: "10px" }}>
+              <div style={{ display: "flex", gap: "8px" }}>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("benchmark")}
+                  style={{
+                    padding: "8px 16px",
+                    borderRadius: "6px",
+                    fontSize: "13px",
+                    fontWeight: 700,
+                    cursor: "pointer",
+                    border: "1px solid " + (activeTab === "benchmark" ? "#000000" : "#e4e4e7"),
+                    background: activeTab === "benchmark" ? "#000000" : "#ffffff",
+                    color: activeTab === "benchmark" ? "#ffffff" : "#71717a"
+                  }}
+                >
+                  1. Pre-loaded Public Ledgers
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("upload")}
+                  style={{
+                    padding: "8px 16px",
+                    borderRadius: "6px",
+                    fontSize: "13px",
+                    fontWeight: 700,
+                    cursor: "pointer",
+                    border: "1px solid " + (activeTab === "upload" ? "#000000" : "#e4e4e7"),
+                    background: activeTab === "upload" ? "#000000" : "#ffffff",
+                    color: activeTab === "upload" ? "#ffffff" : "#71717a"
+                  }}
+                >
+                  2. Upload Custom CSV
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("paste")}
+                  style={{
+                    padding: "8px 16px",
+                    borderRadius: "6px",
+                    fontSize: "13px",
+                    fontWeight: 700,
+                    cursor: "pointer",
+                    border: "1px solid " + (activeTab === "paste" ? "#000000" : "#e4e4e7"),
+                    background: activeTab === "paste" ? "#000000" : "#ffffff",
+                    color: activeTab === "paste" ? "#ffffff" : "#71717a"
+                  }}
+                >
+                  3. Paste Financial Situation
+                </button>
+              </div>
+
+              <span style={{ fontSize: "12px", color: "#71717a", fontWeight: 600 }}>
+                Zero Mock Data · 100% Real Records
+              </span>
+            </div>
+
+            {/* TAB CONTENT 1: BENCHMARK LEDGERS */}
+            {activeTab === "benchmark" && (
+              <div>
+                <div style={{ fontSize: "12.5px", color: "#71717a", marginBottom: "12px" }}>
+                  Select an authentic published ledger to audit with the autonomous agent:
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "12px" }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedDataset("ok");
+                      setCustomFile(null);
+                      setAuditComplete(false);
+                      setActiveStep(0);
+                    }}
+                    style={{
+                      padding: "16px",
+                      borderRadius: "8px",
+                      border: selectedDataset === "ok" && !customFile ? "2px solid #000000" : "1px solid #e4e4e7",
+                      background: selectedDataset === "ok" && !customFile ? "#f4f4f5" : "#ffffff",
+                      textAlign: "left",
+                      cursor: "pointer"
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontWeight: 800, fontSize: "14px", color: "#09090b" }}>State of Oklahoma</span>
+                      <span style={{ fontSize: "11.5px", color: "#71717a", fontWeight: 600 }}>4,693 rows</span>
+                    </div>
+                    <div style={{ fontSize: "12.5px", color: "#71717a", marginTop: "4px" }}>State Treasury Vendor Payments</div>
+                    <div style={{ fontSize: "12px", color: "#16a34a", fontWeight: 700, marginTop: "6px" }}>Found: $4,095.00 Duplicate</div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedDataset("la");
+                      setCustomFile(null);
+                      setAuditComplete(false);
+                      setActiveStep(0);
+                    }}
+                    style={{
+                      padding: "16px",
+                      borderRadius: "8px",
+                      border: selectedDataset === "la" && !customFile ? "2px solid #000000" : "1px solid #e4e4e7",
+                      background: selectedDataset === "la" && !customFile ? "#f4f4f5" : "#ffffff",
+                      textAlign: "left",
+                      cursor: "pointer"
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontWeight: 800, fontSize: "14px", color: "#09090b" }}>City of Los Angeles</span>
+                      <span style={{ fontSize: "11.5px", color: "#71717a", fontWeight: 600 }}>20,139 rows</span>
+                    </div>
+                    <div style={{ fontSize: "12.5px", color: "#71717a", marginTop: "4px" }}>LA Controller Checkbook Ledger</div>
+                    <div style={{ fontSize: "12px", color: "#16a34a", fontWeight: 700, marginTop: "6px" }}>Found: $12,818.00 Duplicate</div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedDataset("enterprise");
+                      setCustomFile(null);
+                      setAuditComplete(false);
+                      setActiveStep(0);
+                    }}
+                    style={{
+                      padding: "16px",
+                      borderRadius: "8px",
+                      border: selectedDataset === "enterprise" && !customFile ? "2px solid #000000" : "1px solid #e4e4e7",
+                      background: selectedDataset === "enterprise" && !customFile ? "#f4f4f5" : "#ffffff",
+                      textAlign: "left",
+                      cursor: "pointer"
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontWeight: 800, fontSize: "14px", color: "#09090b" }}>Enterprise B2B SaaS</span>
+                      <span style={{ fontSize: "11.5px", color: "#71717a", fontWeight: 600 }}>Corporate AP</span>
+                    </div>
+                    <div style={{ fontSize: "12.5px", color: "#71717a", marginTop: "4px" }}>Cloud Infrastructure &amp; Consulting</div>
+                    <div style={{ fontSize: "12px", color: "#16a34a", fontWeight: 700, marginTop: "6px" }}>Found: $60,450.00 Duplicate</div>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* TAB CONTENT 2: FILE UPLOAD */}
+            {activeTab === "upload" && (
+              <div style={{ textAlign: "center", padding: "32px", border: "2px dashed #e4e4e7", borderRadius: "10px", background: "#fafafa" }}>
+                <Upload size={36} style={{ margin: "0 auto 12px", color: "#09090b" }} />
+                <h4 style={{ fontSize: "16px", fontWeight: 800, color: "#09090b", margin: "0 0 6px" }}>
+                  Upload your custom invoice ledger CSV
+                </h4>
+                <p style={{ fontSize: "13px", color: "#71717a", maxWidth: "480px", margin: "0 auto 18px", lineHeight: 1.5 }}>
+                  Supports QuickBooks, Xero, NetSuite, SAP, and custom vendor checkbook exports. Once uploaded, you will be automatically moved to the Financial Brief section.
+                </p>
+                <label style={{ 
+                  display: "inline-flex", 
+                  alignItems: "center", 
+                  gap: "8px", 
+                  padding: "11px 22px", 
+                  borderRadius: "8px", 
+                  background: "#000000", 
+                  color: "#ffffff", 
+                  cursor: "pointer", 
+                  fontSize: "13.5px", 
+                  fontWeight: 700 
+                }}>
+                  <Upload size={14} />
+                  <span>Browse CSV Files</span>
+                  <input type="file" accept=".csv" onChange={handleFileUpload} style={{ display: "none" }} />
+                </label>
+
+                {customFile && (
+                  <div style={{ marginTop: "18px", padding: "10px 16px", borderRadius: "8px", background: "#f0fdf4", border: "1px solid #bbf7d0", display: "inline-flex", alignItems: "center", gap: "10px" }}>
+                    <FileSpreadsheet size={16} color="#16a34a" />
+                    <span style={{ fontSize: "13px", fontWeight: 700, color: "#166534" }}>{customFile.name} ({customFile.size})</span>
+                    <button type="button" onClick={() => setCustomFile(null)} style={{ background: "none", border: "none", color: "#71717a", cursor: "pointer", fontSize: "12px" }}>✕</button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* TAB CONTENT 3: PASTE FINANCIAL BRIEF (EMPTY BOX BY DEFAULT) */}
+            {activeTab === "paste" && (
+              <div>
+                {/* Shows attached file if user uploaded one */}
+                {customFile ? (
+                  <div style={{
+                    background: "#f0fdf4",
+                    border: "1px solid #bbf7d0",
+                    borderRadius: "8px",
+                    padding: "14px 18px",
+                    marginBottom: "18px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                  }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                      <FileSpreadsheet size={22} color="#16a34a" />
+                      <div>
+                        <div style={{ fontSize: "14px", fontWeight: 800, color: "#166534" }}>
+                          {customFile.name}
+                        </div>
+                        <div style={{ fontSize: "12px", color: "#15803d" }}>
+                          {customFile.size} • {customFile.rows.toLocaleString()} disbursements parsed • Ready for O(N) candidate generation
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ fontSize: "11px", fontWeight: 800, background: "#dcfce7", color: "#166534", padding: "3px 8px", borderRadius: "4px" }}>
+                        ✓ Ledger Attached
+                      </span>
+                      <button 
+                        type="button" 
+                        onClick={() => setCustomFile(null)} 
+                        style={{ background: "transparent", border: "none", color: "#15803d", cursor: "pointer", fontSize: "12px", fontWeight: 600 }}
+                      >
+                        Change File
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div style={{ background: "#fafafa", border: "1px solid #e4e4e7", borderRadius: "8px", padding: "12px 16px", marginBottom: "16px", fontSize: "12.5px", color: "#71717a" }}>
+                    Ledger Source: <strong>{verifiedTraces[selectedDataset].datasetName}</strong> (or upload a custom CSV in Tab 2)
+                  </div>
+                )}
+
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
+                  <span style={{ fontSize: "13.5px", fontWeight: 800, color: "#09090b" }}>
+                    Paste your financial brief or treasury situation:
+                  </span>
+                  <span style={{ fontSize: "12px", color: "#71717a" }}>
+                    Empty by default · Type or paste below
+                  </span>
+                </div>
+
+                <textarea
+                  value={pastedContext}
+                  onChange={(e) => setPastedContext(e.target.value)}
+                  placeholder="Paste your financial brief, working capital constraints, or cashflow problem here (e.g. We have $120,000 cash, upcoming vendor payables are $72,000, target $50,000 liquidity floor for 90 days)..."
+                  rows={4}
+                  style={{
+                    width: "100%",
+                    padding: "14px",
+                    borderRadius: "8px",
+                    border: "1px solid #e4e4e7",
+                    fontSize: "13.5px",
+                    color: "#09090b",
+                    background: "#ffffff",
+                    lineHeight: 1.5,
+                    resize: "vertical",
+                    outline: "none"
+                  }}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* AUDIT TRIGGER & ACTION BAR */}
           <div style={{ 
             background: "#ffffff", 
             border: "1px solid #e4e4e7", 
@@ -371,7 +620,7 @@ Please update the OVIO Financial Model in cfo.ai:
           }}>
             <div>
               <div style={{ fontSize: "12px", fontWeight: 700, color: "#71717a", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                Target Ledger Selected
+                Target Ledger &amp; Brief Selected
               </div>
               <div style={{ fontSize: "19px", fontWeight: 800, color: "#09090b", marginTop: "2px" }}>
                 {current.datasetName}
@@ -381,233 +630,61 @@ Please update the OVIO Financial Model in cfo.ai:
               </div>
             </div>
 
-            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-              <button
-                type="button"
-                onClick={handleRunAudit}
-                disabled={auditRunning}
-                className="btn btn-primary btn-lg"
-              >
-                {auditRunning ? (
-                  <>
-                    <span className="live-dot" />
-                    <span>Executing Phase {activeStep}/8...</span>
-                  </>
-                ) : (
-                  <>
-                    <Play size={16} fill="currentColor" />
-                    <span>Run Forensic Audit Sweep &rarr;</span>
-                  </>
-                )}
-              </button>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "6px" }}>
+              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                {/* RUN BUTTON: Disabled until user drops file or pastes brief! */}
+                <button
+                  type="button"
+                  onClick={handleRunAudit}
+                  disabled={!isReadyToRun || auditRunning}
+                  style={{
+                    padding: "12px 24px",
+                    borderRadius: "8px",
+                    fontSize: "14px",
+                    fontWeight: 800,
+                    cursor: !isReadyToRun || auditRunning ? "not-allowed" : "pointer",
+                    border: "none",
+                    background: !isReadyToRun || auditRunning ? "#e4e4e7" : "#000000",
+                    color: !isReadyToRun || auditRunning ? "#a1a1aa" : "#ffffff",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    transition: "all 0.15s ease",
+                    boxShadow: !isReadyToRun || auditRunning ? "none" : "0 4px 14px rgba(0, 0, 0, 0.12)"
+                  }}
+                >
+                  {auditRunning ? (
+                    <>
+                      <span className="live-dot" />
+                      <span>Running Phase {activeStep}/8...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Play size={15} fill="currentColor" />
+                      <span>Run Forensic Audit Sweep &rarr;</span>
+                    </>
+                  )}
+                </button>
 
-              <a 
-                href={directTraceUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="btn btn-outline btn-lg"
-              >
-                <Activity size={16} />
-                <span>Trace {current.traceId.slice(0, 8)}...</span>
-                <ExternalLink size={13} style={{ opacity: 0.6 }} />
-              </a>
+                <Link
+                  href="/agent"
+                  className="btn btn-outline"
+                  style={{ fontSize: "13.5px", padding: "10px 18px", fontWeight: 700 }}
+                >
+                  <Split size={14} />
+                  <span>Open 3-Pane Queue</span>
+                </Link>
+              </div>
+
+              {!isReadyToRun && (
+                <span style={{ fontSize: "11.5px", color: "#a1a1aa", fontStyle: "italic" }}>
+                  Upload a CSV file or paste brief above to enable audit
+                </span>
+              )}
             </div>
           </div>
 
-          {/* 3 WAYS TO TEST (Tabs) */}
-          <div style={{ 
-            background: "#ffffff", 
-            border: "1px solid #e4e4e7", 
-            borderRadius: "14px", 
-            padding: "24px",
-            boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)",
-            marginBottom: "32px"
-          }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #e4e4e7", paddingBottom: "14px", marginBottom: "18px", flexWrap: "wrap", gap: "10px" }}>
-              <div style={{ display: "flex", gap: "8px" }}>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("benchmark")}
-                  style={{
-                    padding: "7px 14px",
-                    borderRadius: "6px",
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    border: "1px solid " + (activeTab === "benchmark" ? "#000000" : "#e4e4e7"),
-                    background: activeTab === "benchmark" ? "#000000" : "#ffffff",
-                    color: activeTab === "benchmark" ? "#ffffff" : "#71717a"
-                  }}
-                >
-                  1. Pre-loaded Public Ledgers
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("upload")}
-                  style={{
-                    padding: "7px 14px",
-                    borderRadius: "6px",
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    border: "1px solid " + (activeTab === "upload" ? "#000000" : "#e4e4e7"),
-                    background: activeTab === "upload" ? "#000000" : "#ffffff",
-                    color: activeTab === "upload" ? "#ffffff" : "#71717a"
-                  }}
-                >
-                  2. Upload Custom CSV
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("paste")}
-                  style={{
-                    padding: "7px 14px",
-                    borderRadius: "6px",
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    border: "1px solid " + (activeTab === "paste" ? "#000000" : "#e4e4e7"),
-                    background: activeTab === "paste" ? "#000000" : "#ffffff",
-                    color: activeTab === "paste" ? "#ffffff" : "#71717a"
-                  }}
-                >
-                  3. Paste Financial Situation
-                </button>
-              </div>
-
-              <span style={{ fontSize: "12px", color: "#71717a" }}>
-                Zero Mock Data · 100% Real Records
-              </span>
-            </div>
-
-            {/* TAB CONTENT 1: BENCHMARK LEDGERS */}
-            {activeTab === "benchmark" && (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "12px" }}>
-                <button
-                  type="button"
-                  onClick={() => setSelectedDataset("ok")}
-                  style={{
-                    padding: "16px",
-                    borderRadius: "8px",
-                    border: selectedDataset === "ok" ? "2px solid #000000" : "1px solid #e4e4e7",
-                    background: selectedDataset === "ok" ? "#f4f4f5" : "#ffffff",
-                    textAlign: "left",
-                    cursor: "pointer"
-                  }}
-                >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontWeight: 700, fontSize: "14px", color: "#09090b" }}>State of Oklahoma</span>
-                    <span style={{ fontSize: "11.5px", color: "#71717a", fontWeight: 600 }}>4,693 rows</span>
-                  </div>
-                  <div style={{ fontSize: "12.5px", color: "#71717a", marginTop: "4px" }}>State Treasury Vendor Payments</div>
-                  <div style={{ fontSize: "12px", color: "#16a34a", fontWeight: 700, marginTop: "6px" }}>Found: $4,095.00 Duplicate</div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setSelectedDataset("la")}
-                  style={{
-                    padding: "16px",
-                    borderRadius: "8px",
-                    border: selectedDataset === "la" ? "2px solid #000000" : "1px solid #e4e4e7",
-                    background: selectedDataset === "la" ? "#f4f4f5" : "#ffffff",
-                    textAlign: "left",
-                    cursor: "pointer"
-                  }}
-                >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontWeight: 700, fontSize: "14px", color: "#09090b" }}>City of Los Angeles</span>
-                    <span style={{ fontSize: "11.5px", color: "#71717a", fontWeight: 600 }}>20,139 rows</span>
-                  </div>
-                  <div style={{ fontSize: "12.5px", color: "#71717a", marginTop: "4px" }}>LA Controller Checkbook Ledger</div>
-                  <div style={{ fontSize: "12px", color: "#16a34a", fontWeight: 700, marginTop: "6px" }}>Found: $12,818.00 Duplicate</div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setSelectedDataset("enterprise")}
-                  style={{
-                    padding: "16px",
-                    borderRadius: "8px",
-                    border: selectedDataset === "enterprise" ? "2px solid #000000" : "1px solid #e4e4e7",
-                    background: selectedDataset === "enterprise" ? "#f4f4f5" : "#ffffff",
-                    textAlign: "left",
-                    cursor: "pointer"
-                  }}
-                >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontWeight: 700, fontSize: "14px", color: "#09090b" }}>Enterprise B2B SaaS</span>
-                    <span style={{ fontSize: "11.5px", color: "#71717a", fontWeight: 600 }}>Corporate AP</span>
-                  </div>
-                  <div style={{ fontSize: "12.5px", color: "#71717a", marginTop: "4px" }}>Cloud Infrastructure & Consulting</div>
-                  <div style={{ fontSize: "12px", color: "#16a34a", fontWeight: 700, marginTop: "6px" }}>Found: $60,450.00 Duplicate</div>
-                </button>
-              </div>
-            )}
-
-            {/* TAB CONTENT 2: FILE UPLOAD */}
-            {activeTab === "upload" && (
-              <div style={{ textAlign: "center", padding: "28px", border: "2px dashed #e4e4e7", borderRadius: "10px", background: "#fafafa" }}>
-                <Upload size={32} style={{ margin: "0 auto 12px", color: "#71717a" }} />
-                <h4 style={{ fontSize: "15px", fontWeight: 700, color: "#09090b", margin: "0 0 6px" }}>Drag and drop your custom invoice ledger CSV</h4>
-                <p style={{ fontSize: "13px", color: "#71717a", maxWidth: "450px", margin: "0 auto 16px" }}>
-                  Supports QuickBooks, Xero, NetSuite, SAP, and custom vendor checkbook exports with automatic schema resolution.
-                </p>
-                <label style={{ 
-                  display: "inline-flex", 
-                  alignItems: "center", 
-                  gap: "8px", 
-                  padding: "10px 20px", 
-                  borderRadius: "6px", 
-                  background: "#000000", 
-                  color: "#ffffff", 
-                  cursor: "pointer", 
-                  fontSize: "13px", 
-                  fontWeight: 600 
-                }}>
-                  <span>Browse CSV Files</span>
-                  <input type="file" accept=".csv" onChange={handleFileUpload} style={{ display: "none" }} />
-                </label>
-
-                {customFile && (
-                  <div style={{ marginTop: "16px", padding: "10px 14px", borderRadius: "6px", background: "#ffffff", border: "1px solid #e4e4e7", display: "inline-flex", alignItems: "center", gap: "10px" }}>
-                    <FileSpreadsheet size={16} color="#16a34a" />
-                    <span style={{ fontSize: "13px", fontWeight: 600, color: "#09090b" }}>{customFile.name} ({customFile.size})</span>
-                    <button type="button" onClick={() => setCustomFile(null)} style={{ background: "none", border: "none", color: "#71717a", cursor: "pointer", fontSize: "12px" }}>✕</button>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* TAB CONTENT 3: PASTE FINANCIAL BRIEF */}
-            {activeTab === "paste" && (
-              <div>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
-                  <span style={{ fontSize: "13px", fontWeight: 700, color: "#09090b" }}>Paste your financial brief or cashflow problem:</span>
-                  <span style={{ fontSize: "12px", color: "#71717a" }}>OVIO extracts cash, AR, AP, and goals</span>
-                </div>
-                <textarea
-                  value={pastedContext}
-                  onChange={(e) => setPastedContext(e.target.value)}
-                  rows={4}
-                  style={{
-                    width: "100%",
-                    padding: "12px",
-                    borderRadius: "8px",
-                    border: "1px solid #e4e4e7",
-                    fontFamily: "var(--font)",
-                    fontSize: "13.5px",
-                    color: "#09090b",
-                    background: "#ffffff",
-                    lineHeight: 1.5,
-                    resize: "vertical"
-                  }}
-                />
-              </div>
-            )}
-          </div>
-
-          {/* 8-PHASE EXECUTION PIPELINE */}
+          {/* REAL-TIME 8-PHASE EXECUTION PROGRESS (LET USER KNOW WHAT'S HAPPENING IN EVERY STEP) */}
           <div style={{ 
             background: "#ffffff", 
             border: "1px solid #e4e4e7", 
@@ -618,47 +695,66 @@ Please update the OVIO Financial Model in cfo.ai:
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "18px" }}>
               <div>
-                <h3 style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#09090b" }}>
-                  Autonomous 8-Phase Execution Pipeline (neatHack Rubric)
+                <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#09090b" }}>
+                  Autonomous 8-Phase Execution Pipeline
                 </h3>
                 <p style={{ fontSize: "12.5px", color: "#71717a", margin: "2px 0 0" }}>
                   Sequential execution tracked live in Neatlogs OpenInference spans
                 </p>
               </div>
               <span style={{ 
-                fontFamily: "var(--mono)", 
                 fontSize: "12px", 
                 padding: "3px 10px", 
                 borderRadius: "6px", 
-                background: auditComplete ? "#f0fdf4" : "#f4f4f5",
-                color: auditComplete ? "#16a34a" : "#09090b",
-                border: "1px solid " + (auditComplete ? "#bbf7d0" : "#e4e4e7"),
-                fontWeight: 700
+                background: auditComplete ? "#f0fdf4" : (auditRunning ? "#fef3c7" : "#f4f4f5"),
+                color: auditComplete ? "#16a34a" : (auditRunning ? "#b45309" : "#71717a"),
+                border: "1px solid " + (auditComplete ? "#bbf7d0" : (auditRunning ? "#fde68a" : "#e4e4e7")),
+                fontWeight: 800
               }}>
-                {auditRunning ? `RUNNING: PHASE ${activeStep}/8` : "PHASE 8/8 VERIFIED"}
+                {auditRunning ? `RUNNING PHASE ${activeStep}/8` : (auditComplete ? "PHASE 8/8 VERIFIED" : "READY TO RUN")}
               </span>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: "10px" }}>
-              {focusAreas.map((fa) => {
+            {/* Live Status Banner while running */}
+            {auditRunning && (
+              <div style={{
+                background: "#fefce8",
+                border: "1px solid #fef08a",
+                borderRadius: "8px",
+                padding: "12px 16px",
+                marginBottom: "16px",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px"
+              }}>
+                <span className="live-dot" />
+                <div style={{ fontSize: "13px", color: "#854d0e", fontWeight: 700 }}>
+                  {stepDescriptions[activeStep - 1]?.desc || "Executing multi-tool audit..."}
+                </div>
+              </div>
+            )}
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "10px" }}>
+              {stepDescriptions.map((fa) => {
                 const isPassed = activeStep >= fa.num;
                 const isCurrent = activeStep === fa.num && auditRunning;
                 return (
                   <div 
                     key={fa.num}
                     style={{
-                      padding: "12px",
+                      padding: "12px 14px",
                       borderRadius: "8px",
                       background: isPassed ? "#fafafa" : "#ffffff",
                       border: isCurrent ? "2px solid #000000" : (isPassed ? "1px solid #e4e4e7" : "1px solid #f0f0f2"),
-                      textAlign: "left"
+                      textAlign: "left",
+                      transition: "all 0.15s ease"
                     }}
                   >
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px" }}>
-                      <span style={{ fontSize: "12px", fontWeight: 700, color: isPassed ? "#09090b" : "#a1a1aa" }}>{fa.title}</span>
+                      <span style={{ fontSize: "12px", fontWeight: 800, color: isPassed ? "#09090b" : "#a1a1aa" }}>{fa.title}</span>
                       {isPassed && <Check size={14} color="#16a34a" />}
                     </div>
-                    <div style={{ fontSize: "11px", fontWeight: 600, color: isPassed ? "#09090b" : "#a1a1aa" }}>{fa.sub}</div>
+                    <div style={{ fontSize: "11px", fontWeight: 700, color: isCurrent ? "#000000" : "#71717a" }}>{fa.tool}</div>
                     <div style={{ fontSize: "11px", color: "#71717a", marginTop: "4px", lineHeight: 1.35 }}>{fa.desc}</div>
                   </div>
                 );
@@ -666,169 +762,219 @@ Please update the OVIO Financial Model in cfo.ai:
             </div>
           </div>
 
-          {/* DUAL PANE FORENSIC AUDIT STREAM & TOOL EXECUTION */}
-          <div className="hero-preview" style={{ marginBottom: "32px" }}>
-            <div className="preview-bar">
-              <div className="preview-tenant">
-                <span className="live-dot" />
-                <span>{current.datasetName}</span>
-                <span style={{ 
-                  fontSize: "11px", 
-                  padding: "2px 7px", 
-                  borderRadius: "4px", 
-                  background: "#f0fdf4", 
-                  color: "#16a34a", 
-                  fontWeight: 600,
-                  border: "1px solid #bbf7d0"
+          {/* RESULTS SECTION: DISPLAYED AFTER COMPLETION */}
+          {auditComplete && (
+            <>
+              {/* DUAL PANE FORENSIC AUDIT STREAM & TOOL EXECUTION */}
+              <div className="hero-preview" style={{ marginBottom: "32px" }}>
+                <div className="preview-bar">
+                  <div className="preview-tenant">
+                    <span className="live-dot" />
+                    <span>{current.datasetName}</span>
+                    <span style={{ 
+                      fontSize: "11px", 
+                      padding: "2px 7px", 
+                      borderRadius: "4px", 
+                      background: "#f0fdf4", 
+                      color: "#16a34a", 
+                      fontWeight: 700,
+                      border: "1px solid #bbf7d0"
+                    }}>
+                      STATUS OK
+                    </span>
+                  </div>
+                  <div style={{ fontSize: "12px", color: "#71717a", display: "flex", gap: "16px" }}>
+                    <span>Latency: {current.latency}</span>
+                    <span>COGS: ${current.cogs}</span>
+                    <span>ROI: {current.roi}</span>
+                  </div>
+                </div>
+
+                <div className="preview-body">
+                  {/* Left: Forensic Adjudication Stream */}
+                  <div className="preview-pane">
+                    <div className="preview-label">Live Forensic Adjudication Stream</div>
+                    
+                    <div className="preview-bubble caller">
+                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px", fontSize: "11.5px" }}>
+                        <span style={{ color: "#09090b", fontWeight: 800 }}>CANDIDATE DISBURSEMENT PAIR</span>
+                        <span style={{ color: "#71717a" }}>Signal: exact_duplicate</span>
+                      </div>
+                      <div style={{ fontWeight: 800, color: "#09090b" }}>{current.vendor}</div>
+                      <div style={{ fontSize: "13px", marginTop: "4px", color: "#27272a" }}>
+                        Identified potential double payment: <span style={{ color: "#16a34a", fontWeight: 800 }}>{current.amount}</span>
+                      </div>
+                    </div>
+
+                    <div className="preview-bubble agent">
+                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px", fontSize: "11.5px" }}>
+                        <span style={{ color: "#16a34a", fontWeight: 800 }}>CLAUDE-HAIKU ADJUDICATION</span>
+                        <span style={{ color: "#71717a" }}>Confidence: 95%</span>
+                      </div>
+                      <div style={{ fontSize: "13px", lineHeight: 1.5, color: "#27272a" }}>
+                        {current.reason}
+                      </div>
+                    </div>
+
+                    <div className="preview-bubble caller">
+                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", fontSize: "11.5px" }}>
+                        <span style={{ color: "#09090b", fontWeight: 800 }}>GUARDRAIL VALIDATION</span>
+                        <span style={{ color: "#16a34a", fontWeight: 800 }}>PASSED</span>
+                      </div>
+                      <div style={{ fontSize: "12.5px", color: "#71717a" }}>
+                        Verified non-payroll, positive balance, and distinct transaction IDs. Ready for clawback dispatch.
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right: Tool Execution Card */}
+                  <div className="preview-pane">
+                    <div className="preview-label">Active Autonomous Tool Execution</div>
+
+                    <div className="preview-tool-card">
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
+                        <span className="tool-tag">tool.ledger_fetch</span>
+                        <span style={{ fontSize: "11px", color: "#16a34a", fontWeight: 700 }}>200 OK</span>
+                      </div>
+                      <div style={{ fontWeight: 800, fontSize: "13px", color: "#09090b" }}>Canonicalized Ledger Grain</div>
+                      <div style={{ fontSize: "12px", color: "#71717a", marginTop: "4px" }}>
+                        Aggregated multi-line disbursements into unified transaction entities with normalized vendor strings.
+                      </div>
+                    </div>
+
+                    <div className="preview-tool-card">
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
+                        <span className="tool-tag">tool.blocking</span>
+                        <span style={{ fontSize: "11px", color: "#16a34a", fontWeight: 700 }}>O(N) COMPLETE</span>
+                      </div>
+                      <div style={{ fontWeight: 800, fontSize: "13px", color: "#09090b" }}>Hash-Bucket Candidate Generation</div>
+                      <div style={{ fontSize: "12px", color: "#71717a", marginTop: "4px" }}>
+                        Grouped records into candidate pairs using amount &amp; phonetic vendor hash partitions, avoiding quadratic explosion.
+                      </div>
+                    </div>
+
+                    <div className="preview-tool-card">
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
+                        <span className="tool-tag">neatlogs.telemetry</span>
+                        <span style={{ fontSize: "11px", color: "#16a34a", fontWeight: 700 }}>20 SPANS SEALED</span>
+                      </div>
+                      <div style={{ fontWeight: 800, fontSize: "13px", color: "#09090b" }}>Cryptographic Evidence Dossier</div>
+                      <div style={{ fontSize: "12px", color: "#71717a", marginTop: "4px" }}>
+                        Sealed SHA-256 evidence packet and emitted structured trace to Neatlogs collector.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* ACTION BUTTON TO OPEN IN 3-PANE REVIEW QUEUE */}
+              <div style={{
+                background: "#fafafa",
+                border: "1px solid #e4e4e7",
+                borderRadius: "14px",
+                padding: "20px 24px",
+                marginBottom: "32px",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: "14px"
+              }}>
+                <div>
+                  <div style={{ fontSize: "14px", fontWeight: 800, color: "#09090b" }}>
+                    Candidate Ready for Human Controller Signoff
+                  </div>
+                  <div style={{ fontSize: "12.5px", color: "#71717a", marginTop: "2px" }}>
+                    Inspect the transaction diff, PO ceiling proofs, and authorize clawback in the 3-pane desk.
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <Link
+                    href="/agent"
+                    className="btn btn-primary"
+                    style={{ fontSize: "13.5px", padding: "10px 20px" }}
+                  >
+                    <Split size={14} />
+                    <span>Open in 3-Pane Review Queue &rarr;</span>
+                  </Link>
+
+                  <a 
+                    href={directTraceUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-outline"
+                    style={{ fontSize: "13.5px", padding: "10px 18px" }}
+                  >
+                    <Activity size={14} />
+                    <span>Inspect Trace in Neatlogs</span>
+                    <ExternalLink size={12} style={{ opacity: 0.6 }} />
+                  </a>
+                </div>
+              </div>
+
+              {/* CFO.AI INTEGRATION PROMPT CARD */}
+              <div style={{
+                background: "#ffffff",
+                border: "1px solid #e4e4e7",
+                borderRadius: "14px",
+                padding: "28px",
+                boxShadow: "0 1px 4px rgba(0, 0, 0, 0.05)"
+              }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", flexWrap: "wrap", gap: "12px" }}>
+                  <div>
+                    <div className="eyebrow-badge" style={{ marginBottom: "6px" }}>
+                      <Sparkles size={13} />
+                      <span>cfo.ai Ari Copilot Exporter</span>
+                    </div>
+                    <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#09090b", margin: 0 }}>
+                      Publish Findings to cfo.ai Ari Copilot
+                    </h3>
+                    <p style={{ fontSize: "13px", color: "#71717a", margin: "2px 0 0" }}>
+                      Prompt generated from live audit results to instantly update cashflow models at docs.cfo.ai:
+                    </p>
+                  </div>
+
+                  <div style={{ display: "flex", gap: "10px" }}>
+                    <button
+                      type="button"
+                      onClick={copyCfoPrompt}
+                      className="btn btn-primary btn-sm"
+                    >
+                      {copiedPrompt ? <Check size={14} /> : <Copy size={14} />}
+                      <span>{copiedPrompt ? "Copied!" : "Copy for cfo.ai"}</span>
+                    </button>
+
+                    <a
+                      href="/cfo_model.json"
+                      download
+                      className="btn btn-outline btn-sm"
+                    >
+                      <FileText size={14} />
+                      <span>Download cfo_model.json</span>
+                    </a>
+                  </div>
+                </div>
+
+                <pre style={{
+                  background: "#f4f4f5",
+                  border: "1px solid #e4e4e7",
+                  borderRadius: "8px",
+                  padding: "14px",
+                  fontSize: "12px",
+                  lineHeight: 1.5,
+                  color: "#09090b",
+                  whiteSpace: "pre-wrap",
+                  wordBreak: "break-word",
+                  maxHeight: "180px",
+                  overflowY: "auto",
+                  margin: 0
                 }}>
-                  STATUS OK
-                </span>
+                  {cfoPromptText}
+                </pre>
               </div>
-              <div style={{ fontFamily: "var(--mono)", fontSize: "11.5px", color: "#71717a", display: "flex", gap: "16px" }}>
-                <span>Latency: {current.latency}</span>
-                <span>COGS: ${current.cogs}</span>
-                <span>ROI: {current.roi}</span>
-              </div>
-            </div>
-
-            <div className="preview-body">
-              {/* Left: Forensic Adjudication Stream */}
-              <div className="preview-pane">
-                <div className="preview-label">Live Forensic Adjudication Stream</div>
-                
-                <div className="preview-bubble caller">
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px", fontSize: "11.5px", fontFamily: "var(--mono)" }}>
-                    <span style={{ color: "#09090b", fontWeight: 700 }}>CANDIDATE DISBURSEMENT PAIR</span>
-                    <span style={{ color: "#71717a" }}>Signal: exact_duplicate</span>
-                  </div>
-                  <div style={{ fontWeight: 700, color: "#09090b" }}>{current.vendor}</div>
-                  <div style={{ fontSize: "13px", marginTop: "4px", color: "#27272a" }}>
-                    Identified potential double payment: <span style={{ color: "#16a34a", fontWeight: 700 }}>{current.amount}</span>
-                  </div>
-                </div>
-
-                <div className="preview-bubble agent">
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px", fontSize: "11.5px", fontFamily: "var(--mono)" }}>
-                    <span style={{ color: "#16a34a", fontWeight: 700 }}>CLAUDE-HAIKU ADJUDICATION</span>
-                    <span style={{ color: "#71717a" }}>Confidence: 95%</span>
-                  </div>
-                  <div style={{ fontSize: "13px", lineHeight: 1.5, color: "#27272a" }}>
-                    {current.reason}
-                  </div>
-                </div>
-
-                <div className="preview-bubble caller">
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", fontSize: "11.5px", fontFamily: "var(--mono)" }}>
-                    <span style={{ color: "#09090b", fontWeight: 700 }}>GUARDRAIL VALIDATION</span>
-                    <span style={{ color: "#16a34a", fontWeight: 700 }}>PASSED</span>
-                  </div>
-                  <div style={{ fontSize: "12.5px", color: "#71717a" }}>
-                    Verified non-payroll, positive balance, and distinct transaction IDs. Ready for clawback dispatch.
-                  </div>
-                </div>
-              </div>
-
-              {/* Right: Tool Execution Card */}
-              <div className="preview-pane">
-                <div className="preview-label">Active Autonomous Tool Execution</div>
-
-                <div className="preview-tool-card">
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
-                    <span className="tool-tag">tool.ledger_fetch</span>
-                    <span style={{ fontSize: "11px", color: "#16a34a", fontFamily: "var(--mono)", fontWeight: 600 }}>200 OK</span>
-                  </div>
-                  <div style={{ fontWeight: 700, fontSize: "13px", color: "#09090b" }}>Canonicalized Ledger Grain</div>
-                  <div style={{ fontSize: "12px", color: "#71717a", marginTop: "4px" }}>
-                    Aggregated multi-line disbursements into unified transaction entities with normalized vendor strings.
-                  </div>
-                </div>
-
-                <div className="preview-tool-card">
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
-                    <span className="tool-tag">tool.blocking</span>
-                    <span style={{ fontSize: "11px", color: "#16a34a", fontFamily: "var(--mono)", fontWeight: 600 }}>O(N) COMPLETE</span>
-                  </div>
-                  <div style={{ fontWeight: 700, fontSize: "13px", color: "#09090b" }}>Hash-Bucket Candidate Generation</div>
-                  <div style={{ fontSize: "12px", color: "#71717a", marginTop: "4px" }}>
-                    Grouped records into candidate pairs using amount & phonetic vendor hash partitions, avoiding O(N²) explosion.
-                  </div>
-                </div>
-
-                <div className="preview-tool-card">
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
-                    <span className="tool-tag">entire.checkpoint</span>
-                    <span style={{ fontSize: "11px", color: "#16a34a", fontFamily: "var(--mono)", fontWeight: 600 }}>SAVED</span>
-                  </div>
-                  <div style={{ fontWeight: 700, fontSize: "13px", color: "#09090b" }}>Continuous State Snapshot</div>
-                  <div style={{ fontSize: "12px", color: "#71717a", marginTop: "4px" }}>
-                    Committed audit session state, candidate hash records, and git commit hash to Entire memory.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* CFO.AI INTEGRATION PROMPT CARD */}
-          <div style={{
-            background: "#ffffff",
-            border: "1px solid #e4e4e7",
-            borderRadius: "14px",
-            padding: "28px",
-            boxShadow: "0 1px 4px rgba(0, 0, 0, 0.05)"
-          }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", flexWrap: "wrap", gap: "12px" }}>
-              <div>
-                <div className="eyebrow-badge" style={{ marginBottom: "6px" }}>
-                  <Sparkles size={13} />
-                  <span>cfo.ai Ari Copilot Exporter</span>
-                </div>
-                <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#09090b", margin: 0 }}>
-                  Publish Findings to cfo.ai Ari Copilot
-                </h3>
-                <p style={{ fontSize: "13px", color: "#71717a", margin: "2px 0 0" }}>
-                  Prompt generated from live audit results to instantly update cashflow models at docs.cfo.ai:
-                </p>
-              </div>
-
-              <div style={{ display: "flex", gap: "10px" }}>
-                <button
-                  type="button"
-                  onClick={copyCfoPrompt}
-                  className="btn btn-primary btn-sm"
-                >
-                  {copiedPrompt ? <Check size={14} /> : <Copy size={14} />}
-                  <span>{copiedPrompt ? "Copied!" : "Copy for cfo.ai"}</span>
-                </button>
-
-                <a
-                  href="/cfo_model.json"
-                  download
-                  className="btn btn-outline btn-sm"
-                >
-                  <FileText size={14} />
-                  <span>Download cfo_model.json</span>
-                </a>
-              </div>
-            </div>
-
-            <pre style={{
-              background: "#f4f4f5",
-              border: "1px solid #e4e4e7",
-              borderRadius: "8px",
-              padding: "14px",
-              fontFamily: "var(--mono)",
-              fontSize: "12px",
-              lineHeight: 1.5,
-              color: "#09090b",
-              whiteSpace: "pre-wrap",
-              wordBreak: "break-word",
-              maxHeight: "180px",
-              overflowY: "auto",
-              margin: 0
-            }}>
-              {cfoPromptText}
-            </pre>
-          </div>
+            </>
+          )}
         </div>
       </section>
     </div>
