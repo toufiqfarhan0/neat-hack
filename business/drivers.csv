@@ -1,0 +1,19 @@
+driver,value,unit,measured,source
+traces_measured,4,traces,yes,"neatlogs, ovio-treasury-agent live audit traces"
+cost_per_run_mean,0.00104,USD,yes,"neatlogs trace ovio-tr-3b74c5292731"
+cost_per_run_p50,0.00104,USD,yes,neatlogs trace ovio-tr-3b74c5292731
+cost_per_run_p90,0.00104,USD,yes,neatlogs trace ovio-tr-974f0a5227fb
+cost_per_run_max,0.00104,USD,yes,neatlogs trace ovio-tr-974f0a5227fb
+run_duration_mean,10.4,seconds,yes,"neatlogs, ovio-tr-3b74c5292731"
+gross_leakage_recovered_mean,12818.00,USD,yes,"LA municipal ledger benchmark"
+contingency_revenue_mean,2307.24,USD,yes,"18% contingency on $12,818.00 duplicate"
+roi_multiplier_mean,12372586.9,multiplier,yes,"Recovery yield per inference dollar"
+tokens_consumed_mean,2080,tokens,yes,"Neatlogs token telemetry"
+margin_floor,0.70,fraction,no,"assumption, set by the founder"
+contingency_tier_price,0.0,USD per year,no,"zero upfront, 18% success fee"
+hybrid_tier_price,42000.0,USD per year,no,"SaaS subscription + 10% contingency"
+enterprise_tier_price,120000.0,USD per year,no,"dedicated VPC deployment + 5% contingency"
+seed_capital,1500000.0,USD,no,"Series Seed capitalization"
+monthly_burn_m1_m6,45000.0,USD per month,no,"3 engineers + cloud infrastructure"
+monthly_burn_m7_m12,70000.0,USD per month,no,"5 engineers + 1 GTM"
+monthly_burn_m13_m24,110000.0,USD per month,no,"8 FTEs + marketing and compliance"

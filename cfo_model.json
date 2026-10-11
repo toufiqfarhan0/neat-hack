@@ -1,0 +1,841 @@
+{
+  "model_version": "cfo.ai/v1",
+  "model_name": "OVIO Autonomous Treasury AP Recovery Financial Model",
+  "description": "Multi-tier unit economics, AI token inference COGS, contingency fee yield, and 24-month runway forecast.",
+  "dimensions": [
+    {
+      "id": "scenario",
+      "name": "Scenario",
+      "items": [
+        "Base",
+        "Bull",
+        "Bear"
+      ]
+    },
+    {
+      "id": "pricing_tier",
+      "name": "Pricing Tier",
+      "items": [
+        "Contingency Recovery",
+        "Hybrid Treasury Shield",
+        "Enterprise Sovereign"
+      ]
+    },
+    {
+      "id": "time_month",
+      "name": "Planning Period",
+      "grain": "month",
+      "range": [
+        "2026-01",
+        "2027-12"
+      ]
+    }
+  ],
+  "variables": [
+    {
+      "id": "disbursements_audited",
+      "name": "Disbursements Audited",
+      "type": "count",
+      "format": "#,##0",
+      "description": "Total payment records ingested across municipal ledgers"
+    },
+    {
+      "id": "leakage_identified",
+      "name": "Gross AP Leakage",
+      "type": "currency",
+      "format": "$#,##0.00",
+      "description": "Identified duplicate disbursements verified by Claude-Haiku"
+    },
+    {
+      "id": "contingency_fee_rev",
+      "name": "Contingency Fee Revenue",
+      "type": "currency",
+      "format": "$#,##0.00",
+      "formula": "Gross AP Leakage * 0.18",
+      "description": "18% contingency recovery fee earned upon validation"
+    },
+    {
+      "id": "saas_subscription_rev",
+      "name": "SaaS Subscription Revenue",
+      "type": "currency",
+      "format": "$#,##0.00",
+      "description": "Annual recurring subscription fees for Continuous Treasury Shield"
+    },
+    {
+      "id": "token_inference_cogs",
+      "name": "LLM Inference COGS",
+      "type": "currency",
+      "format": "$#,##0.0000",
+      "formula": "(Prompt_Tokens / 1000000 * 0.25) + (Completion_Tokens / 1000000 * 1.25)",
+      "description": "Claude-Haiku token spend for forensic candidate adjudication"
+    },
+    {
+      "id": "gross_profit",
+      "name": "Gross Profit",
+      "type": "currency",
+      "format": "$#,##0.00",
+      "formula": "Contingency Fee Revenue + SaaS Subscription Revenue - LLM Inference COGS",
+      "description": "Net margin before corporate operating expenditures"
+    },
+    {
+      "id": "gross_margin_pct",
+      "name": "Gross Margin %",
+      "type": "percentage",
+      "format": "0.00%",
+      "formula": "Gross Profit / (Contingency Fee Revenue + SaaS Subscription Revenue)",
+      "description": "Sustained gross margin (>99% on contingency, 93% blended)"
+    },
+    {
+      "id": "cash_runway_months",
+      "name": "Cash Runway Months",
+      "type": "ratio",
+      "format": "0.0",
+      "formula": "iferror(Cash_Balance / Net_Burn, 99.0)",
+      "description": "Remaining months of operational cash at current net burn"
+    },
+    {
+      "id": "token_roi_multiplier",
+      "name": "Token ROI Multiplier",
+      "type": "ratio",
+      "format": "#,##0.0x",
+      "formula": "Gross AP Leakage / LLM Inference COGS",
+      "description": "Recovery yield generated per dollar of AI inference cost"
+    }
+  ],
+  "assumptions": {
+    "initial_seed_funding_usd": 1500000.0,
+    "default_contingency_rate": 0.18,
+    "haiku_input_cost_per_1m": 0.25,
+    "haiku_output_cost_per_1m": 1.25,
+    "deterministic_filter_pass_pct": 0.92,
+    "avg_municipal_ticket_size_usd": 3200.0,
+    "monthly_burn_rate_m1_m6": 60000.0,
+    "monthly_burn_rate_m7_m12": 90000.0,
+    "monthly_burn_rate_m13_m24": 150000.0
+  },
+  "runway_projections": {
+    "base": {
+      "scenario": "base",
+      "initial_funding_usd": 1500000.0,
+      "breakeven_month": 6,
+      "month_24_cash_usd": 1752125.0,
+      "month_24_arr_usd": 2198400.0,
+      "total_revenue_24mo_usd": 2281250.0,
+      "total_opex_24mo_usd": 2010000.0,
+      "trajectory": [
+        {
+          "month": 1,
+          "clients": 2,
+          "revenue": 8100.0,
+          "cogs": 90.0,
+          "opex": 45000.0,
+          "net_flow": -36990.0,
+          "ending_cash": 1463010.0
+        },
+        {
+          "month": 2,
+          "clients": 3,
+          "revenue": 15650.0,
+          "cogs": 135.0,
+          "opex": 45000.0,
+          "net_flow": -29485.0,
+          "ending_cash": 1433525.0
+        },
+        {
+          "month": 3,
+          "clients": 4,
+          "revenue": 19700.0,
+          "cogs": 180.0,
+          "opex": 45000.0,
+          "net_flow": -25480.0,
+          "ending_cash": 1408045.0
+        },
+        {
+          "month": 4,
+          "clients": 6,
+          "revenue": 31300.0,
+          "cogs": 270.0,
+          "opex": 45000.0,
+          "net_flow": -13970.0,
+          "ending_cash": 1394075.0
+        },
+        {
+          "month": 5,
+          "clients": 7,
+          "revenue": 35350.0,
+          "cogs": 315.0,
+          "opex": 45000.0,
+          "net_flow": -9965.0,
+          "ending_cash": 1384110.0
+        },
+        {
+          "month": 6,
+          "clients": 9,
+          "revenue": 46950.0,
+          "cogs": 405.0,
+          "opex": 45000.0,
+          "net_flow": 1545.0,
+          "ending_cash": 1385655.0
+        },
+        {
+          "month": 7,
+          "clients": 10,
+          "revenue": 54500.0,
+          "cogs": 450.0,
+          "opex": 70000.0,
+          "net_flow": -15950.0,
+          "ending_cash": 1369705.0
+        },
+        {
+          "month": 8,
+          "clients": 11,
+          "revenue": 58550.0,
+          "cogs": 495.0,
+          "opex": 70000.0,
+          "net_flow": -11945.0,
+          "ending_cash": 1357760.0
+        },
+        {
+          "month": 9,
+          "clients": 13,
+          "revenue": 70150.0,
+          "cogs": 585.0,
+          "opex": 70000.0,
+          "net_flow": -435.0,
+          "ending_cash": 1357325.0
+        },
+        {
+          "month": 10,
+          "clients": 14,
+          "revenue": 74200.0,
+          "cogs": 630.0,
+          "opex": 70000.0,
+          "net_flow": 3570.0,
+          "ending_cash": 1360895.0
+        },
+        {
+          "month": 11,
+          "clients": 16,
+          "revenue": 85800.0,
+          "cogs": 720.0,
+          "opex": 70000.0,
+          "net_flow": 15080.0,
+          "ending_cash": 1375975.0
+        },
+        {
+          "month": 12,
+          "clients": 17,
+          "revenue": 89850.0,
+          "cogs": 765.0,
+          "opex": 70000.0,
+          "net_flow": 19085.0,
+          "ending_cash": 1395060.0
+        },
+        {
+          "month": 13,
+          "clients": 18,
+          "revenue": 97400.0,
+          "cogs": 810.0,
+          "opex": 110000.0,
+          "net_flow": -13410.0,
+          "ending_cash": 1381650.0
+        },
+        {
+          "month": 14,
+          "clients": 20,
+          "revenue": 109000.0,
+          "cogs": 900.0,
+          "opex": 110000.0,
+          "net_flow": -1900.0,
+          "ending_cash": 1379750.0
+        },
+        {
+          "month": 15,
+          "clients": 21,
+          "revenue": 113050.0,
+          "cogs": 945.0,
+          "opex": 110000.0,
+          "net_flow": 2105.0,
+          "ending_cash": 1381855.0
+        },
+        {
+          "month": 16,
+          "clients": 23,
+          "revenue": 124650.0,
+          "cogs": 1035.0,
+          "opex": 110000.0,
+          "net_flow": 13615.0,
+          "ending_cash": 1395470.0
+        },
+        {
+          "month": 17,
+          "clients": 24,
+          "revenue": 128700.0,
+          "cogs": 1080.0,
+          "opex": 110000.0,
+          "net_flow": 17620.0,
+          "ending_cash": 1413090.0
+        },
+        {
+          "month": 18,
+          "clients": 25,
+          "revenue": 136250.0,
+          "cogs": 1125.0,
+          "opex": 110000.0,
+          "net_flow": 25125.0,
+          "ending_cash": 1438215.0
+        },
+        {
+          "month": 19,
+          "clients": 27,
+          "revenue": 144350.0,
+          "cogs": 1215.0,
+          "opex": 110000.0,
+          "net_flow": 33135.0,
+          "ending_cash": 1471350.0
+        },
+        {
+          "month": 20,
+          "clients": 28,
+          "revenue": 151900.0,
+          "cogs": 1260.0,
+          "opex": 110000.0,
+          "net_flow": 40640.0,
+          "ending_cash": 1511990.0
+        },
+        {
+          "month": 21,
+          "clients": 30,
+          "revenue": 163500.0,
+          "cogs": 1350.0,
+          "opex": 110000.0,
+          "net_flow": 52150.0,
+          "ending_cash": 1564140.0
+        },
+        {
+          "month": 22,
+          "clients": 31,
+          "revenue": 167550.0,
+          "cogs": 1395.0,
+          "opex": 110000.0,
+          "net_flow": 56155.0,
+          "ending_cash": 1620295.0
+        },
+        {
+          "month": 23,
+          "clients": 32,
+          "revenue": 171600.0,
+          "cogs": 1440.0,
+          "opex": 110000.0,
+          "net_flow": 60160.0,
+          "ending_cash": 1680455.0
+        },
+        {
+          "month": 24,
+          "clients": 34,
+          "revenue": 183200.0,
+          "cogs": 1530.0,
+          "opex": 110000.0,
+          "net_flow": 71670.0,
+          "ending_cash": 1752125.0
+        }
+      ]
+    },
+    "bull": {
+      "scenario": "bull",
+      "initial_funding_usd": 1500000.0,
+      "breakeven_month": 4,
+      "month_24_cash_usd": 3739650.0,
+      "month_24_arr_usd": 4087440.0,
+      "total_revenue_24mo_usd": 4279800.0,
+      "total_opex_24mo_usd": 2010000.0,
+      "trajectory": [
+        {
+          "month": 1,
+          "clients": 3,
+          "revenue": 18620.0,
+          "cogs": 135.0,
+          "opex": 45000.0,
+          "net_flow": -26515.0,
+          "ending_cash": 1473485.0
+        },
+        {
+          "month": 2,
+          "clients": 5,
+          "revenue": 32200.0,
+          "cogs": 225.0,
+          "opex": 45000.0,
+          "net_flow": -13025.0,
+          "ending_cash": 1460460.0
+        },
+        {
+          "month": 3,
+          "clients": 7,
+          "revenue": 42280.0,
+          "cogs": 315.0,
+          "opex": 45000.0,
+          "net_flow": -3035.0,
+          "ending_cash": 1457425.0
+        },
+        {
+          "month": 4,
+          "clients": 9,
+          "revenue": 55860.0,
+          "cogs": 405.0,
+          "opex": 45000.0,
+          "net_flow": 10455.0,
+          "ending_cash": 1467880.0
+        },
+        {
+          "month": 5,
+          "clients": 11,
+          "revenue": 69440.0,
+          "cogs": 495.0,
+          "opex": 45000.0,
+          "net_flow": 23945.0,
+          "ending_cash": 1491825.0
+        },
+        {
+          "month": 6,
+          "clients": 14,
+          "revenue": 88060.0,
+          "cogs": 630.0,
+          "opex": 45000.0,
+          "net_flow": 42430.0,
+          "ending_cash": 1534255.0
+        },
+        {
+          "month": 7,
+          "clients": 16,
+          "revenue": 101640.0,
+          "cogs": 720.0,
+          "opex": 70000.0,
+          "net_flow": 30920.0,
+          "ending_cash": 1565175.0
+        },
+        {
+          "month": 8,
+          "clients": 18,
+          "revenue": 115220.0,
+          "cogs": 810.0,
+          "opex": 70000.0,
+          "net_flow": 44410.0,
+          "ending_cash": 1609585.0
+        },
+        {
+          "month": 9,
+          "clients": 20,
+          "revenue": 128800.0,
+          "cogs": 900.0,
+          "opex": 70000.0,
+          "net_flow": 57900.0,
+          "ending_cash": 1667485.0
+        },
+        {
+          "month": 10,
+          "clients": 22,
+          "revenue": 138880.0,
+          "cogs": 990.0,
+          "opex": 70000.0,
+          "net_flow": 67890.0,
+          "ending_cash": 1735375.0
+        },
+        {
+          "month": 11,
+          "clients": 25,
+          "revenue": 161000.0,
+          "cogs": 1125.0,
+          "opex": 70000.0,
+          "net_flow": 89875.0,
+          "ending_cash": 1825250.0
+        },
+        {
+          "month": 12,
+          "clients": 27,
+          "revenue": 171080.0,
+          "cogs": 1215.0,
+          "opex": 70000.0,
+          "net_flow": 99865.0,
+          "ending_cash": 1925115.0
+        },
+        {
+          "month": 13,
+          "clients": 29,
+          "revenue": 184660.0,
+          "cogs": 1305.0,
+          "opex": 110000.0,
+          "net_flow": 73355.0,
+          "ending_cash": 1998470.0
+        },
+        {
+          "month": 14,
+          "clients": 31,
+          "revenue": 198240.0,
+          "cogs": 1395.0,
+          "opex": 110000.0,
+          "net_flow": 86845.0,
+          "ending_cash": 2085315.0
+        },
+        {
+          "month": 15,
+          "clients": 33,
+          "revenue": 211820.0,
+          "cogs": 1485.0,
+          "opex": 110000.0,
+          "net_flow": 100335.0,
+          "ending_cash": 2185650.0
+        },
+        {
+          "month": 16,
+          "clients": 36,
+          "revenue": 230440.0,
+          "cogs": 1620.0,
+          "opex": 110000.0,
+          "net_flow": 118820.0,
+          "ending_cash": 2304470.0
+        },
+        {
+          "month": 17,
+          "clients": 38,
+          "revenue": 244020.0,
+          "cogs": 1710.0,
+          "opex": 110000.0,
+          "net_flow": 132310.0,
+          "ending_cash": 2436780.0
+        },
+        {
+          "month": 18,
+          "clients": 40,
+          "revenue": 257600.0,
+          "cogs": 1800.0,
+          "opex": 110000.0,
+          "net_flow": 145800.0,
+          "ending_cash": 2582580.0
+        },
+        {
+          "month": 19,
+          "clients": 42,
+          "revenue": 267680.0,
+          "cogs": 1890.0,
+          "opex": 110000.0,
+          "net_flow": 155790.0,
+          "ending_cash": 2738370.0
+        },
+        {
+          "month": 20,
+          "clients": 44,
+          "revenue": 281260.0,
+          "cogs": 1980.0,
+          "opex": 110000.0,
+          "net_flow": 169280.0,
+          "ending_cash": 2907650.0
+        },
+        {
+          "month": 21,
+          "clients": 47,
+          "revenue": 299880.0,
+          "cogs": 2115.0,
+          "opex": 110000.0,
+          "net_flow": 187765.0,
+          "ending_cash": 3095415.0
+        },
+        {
+          "month": 22,
+          "clients": 49,
+          "revenue": 313460.0,
+          "cogs": 2205.0,
+          "opex": 110000.0,
+          "net_flow": 201255.0,
+          "ending_cash": 3296670.0
+        },
+        {
+          "month": 23,
+          "clients": 51,
+          "revenue": 327040.0,
+          "cogs": 2295.0,
+          "opex": 110000.0,
+          "net_flow": 214745.0,
+          "ending_cash": 3511415.0
+        },
+        {
+          "month": 24,
+          "clients": 53,
+          "revenue": 340620.0,
+          "cogs": 2385.0,
+          "opex": 110000.0,
+          "net_flow": 228235.0,
+          "ending_cash": 3739650.0
+        }
+      ]
+    },
+    "bear": {
+      "scenario": "bear",
+      "initial_funding_usd": 1500000.0,
+      "breakeven_month": "Post-Month 24",
+      "month_24_cash_usd": 450225.0,
+      "month_24_arr_usd": 950640.0,
+      "total_revenue_24mo_usd": 970800.0,
+      "total_opex_24mo_usd": 2010000.0,
+      "trajectory": [
+        {
+          "month": 1,
+          "clients": 1,
+          "revenue": 2880.0,
+          "cogs": 45.0,
+          "opex": 45000.0,
+          "net_flow": -42165.0,
+          "ending_cash": 1457835.0
+        },
+        {
+          "month": 2,
+          "clients": 1,
+          "revenue": 2880.0,
+          "cogs": 45.0,
+          "opex": 45000.0,
+          "net_flow": -42165.0,
+          "ending_cash": 1415670.0
+        },
+        {
+          "month": 3,
+          "clients": 2,
+          "revenue": 5760.0,
+          "cogs": 90.0,
+          "opex": 45000.0,
+          "net_flow": -39330.0,
+          "ending_cash": 1376340.0
+        },
+        {
+          "month": 4,
+          "clients": 3,
+          "revenue": 12140.0,
+          "cogs": 135.0,
+          "opex": 45000.0,
+          "net_flow": -32995.0,
+          "ending_cash": 1343345.0
+        },
+        {
+          "month": 5,
+          "clients": 4,
+          "revenue": 15020.0,
+          "cogs": 180.0,
+          "opex": 45000.0,
+          "net_flow": -30160.0,
+          "ending_cash": 1313185.0
+        },
+        {
+          "month": 6,
+          "clients": 5,
+          "revenue": 21400.0,
+          "cogs": 225.0,
+          "opex": 45000.0,
+          "net_flow": -23825.0,
+          "ending_cash": 1289360.0
+        },
+        {
+          "month": 7,
+          "clients": 5,
+          "revenue": 21400.0,
+          "cogs": 225.0,
+          "opex": 70000.0,
+          "net_flow": -48825.0,
+          "ending_cash": 1240535.0
+        },
+        {
+          "month": 8,
+          "clients": 6,
+          "revenue": 24280.0,
+          "cogs": 270.0,
+          "opex": 70000.0,
+          "net_flow": -45990.0,
+          "ending_cash": 1194545.0
+        },
+        {
+          "month": 9,
+          "clients": 7,
+          "revenue": 27160.0,
+          "cogs": 315.0,
+          "opex": 70000.0,
+          "net_flow": -43155.0,
+          "ending_cash": 1151390.0
+        },
+        {
+          "month": 10,
+          "clients": 8,
+          "revenue": 33540.0,
+          "cogs": 360.0,
+          "opex": 70000.0,
+          "net_flow": -36820.0,
+          "ending_cash": 1114570.0
+        },
+        {
+          "month": 11,
+          "clients": 9,
+          "revenue": 36420.0,
+          "cogs": 405.0,
+          "opex": 70000.0,
+          "net_flow": -33985.0,
+          "ending_cash": 1080585.0
+        },
+        {
+          "month": 12,
+          "clients": 9,
+          "revenue": 36420.0,
+          "cogs": 405.0,
+          "opex": 70000.0,
+          "net_flow": -33985.0,
+          "ending_cash": 1046600.0
+        },
+        {
+          "month": 13,
+          "clients": 10,
+          "revenue": 42800.0,
+          "cogs": 450.0,
+          "opex": 110000.0,
+          "net_flow": -67650.0,
+          "ending_cash": 978950.0
+        },
+        {
+          "month": 14,
+          "clients": 11,
+          "revenue": 45680.0,
+          "cogs": 495.0,
+          "opex": 110000.0,
+          "net_flow": -64815.0,
+          "ending_cash": 914135.0
+        },
+        {
+          "month": 15,
+          "clients": 12,
+          "revenue": 48560.0,
+          "cogs": 540.0,
+          "opex": 110000.0,
+          "net_flow": -61980.0,
+          "ending_cash": 852155.0
+        },
+        {
+          "month": 16,
+          "clients": 13,
+          "revenue": 54940.0,
+          "cogs": 585.0,
+          "opex": 110000.0,
+          "net_flow": -55645.0,
+          "ending_cash": 796510.0
+        },
+        {
+          "month": 17,
+          "clients": 13,
+          "revenue": 54940.0,
+          "cogs": 585.0,
+          "opex": 110000.0,
+          "net_flow": -55645.0,
+          "ending_cash": 740865.0
+        },
+        {
+          "month": 18,
+          "clients": 14,
+          "revenue": 57820.0,
+          "cogs": 630.0,
+          "opex": 110000.0,
+          "net_flow": -52810.0,
+          "ending_cash": 688055.0
+        },
+        {
+          "month": 19,
+          "clients": 15,
+          "revenue": 64200.0,
+          "cogs": 675.0,
+          "opex": 110000.0,
+          "net_flow": -46475.0,
+          "ending_cash": 641580.0
+        },
+        {
+          "month": 20,
+          "clients": 16,
+          "revenue": 67080.0,
+          "cogs": 720.0,
+          "opex": 110000.0,
+          "net_flow": -43640.0,
+          "ending_cash": 597940.0
+        },
+        {
+          "month": 21,
+          "clients": 17,
+          "revenue": 69960.0,
+          "cogs": 765.0,
+          "opex": 110000.0,
+          "net_flow": -40805.0,
+          "ending_cash": 557135.0
+        },
+        {
+          "month": 22,
+          "clients": 17,
+          "revenue": 69960.0,
+          "cogs": 765.0,
+          "opex": 110000.0,
+          "net_flow": -40805.0,
+          "ending_cash": 516330.0
+        },
+        {
+          "month": 23,
+          "clients": 18,
+          "revenue": 76340.0,
+          "cogs": 810.0,
+          "opex": 110000.0,
+          "net_flow": -34470.0,
+          "ending_cash": 481860.0
+        },
+        {
+          "month": 24,
+          "clients": 19,
+          "revenue": 79220.0,
+          "cogs": 855.0,
+          "opex": 110000.0,
+          "net_flow": -31635.0,
+          "ending_cash": 450225.0
+        }
+      ]
+    }
+  },
+  "sensitivity_analysis": [
+    {
+      "scenario": "Ultra-Clean Corporate (0.02% error rate)",
+      "disbursements_audited": 50000,
+      "duplicates_detected": 10,
+      "gross_leakage_recovered_usd": 30000.0,
+      "contingency_revenue_usd": 5400.0,
+      "total_cogs_usd": 0.2644,
+      "gross_margin_pct": 100.0,
+      "roi_multiplier": 113448.4
+    },
+    {
+      "scenario": "Standard Municipal Ledger (0.08% error rate)",
+      "disbursements_audited": 50000,
+      "duplicates_detected": 40,
+      "gross_leakage_recovered_usd": 120000.0,
+      "contingency_revenue_usd": 21600.0,
+      "total_cogs_usd": 0.2654,
+      "gross_margin_pct": 100.0,
+      "roi_multiplier": 452147.7
+    },
+    {
+      "scenario": "High-Volume County Ledger (0.25% error rate)",
+      "disbursements_audited": 50000,
+      "duplicates_detected": 125,
+      "gross_leakage_recovered_usd": 375000.0,
+      "contingency_revenue_usd": 67500.0,
+      "total_cogs_usd": 0.2981,
+      "gross_margin_pct": 100.0,
+      "roi_multiplier": 1257861.6
+    },
+    {
+      "scenario": "ERP Migration Disruption (0.80% error rate)",
+      "disbursements_audited": 50000,
+      "duplicates_detected": 400,
+      "gross_leakage_recovered_usd": 1200000.0,
+      "contingency_revenue_usd": 216000.0,
+      "total_cogs_usd": 0.404,
+      "gross_margin_pct": 100.0,
+      "roi_multiplier": 2970297.0
+    }
+  ]
+}

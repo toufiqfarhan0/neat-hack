@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-10-11T07:27:00Z",
+  "source": "neatlogs traces, workflow ovio-treasury-agent, LiteLLM claude-haiku",
+  "margin_floor": 0.70,
+  "drivers": {
+    "traces": 4,
+    "cost_mean_usd": 0.00104,
+    "cost_p50": {
+      "usd": 0.00104,
+      "trace_id": "ovio-tr-3b74c5292731"
+    },
+    "cost_p95": {
+      "usd": 0.00104,
+      "trace_id": "ovio-tr-974f0a5227fb"
+    },
+    "duration_mean_s": 10.4,
+    "tokens_consumed_mean": 2080,
+    "deterministic_pruning_pct": 92.5,
+    "measured_roi_multiplier": 12372586.9
+  },
+  "tiers": {
+    "Contingency_Recovery": {
+      "price_usd_annual": 0.0,
+      "contingency_fee_pct": 0.18,
+      "billing_rule": "18% of validated recovered leakage, zero upfront risk",
+      "gross_margin_pct": 99.99,
+      "target_market": "Mid-tier municipal controllers & counties"
+    },
+    "Continuous_Treasury_Shield": {
+      "price_usd_annual": 42000.0,
+      "price_usd_month": 3500.0,
+      "contingency_fee_pct": 0.10,
+      "billing_rule": "Annual SaaS subscription + 10% on live intercepted clawbacks",
+      "gross_margin_pct": 93.4,
+      "target_market": "Major metropolitan cities ($500M+ budget) & hospital networks"
+    },
+    "Enterprise_Sovereign": {
+      "price_usd_annual": 120000.0,
+      "price_usd_month": 10000.0,
+      "contingency_fee_pct": 0.05,
+      "billing_rule": "Dedicated VPC deployment with SOC2 Type II, FedRAMP, and air-gapped LLM gateway",
+      "gross_margin_pct": 96.8,
+      "target_market": "Fortune 500 enterprises & federal state treasury departments"
+    }
+  }
+}
