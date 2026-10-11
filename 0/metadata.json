@@ -1,0 +1,98 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4N459CJ9M9R44JA7RJ7ET53",
+  "session_id": "45f215bc-78e0-4e7b-bedf-b112d4595a4b",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-11T09:19:34.2484456Z",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "save_step_count": 4,
+  "files_touched": [
+    ".gitignore",
+    "pyproject.toml"
+  ],
+  "agent": "Antigravity",
+  "model": "",
+  "turn_id": "0a6d99af4886",
+  "session_metrics": {
+    "turn_count": 61
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-11T09:19:34.0243073Z",
+    "agent_lines": 57,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 57,
+    "total_lines_changed": 65,
+    "agent_percentage": 87.6923076923077,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 293,
+      "user_lines_removed": 0,
+      "agent_lines_added": 33224,
+      "agent_lines_removed": 2,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/post_audit_205cb56d474a42785e1167264d894ebd_1791688590.json": 27,
+        ".entire_checkpoints/post_audit_aa1843570b5ee95a5ceba021c1e7685e_1791702987.json": 27,
+        ".entire_checkpoints/pre_adjudication_205cb56d474a42785e1167264d894ebd_1791688587.json": 19,
+        ".entire_checkpoints/pre_adjudication_aa1843570b5ee95a5ceba021c1e7685e_1791702974.json": 19,
+        ".entire_checkpoints/test_stage_test_sess_001_1791703166.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791705108.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791703164.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791705106.json": 18
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 293,
+      "user_lines_removed": 0,
+      "agent_lines_added": 33223,
+      "agent_lines_removed": 2,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/post_audit_205cb56d474a42785e1167264d894ebd_1791688590.json": 27,
+        ".entire_checkpoints/post_audit_aa1843570b5ee95a5ceba021c1e7685e_1791702987.json": 27,
+        ".entire_checkpoints/pre_adjudication_205cb56d474a42785e1167264d894ebd_1791688587.json": 19,
+        ".entire_checkpoints/pre_adjudication_aa1843570b5ee95a5ceba021c1e7685e_1791702974.json": 19,
+        ".entire_checkpoints/test_stage_test_sess_001_1791703166.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791705108.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791703164.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791705106.json": 18
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 293,
+      "user_lines_removed": 0,
+      "agent_lines_added": 33223,
+      "agent_lines_removed": 2,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/post_audit_205cb56d474a42785e1167264d894ebd_1791688590.json": 27,
+        ".entire_checkpoints/post_audit_aa1843570b5ee95a5ceba021c1e7685e_1791702987.json": 27,
+        ".entire_checkpoints/pre_adjudication_205cb56d474a42785e1167264d894ebd_1791688587.json": 19,
+        ".entire_checkpoints/pre_adjudication_aa1843570b5ee95a5ceba021c1e7685e_1791702974.json": 19,
+        ".entire_checkpoints/test_stage_test_sess_001_1791703166.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791705108.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791703164.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791705106.json": 18
+      }
+    }
+  ]
+}
