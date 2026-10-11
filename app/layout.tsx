@@ -30,26 +30,22 @@ export default function RootLayout({
           justifyContent: 'space-between',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{
                 background: '#000000',
                 color: '#ffffff',
                 fontWeight: 800,
-                fontSize: '15px',
-                padding: '4px 10px',
+                fontSize: '13.5px',
+                padding: '3px 8px',
                 borderRadius: '6px',
-                letterSpacing: '0.05em'
+                letterSpacing: '0.02em',
+                lineHeight: 1.2
               }}>
-                OVIO
+                Ovio
               </div>
-              <div>
-                <div style={{ fontSize: '13.5px', fontWeight: 700, color: '#09090b', letterSpacing: '-0.02em' }}>
-                  Treasury Recovery Agent
-                </div>
-                <div style={{ fontSize: '11px', color: '#71717a', fontWeight: 500 }}>
-                  neatHack 2026 Edition
-                </div>
-              </div>
+              <span style={{ fontSize: '14px', fontWeight: 600, color: '#09090b', letterSpacing: '-0.01em' }}>
+                - Treasury Recovery Agent
+              </span>
             </Link>
           </div>
 
