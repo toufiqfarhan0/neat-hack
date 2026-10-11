@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4N467CG2WYREJPB49QAS9XE",
+  "session_id": "45f215bc-78e0-4e7b-bedf-b112d4595a4b",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-11T09:20:05.1204788Z",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "save_step_count": 1,
+  "files_touched": [
+    "core/__init__.py",
+    "core/ledger.py"
+  ],
+  "agent": "Antigravity",
+  "model": "",
+  "turn_id": "0a6d99af4886",
+  "session_metrics": {
+    "turn_count": 61
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-11T09:20:04.8163615Z",
+    "agent_lines": 175,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 175,
+    "total_lines_changed": 175,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}
