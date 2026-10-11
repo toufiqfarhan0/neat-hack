@@ -1,0 +1,34 @@
+and also please update the website also with all the info and add a doc page and how it works page
+
+---
+
+I read the README, RESULTS.md and CFO_BUSINESS_PLAN.md. I couldn’t open the commit history because GitHub blocks automated access to it.
+
+Overall: this is a strong entry, and the problem is real. The best idea in it is inverting the agent’s job: it hunts for reasons a payment is legitimate and kills candidates, so “precision is the product”. Real public ledgers, a deterministic blocking stage before the LLM, a rules-only baseline, a planted-decoy benchmark, tests, an Entire checkpoint link and a neatlogs trace link are all things judges can check. Your Entire usage looks deeper than the README table suggests (graph, brain, trail evaluators). You’re a real contender, but several things a careful judge can verify currently undercut you.
+
+What I’d fix, in order of score impact
+
+The numbers don’t reconcile across the three docs. Judges are told to check evidence, so one mismatch hurts the whole README.
+README and RESULTS say the LA ledger yields 1,279 candidate pairs and 880 adjudications. The business plan says 8 pairs and 3–5 adjudications.
+The plan says “92% deterministic pruning”, but RESULTS shows 388 rule dismissals out of 1,279 pairs, about 30%.
+ROI is 24.7x in RESULTS and 12,372,586x in the plan, on different cost bases ($41.4K a year vs $0.001 of tokens).
+Precision of 0.718 means 28 true and 11 false positives, which matches your decoy table. Yet “dollars wrongly flagged” is $0.00. That may be a definition issue, but you need a one-line explanation.
+The README says every number comes from a script, so make that literally true.
+Lead with the recall drop. Recall falls from 1.0 to 0.70, so you miss about $11.9K of the $64.1K in real duplicates. Present it as an intentional precision-first tradeoff. Also derive the cfo.ai “80% recovered” figure from your measured 70%, or explain the gap.
+The agent score (30%). Right now it reads as a pipeline with a single-shot LLM verdict.
+The 880 adjudications in 3.1 seconds can’t be live model calls, and the quickstart says “offline replay”, so a judge will read the headline as replayed.
+The neatlogs run shows only 12 spans for 880 adjudications.
+Give the adjudicator tools: vendor history, sibling payments, PO and draw schedules. Then add a verification pass and run it live at least once.
+Compare single-shot against investigator in two neatlogs traces, with precision, recall and cost. That gives you the before/after evidence the brief explicitly asks for, and it will likely lift recall too.
+cfo.ai looks local. The repo has a markdown plan and core/cfo.py, but no actual cfo.ai workspace.
+Build the model in cfo.ai (Variables, Dimensions, Scenarios) and link a shared read-only Page.
+Sanity-check the plan. $42T of disbursements at 0.1–0.5% spans $42–210B, so $186B needs a stated assumption.
+The 99.995% margin and 12-million-x ROI ignore human review, data engineering and sales, so drop them.
+Month-9 break-even is hard to defend against municipal procurement cycles.
+Smaller flags.
+Unverified recovery: the plan calls $12,818 to a named nonprofit a “validated recovery”. A flagged public-ledger payment isn’t a confirmed duplicate, so label it a candidate or anonymize it.
+“Doctor API”: I didn’t see a “Neatlogs Doctor API” in the docs I read. If ovio-doctor-probe is your own handler, say so. Also use Detections, Experiments (version the inverted prompt) and an AI Evaluator.
+Reused code: judges check commit dates, so if any of the ovio.cmd, ovio.ps1 or ovio_cli.py scaffold came from your earlier ovio project, rewrite or remove it before submitting.
+
+
+here is what claude saying please check and fix if they are needed to fix

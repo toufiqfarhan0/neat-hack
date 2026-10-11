@@ -1,0 +1,40 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4N70PHJF0EG8HC6MEDPW14W",
+  "session_id": "45f215bc-78e0-4e7b-bedf-b112d4595a4b",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-11T10:09:30.8485457Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "CFO_BUSINESS_PLAN.md",
+    "HACKATHON.md",
+    "README.md",
+    "RESULTS.md",
+    "app/docs/page.tsx",
+    "app/how-it-works/page.tsx",
+    "app/layout.tsx",
+    "cli/ovio.py",
+    "core/agent.py"
+  ],
+  "agent": "Antigravity",
+  "model": "",
+  "turn_id": "78e455c7b0da",
+  "checkpoint_transcript_start": 3146,
+  "transcript_lines_at_start": 3146,
+  "session_metrics": {
+    "turn_count": 64
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-11T10:09:30.5131761Z",
+    "agent_lines": 1054,
+    "agent_removed": 160,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 1054,
+    "total_lines_changed": 1214,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}
