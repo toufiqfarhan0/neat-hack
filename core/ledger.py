@@ -90,6 +90,7 @@ def load_ledger(filepath: str, max_rows: Optional[int] = None) -> List[Dict[str,
                     row.get("transaction_id")
                     or row.get("id")
                     or row.get("voucher_id")
+                    or row.get("voucher_number")
                     or row.get("vouchernbr")
                     or f"TX-{rows_processed}"
                 ).strip()
@@ -122,6 +123,7 @@ def load_ledger(filepath: str, max_rows: Optional[int] = None) -> List[Dict[str,
                     or row.get("invoice_num")
                     or row.get("invoice_number")
                     or row.get("voucher_id_related")
+                    or row.get("voucher_number")
                     or ""
                 ).strip()
 
@@ -130,6 +132,7 @@ def load_ledger(filepath: str, max_rows: Optional[int] = None) -> List[Dict[str,
                     row.get("transaction_date")
                     or row.get("date")
                     or row.get("payment_date")
+                    or row.get("check_date")
                     or row.get("pymnt_dt")
                     or row.get("effdt")
                     or ""
@@ -137,7 +140,7 @@ def load_ledger(filepath: str, max_rows: Optional[int] = None) -> List[Dict[str,
 
                 # Department & PO
                 dept = (row.get("department_name") or row.get("department") or row.get("agencyname") or "").strip()
-                po = (row.get("po_num") or row.get("po_number") or row.get("po_id") or "").strip()
+                po = (row.get("po_num") or row.get("po_number") or row.get("po_id") or row.get("contract_number") or "").strip()
                 desc = (row.get("description") or row.get("detailed_item_description") or row.get("item_description") or "").strip()
                 status = (row.get("payment_status") or row.get("transaction_type") or "").upper().strip()
 
