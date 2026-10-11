@@ -1,0 +1,5 @@
+and also for runing the agent on the web can we create and separate page like similar to the chat gpt i meam like this UI not the exact UI but like this for our app and also it's better to show like this i mean the reckon app is doing their work the project was built for different hack "C:\Users\toufi\Desktop\Reckon"
+
+and also does this app align with cli commads i mean if something is run on the web will terminal or cli automatically run ?? just answer check the folder throughly
+
+note:  "C:\Users\toufi\Desktop\Reckon" this project built for different hack okay!!  and also run the app and check it out yourself please "C:\Users\toufi\Desktop\Reckon"
