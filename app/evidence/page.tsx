@@ -141,7 +141,7 @@ export default function EvidencePage() {
       <div className="container">
         {/* TOP BREADCRUMB */}
         <div style={{ marginBottom: "28px" }}>
-          <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: "#71717a", textDecoration: "none", fontSize: "13px", fontWeight: 600 }}>
+          <Link href="/command-center" style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: "#71717a", textDecoration: "none", fontSize: "13px", fontWeight: 600 }}>
             <ArrowLeft size={14} />
             <span>Back to Command Center</span>
           </Link>

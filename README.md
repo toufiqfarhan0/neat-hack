@@ -148,8 +148,8 @@ cd neat-hack
 npm install
 npm run dev
 ```
-Open **[http://localhost:3000](http://localhost:3000)** and click **`▶ Run Autonomous Audit Sweep →`**.  
-Explore the new interactive visualizers at **[`/how-it-works`](http://localhost:3000/how-it-works)** and technical documentation at **[`/docs`](http://localhost:3000/docs)**.
+Open **[http://localhost:3000](http://localhost:3000)** (or the dedicated workspace at **[`/command-center`](http://localhost:3000/command-center)**) and click **`▶ Run Forensic Audit Sweep →`**.  
+Explore the new interactive visualizers at **[`/how-it-works`](http://localhost:3000/how-it-works)**, the verified **[`/evidence`](http://localhost:3000/evidence)** ledger, and technical documentation at **[`/docs`](http://localhost:3000/docs)**.
 
 ### Option 2: Terminal CLI
 ```bash

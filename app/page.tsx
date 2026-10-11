@@ -25,7 +25,8 @@ import {
   RefreshCw,
   GitCommit,
   Sparkles,
-  MessageSquare
+  MessageSquare,
+  Sliders
 } from "lucide-react";
 
 export default function HomePage() {
@@ -217,11 +218,20 @@ Please update the OVIO Financial Model in cfo.ai:
             </p>
 
             <div style={{ display: "flex", justifyContent: "center", gap: "14px", flexWrap: "wrap", marginBottom: "48px" }}>
+              <Link
+                href="/command-center"
+                className="btn btn-primary btn-lg"
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+              >
+                <Sliders size={16} />
+                <span>Open Command Center &rarr;</span>
+              </Link>
+
               <button
                 type="button"
                 onClick={handleRunAudit}
                 disabled={auditRunning}
-                className="btn btn-primary btn-lg"
+                className="btn btn-outline btn-lg"
               >
                 {auditRunning ? (
                   <>
@@ -231,7 +241,7 @@ Please update the OVIO Financial Model in cfo.ai:
                 ) : (
                   <>
                     <Play size={16} fill="currentColor" />
-                    <span>Run Autonomous Audit Sweep &rarr;</span>
+                    <span>Quick Audit Sweep</span>
                   </>
                 )}
               </button>

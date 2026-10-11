@@ -274,7 +274,7 @@ export default function HowItWorksPage() {
           Run an autonomous recovery sweep on real municipal ledgers in under 5 seconds with zero external API keys required.
         </p>
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-          <Link href="/" style={{
+          <Link href="/command-center" style={{
             background: '#09090b',
             color: '#ffffff',
             padding: '10px 22px',

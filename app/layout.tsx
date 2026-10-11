@@ -50,7 +50,7 @@ export default function RootLayout({
           </div>
 
           <nav style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <Link href="/" style={{ color: '#09090b', fontSize: '13px', fontWeight: 600, textDecoration: 'none' }}>
+            <Link href="/command-center" style={{ color: '#09090b', fontSize: '13px', fontWeight: 600, textDecoration: 'none' }}>
               Command Center
             </Link>
             <Link href="/how-it-works" style={{ color: '#09090b', fontSize: '13px', fontWeight: 600, textDecoration: 'none' }}>

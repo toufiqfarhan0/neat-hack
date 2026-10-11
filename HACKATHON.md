@@ -88,7 +88,8 @@ npm run dev
 
 # 2. Open http://localhost:3000 in Chrome
 ```
-- Click **`▶ Run Autonomous Audit Sweep →`** to trigger the animated 8-phase pipeline.
+- Visit **`http://localhost:3000/command-center`** (or click **Command Center** in the top navigation) to access the dedicated operational workspace.
+- Click **`▶ Run Forensic Audit Sweep →`** to trigger the animated 8-phase pipeline.
 - Switch between **Pre-loaded Benchmarks**, **Upload Custom CSV** (`chicago_sample.csv`), or **Paste Financial Brief**.
 - Click **Evidence** in the navbar (or visit `http://localhost:3000/evidence`) to review forensic clawback candidates with SHA-256 stamps and Neatlogs trace IDs.
 
