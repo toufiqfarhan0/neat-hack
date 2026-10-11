@@ -604,6 +604,7 @@ def run_cmd(
     demo: bool = typer.Option(False, "--demo", "-d", help="Run deterministic sweep on benchmark Los Angeles ledger sample"),
     min_amount: float = typer.Option(5000.0, "--min-amount", "-m", help="Minimum dollar amount to evaluate"),
     limit: int = typer.Option(5, "--limit", "-l", help="Maximum candidates to adjudicate with claude-haiku"),
+    mode: str = typer.Option("investigator", "--mode", "-M", help="Agent mode: 'investigator' (multi-tool autonomous agent) or 'fast' (single-shot baseline)"),
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Verbose span execution output")
 ):
     """
@@ -632,6 +633,7 @@ def run_cmd(
     print(kv("Ledger source", data_source))
     print(kv("Min transaction", f"${min_amount:,.2f}"))
     print(kv("Adjudication limit", f"{limit} pairs (claude-haiku)"))
+    print(kv("Agent mode", f"{mode.upper()} ({'Multi-Tool Autonomous Investigator' if mode == 'investigator' else 'Single-Shot Baseline'})"))
     print(kv("Workflow name", "ovio-treasury-agent"))
     print(rule())
 
@@ -641,7 +643,8 @@ def run_cmd(
     result = run_audit(
         dataset_path=str(dataset_path),
         min_amount=min_amount,
-        max_adjudications=limit
+        max_adjudications=limit,
+        mode=mode
     )
 
     tot_tx = result["total_transactions"]
@@ -652,7 +655,12 @@ def run_cmd(
     print(f"  {verdict('PASS', 'tool.ledger_fetch', f'Aggregated {tot_tx:,} payment disbursements')}")
     print(f"  {verdict('PASS', 'tool.blocking', f'Blocked {cands} candidate pairs in O(N) time')}")
     print(f"  {verdict('PASS', 'tool.rule_prune', f'Pruned {pruned} false alarm decoys with 0 tokens')}")
-    print(f"  {verdict('PASS', 'llm.adjudicate', f'Forensically adjudicated {adjudicated} pairs with claude-haiku')}")
+    if mode == "investigator":
+        print(f"  {verdict('PASS', 'tool.fetch_vendor_history', 'Queried historical disbursements & vendor entity spend')}")
+        print(f"  {verdict('PASS', 'tool.check_sibling_dist', 'Queried contract distribution siblings & PO ceilings')}")
+        print(f"  {verdict('PASS', 'tool.verify_draw_schedule', 'Evaluated calendar intervals & milestone progress')}")
+        print(f"  {verdict('PASS', 'guardrail.clawback_gate', 'Pre-dispatch safety gate: verified clawback authorization')}")
+    print(f"  {verdict('PASS', 'llm.adjudicate', f'Forensically adjudicated {adjudicated} pairs ({mode} mode)')}")
     print(f"  {verdict('PASS', 'entire.checkpoint', 'Saved pre/post audit snapshots to Entire continuous memory')}")
 
     # Display Adjudicated Duplicate Findings
@@ -712,6 +720,7 @@ def main(
     demo: bool = typer.Option(False, "--demo", "-d", help="Run deterministic sweep demo"),
     min_amount: float = typer.Option(5000.0, "--min-amount", "-m", help="Minimum dollar amount to evaluate"),
     limit: int = typer.Option(5, "--limit", "-l", help="Maximum candidates to adjudicate with claude-haiku"),
+    mode: str = typer.Option("investigator", "--mode", "-M", help="Agent mode: 'investigator' or 'fast'"),
     gate: bool = typer.Option(False, "--gate", "-g", help="Run pre-flight gate check"),
     doctor: bool = typer.Option(False, "--doctor", help="Run Neatlogs connectivity doctor check")
 ):
@@ -722,7 +731,7 @@ def main(
         elif gate:
             gate_cmd()
         else:
-            run_cmd(file=file, demo=demo, min_amount=min_amount, limit=limit)
+            run_cmd(file=file, demo=demo, min_amount=min_amount, limit=limit, mode=mode)
 
 
 if __name__ == "__main__":

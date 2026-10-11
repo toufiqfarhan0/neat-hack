@@ -104,6 +104,12 @@ export default function RootLayout({
             <Link href="/" style={{ color: '#09090b', fontSize: '13px', fontWeight: 600, textDecoration: 'none' }}>
               Command Center
             </Link>
+            <Link href="/how-it-works" style={{ color: '#09090b', fontSize: '13px', fontWeight: 600, textDecoration: 'none' }}>
+              How It Works
+            </Link>
+            <Link href="/docs" style={{ color: '#09090b', fontSize: '13px', fontWeight: 600, textDecoration: 'none' }}>
+              Docs
+            </Link>
             <Link href="/evidence" style={{
               color: '#09090b',
               fontSize: '13px',

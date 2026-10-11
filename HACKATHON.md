@@ -6,8 +6,8 @@
 **Tracks & Focus:** Autonomous AI Agents, AP/Treasury Forensic Recovery, Observability, Financial Engineering  
 **Integrated Partners:** [Neatlogs](https://neatlogs.com) · [Entire](https://entire.io) · [cfo.ai](https://cfo.ai)  
 **Repository:** [https://github.com/toufiqfarhan0/neat-hack](https://github.com/toufiqfarhan0/neat-hack)  
-**Live Entire Checkpoint:** [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/a25253e53612ee2ce7ba7256d5747bac49e6214b](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/a25253e53612ee2ce7ba7256d5747bac49e6214b)  
-**Checkpoint ID:** `01M4N5HQ459GAXY4GARMVQJV61`
+**Live Entire Checkpoint:** [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260)  
+**Checkpoint ID:** `01M4N5SZ3R63CM54T689X28JZ2`
 
 ---
 
@@ -18,26 +18,29 @@ Every year, enterprises and municipalities lose hundreds of millions of dollars 
 While existing ERP tools claim "100% population testing," they produce thousands of false-positive alarms that overwhelm finance teams. Academic research proves that auditors exposed to thousands of noisy alerts become **less skeptical** (acting on fraud red flags only 48% of the time, vs. 65% with sampling).
 
 **OVIO inverts the traditional audit paradigm:**
-1. A **deterministic $O(N)$ blocking and hash-bucketing engine** prunes 95%+ of normal transaction volume in milliseconds at zero token cost.
-2. The agent is instructed to **prove why each remaining transaction is innocent** (scheduled progress draw, legitimate line split, credit memo, or recurring fee), only escalating when it cannot find an innocent explanation.
+1. A **deterministic $O(N)$ blocking and hash-bucketing engine** prunes 83% of raw lines and 30%+ of candidate pairs in milliseconds at zero token cost.
+2. The agent operates as an **Autonomous Multi-Tool Investigator** (`fetch_vendor_history`, `check_sibling_distribution`, `verify_draw_schedule`, `verify_clawback_guardrail`) tasked with proving why each transaction is innocent before escalating.
 3. Every step is traced in **Neatlogs** with OpenInference spans.
 4. Every commit and decision is permanently checkpointed in **Entire.io**.
-5. Every recovery is modeled in **cfo.ai** with real financial drivers ($1.4M ARR impact, 24.7x ROI, 14.6-day payback).
+5. Every recovery is modeled in **cfo.ai** with real financial drivers ($1.024M recovered, 24.7x fully-loaded ROI, 14.6-day payback).
 
 ---
 
 ## 2. Partner Usage & Technical Integration
 
-### A. Neatlogs (Autonomous Observability & Self-Healing Doctor)
+### A. Neatlogs (Autonomous Observability, Multi-Tool Traces & Doctor Probe)
 * **OpenInference Spans**: Instrumenting all tool executions, LLM calls, and rule evaluations with structured hierarchy (`WORKFLOW` -> `TOOL` -> `AGENT` -> `GUARDRAIL` -> `EVALUATOR`).
 * **Active Workflow**: `ovio-treasury-agent`
-* **Autonomous Doctor Probe**: `ovio-doctor-probe` monitors external API latency and output schema drift. If an LLM returns malformed JSON or times out, the Doctor probe intercepts the error, logs a diagnostic span to Neatlogs, and activates a deterministic fallback adjudicator so the audit never halts.
-* **Live Neatlogs Trace Dashboard**: [https://app.neatlogs.com/traces/8789a5fef577533136f734e04c2ded51](https://app.neatlogs.com/traces/8789a5fef577533136f734e04c2ded51?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)
+* **Autonomous Multi-Tool Investigator**: Queries vendor ledger history, sibling lines on purchase orders, draw schedules, and pre-dispatch clawback guardrails.
+* **Autonomous Doctor Probe**: `ovio-doctor-probe` proactively monitors external API latency and output schema drift. If an LLM returns malformed JSON or times out, the Doctor probe intercepts the error, logs a diagnostic span to Neatlogs, and activates a deterministic fallback adjudicator so the audit never halts.
+* **Live Neatlogs Trace Dashboards**:
+  * **[Multi-Tool Investigator Trace (20 Spans)](https://app.neatlogs.com/traces/3d720906babf7ed470e690f68c4eedc5?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)**
+  * **[Single-Shot Baseline Trace (11 Spans)](https://app.neatlogs.com/traces/dd024eda5ca251867f7f23cf768e6651?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)**
 
 ### B. Entire.io (Continuous Agent Provenance & Checkpoint Memory)
 * **Session Tracking**: Tracked under Antigravity CLI / IDE session `45f215bc-78e0-4e7b-bedf-b112d4595a4b`.
-* **25 Checkpoints Captured on `main`**: Every single commit automatically carries an `Entire-Checkpoint: <ID>` Git trailer linked to the session's prompt turns, tool calls, and code diffs.
-* **Submission Checkpoint URL**: [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/a25253e53612ee2ce7ba7256d5747bac49e6214b](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/a25253e53612ee2ce7ba7256d5747bac49e6214b) (`01M4N5HQ459GAXY4GARMVQJV61`).
+* **26 Checkpoints Captured on `main`**: Every single commit automatically carries an `Entire-Checkpoint: <ID>` Git trailer linked to the session's prompt turns, tool calls, code diffs, and 6 Trail evaluators.
+* **Submission Checkpoint URL**: [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260) (`01M4N5SZ3R63CM54T689X28JZ2`).
 * **Cloud Repository Mirror**: `/et/gh:mirrors:.../neat-hack` on `aws-ap-south-1.entire.io`.
 
 ### C. cfo.ai (Financial Reality & Unit Economics Modeling)
@@ -91,13 +94,16 @@ npm run dev
 
 ### Option 2: Direct Terminal Commands
 ```bash
-# Run the 20,000-row demo sweep (offline replay)
-python ovio_cli.py run --demo
+# 1. Run live Autonomous Multi-Tool Investigator (real-time Claude-Haiku + 4 tools + live Neatlogs spans)
+python ovio_cli.py run --demo --limit 3 --mode investigator
 
-# Run the Neatlogs Doctor diagnostic probe
+# 2. Run Single-Shot Baseline (comparison benchmark)
+python ovio_cli.py run --demo --limit 3 --mode fast
+
+# 3. Run the Neatlogs Doctor diagnostic probe
 python ovio_cli.py doctor
 
-# Run the entire test suite
+# 4. Run the entire test suite & CI benchmarks
 pytest
 ```
 
@@ -106,9 +112,9 @@ pytest
 ## 6. Project Checklist & Submission Compliance
 
 - [x] **Project Name & Description**: OVIO — Autonomous AP & Treasury Recovery Agent
-- [x] **Neatlogs Spans & Doctor Integration**: Verified live with parent-child traces and `ovio-doctor-probe`
-- [x] **Entire.io Checkpoints**: 25 commits checkpointed on `main`, session `45f215bc-78e0-4e7b-bedf-b112d4595a4b`
-- [x] **cfo.ai Scenario Model**: `cfo_model.json` + `core/cfo.py` computing ROI multiple and EBITDA lift
+- [x] **Neatlogs Spans & Doctor Integration**: Verified live with 20-span investigator trace, 11-span baseline trace, and `ovio-doctor-probe`
+- [x] **Entire.io Checkpoints**: 26 commits checkpointed on `main`, session `45f215bc-78e0-4e7b-bedf-b112d4595a4b`
+- [x] **cfo.ai Scenario Model**: `cfo_model.json` + `core/cfo.py` computing 24.7x fully-loaded ROI and EBITDA lift
 - [x] **Real Public Ledgers**: LA, Oklahoma, Chicago, and Enterprise datasets committed
-- [x] **Live Web UI & Evidence Ledger**: Responsive Black & White Next.js Command Center
+- [x] **Live Web UI, Evidence Ledger & Documentation**: Responsive Next.js Command Center, Evidence Ledger (`/evidence`), Funnel Visualizer (`/how-it-works`), and Technical Docs (`/docs`)
 - [x] **100% Passing Tests**: All 4 pytest test suites pass cleanly

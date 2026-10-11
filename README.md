@@ -3,7 +3,7 @@
 > **neatHack 2026 Submission** | Team Dot  
 > **Integrated Sponsors:** [Neatlogs](https://neatlogs.com) · [Entire](https://entire.io) · [cfo.ai](https://cfo.ai)  
 > **Repository:** [https://github.com/toufiqfarhan0/neat-hack](https://github.com/toufiqfarhan0/neat-hack)  
-> **Live Checkpoint:** [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/a25253e53612ee2ce7ba7256d5747bac49e6214b](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/a25253e53612ee2ce7ba7256d5747bac49e6214b) (`01M4N5HQ459GAXY4GARMVQJV61`)
+> **Live Checkpoint:** [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260) (`01M4N5SZ3R63CM54T689X28JZ2`)
 
 ---
 
@@ -148,17 +148,21 @@ cd neat-hack
 npm install
 npm run dev
 ```
-Open **[http://localhost:3000](http://localhost:3000)** and click **`▶ Run Autonomous Audit Sweep →`**.
+Open **[http://localhost:3000](http://localhost:3000)** and click **`▶ Run Autonomous Audit Sweep →`**.  
+Explore the new interactive visualizers at **[`/how-it-works`](http://localhost:3000/how-it-works)** and technical documentation at **[`/docs`](http://localhost:3000/docs)**.
 
 ### Option 2: Terminal CLI
 ```bash
-# Run 20,000-row demo sweep (offline replay)
-python ovio_cli.py run --demo
+# 1. Run live Autonomous Multi-Tool Investigator (real-time Claude-Haiku + 4 tools + live Neatlogs spans)
+python ovio_cli.py run --demo --limit 3 --mode investigator
 
-# Run Neatlogs Doctor probe
+# 2. Run Single-Shot Baseline (comparison benchmark)
+python ovio_cli.py run --demo --limit 3 --mode fast
+
+# 3. Run Neatlogs Doctor probe (diagnostic self-healing check)
 python ovio_cli.py doctor
 
-# Run full test suite
+# 4. Run full test suite & CI benchmarks
 pytest
 ```
 
@@ -168,9 +172,9 @@ pytest
 
 | Partner | Role in OVIO | Live Evidence & Links |
 |---|---|---|
-| **[Neatlogs](https://neatlogs.com)** | OpenInference hierarchical span tracing, latency profiling, and self-healing Doctor API probe (`ovio-doctor-probe`) | [Live Trace Dashboard](https://app.neatlogs.com/traces/8789a5fef577533136f734e04c2ded51?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240) |
-| **[Entire](https://entire.io)** | Continuous agent memory, capturing prompts, tool calls, and decisions across 25 Git commit checkpoints | [Live Entire Checkpoint](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/a25253e53612ee2ce7ba7256d5747bac49e6214b) (`01M4N5HQ459GAXY4GARMVQJV61`) |
-| **[cfo.ai](https://cfo.ai)** | Strategic CFO scenario modeling, unit economics engine, and financial ROI sensitivity analysis | Embedded in [`cfo_model.json`](file:///c:/Users/toufi/Desktop/neatlogs-hack/cfo_model.json) & [`CFO_BUSINESS_PLAN.md`](file:///c:/Users/toufi/Desktop/neatlogs-hack/CFO_BUSINESS_PLAN.md) |
+| **[Neatlogs](https://neatlogs.com)** | OpenInference hierarchical span tracing, latency profiling, pre-dispatch guardrails, and self-healing diagnostic probe (`ovio-doctor-probe`) | **[Investigator Trace (20 Spans)](https://app.neatlogs.com/traces/3d720906babf7ed470e690f68c4eedc5?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)**<br>**[Single-Shot Baseline Trace (11 Spans)](https://app.neatlogs.com/traces/dd024eda5ca251867f7f23cf768e6651?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)** |
+| **[Entire](https://entire.io)** | Continuous agent memory, capturing prompts, tool calls, and decisions across 26 Git commit checkpoints and 6 Trail evaluators | **[Live Entire Checkpoint](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/1406bce6a81f9fbfa7ee1ab5dcf36021cb06d260)** (`01M4N5SZ3R63CM54T689X28JZ2`) |
+| **[cfo.ai](https://cfo.ai)** | Strategic CFO scenario modeling, unit economics engine, and 24.7x fully-loaded ROI sensitivity analysis | **[cfo.ai Model Specification](file:///c:/Users/toufi/Desktop/neatlogs-hack/cfo_model.json)** & [`CFO_BUSINESS_PLAN.md`](file:///c:/Users/toufi/Desktop/neatlogs-hack/CFO_BUSINESS_PLAN.md) |
 
 ---
 
