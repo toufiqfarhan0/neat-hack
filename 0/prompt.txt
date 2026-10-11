@@ -1,0 +1,1 @@
+for this link and this link going to same trace and we have multiple traces here as you can see so it doesn't make sense right to go on a particular trace and how can we make use the neatlogs best out of it please chekc docs and https://docs.neatlogs.com/docs for our app
