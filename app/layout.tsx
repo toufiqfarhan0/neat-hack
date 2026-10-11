@@ -53,6 +53,9 @@ export default function RootLayout({
             <Link href="/command-center" style={{ color: '#09090b', fontSize: '13px', fontWeight: 600, textDecoration: 'none' }}>
               Command Center
             </Link>
+            <Link href="/agent" style={{ color: '#09090b', fontSize: '13px', fontWeight: 600, textDecoration: 'none' }}>
+              AI Copilot
+            </Link>
             <Link href="/how-it-works" style={{ color: '#09090b', fontSize: '13px', fontWeight: 600, textDecoration: 'none' }}>
               How It Works
             </Link>
