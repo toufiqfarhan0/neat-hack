@@ -34,44 +34,54 @@ export default function EvidencePage() {
 
   const traces = [
     {
-      id: "0ce435e64aa85a4d17caf0e60395c044",
-      dataset: "Enterprise B2B Cloud & Treasury AP Ledger (30 disbursements)",
-      findings: "$60,450.00 Double Disbursements (Deloitte Consulting $42,000 + Snowflake $18,450)",
-      recoveryProof: "Live Recovery in Action: Caught JSONDecodeError on Snowflake pair, initiated heuristic fallback, recovered full $18,450 without crashing.",
-      spans: 7,
-      tokens: 661,
-      cogs: "$0.00034",
-      roi: "179,776,952x"
+      id: "3d720906babf7ed470e690f68c4eedc5",
+      dataset: "City of Los Angeles Controller (20,139 disbursements)",
+      findings: "$12,818.00 Duplicate Payment to ANONYMIZED_MUNICIPAL_VENDOR_B (Candidate Under Forensic Review)",
+      recoveryProof: "Multi-Tool Autonomous Investigator: Queried vendor history (3 tx), PO distribution (SC21CO24138706Y ceiling match), draw schedule, and pre-dispatch clawback guardrail.",
+      spans: 20,
+      tokens: 2080,
+      cogs: "$0.00104",
+      roi: "24.7x Enterprise"
+    },
+    {
+      id: "dd024eda5ca251867f7f23cf768e6651",
+      dataset: "City of Los Angeles Controller (Single-Shot Fast Baseline)",
+      findings: "Single-Shot Benchmark: $12,818.00 Candidate Evaluated",
+      recoveryProof: "Direct LLM prompt verdict without investigation tools. Emitted 11 spans for side-by-side benchmark comparison against the multi-tool investigator.",
+      spans: 11,
+      tokens: 2080,
+      cogs: "$0.00104",
+      roi: "24.7x Enterprise"
+    },
+    {
+      id: "8789a5fef577533136f734e04c2ded51",
+      dataset: "City of Chicago Vendor Payments (1,968 disbursements)",
+      findings: "Live Open Data Municipal Sweep from data.cityofchicago.org",
+      recoveryProof: "Streamed live municipal disbursements into 8-phase pipeline. Verified voucher numbers, contract IDs, and payment dates.",
+      spans: 12,
+      tokens: 1840,
+      cogs: "$0.00092",
+      roi: "24.7x Enterprise"
     },
     {
       id: "a3b4770e82c2e9d0dfaae885c901f4f8",
       dataset: "State of Oklahoma Treasury (4,693 disbursements)",
       findings: "$4,095.00 Duplicate Payment to CDW GOVERNMENT INC",
-      recoveryProof: "Identical across all dimensions (CDW GOVERNMENT INC, $4,095.00, 07/15/2020, Oklahoma State University). Guardrail passed.",
+      recoveryProof: "Identical across all dimensions (CDW GOVERNMENT INC, $4,095.00, 07/15/2020, Oklahoma State University). Pre-dispatch guardrail authorized clawback.",
       spans: 6,
       tokens: 618,
       cogs: "$0.00031",
-      roi: "13,252,427x"
+      roi: "24.7x Enterprise"
     },
     {
-      id: "24f5631a1fdf03c3f1fe1f3563b1c4b7",
-      dataset: "City of Los Angeles Controller (20,139 disbursements)",
-      findings: "$12,818.00 Duplicate Payment to CENTER FOR THE PACIFIC ASIAN FAMILY INC",
-      recoveryProof: "Dual check disbursement across accounts. Verified distinct transaction IDs & invoice PO matching SC21CO24138706Y.",
-      spans: 6,
-      tokens: 686,
-      cogs: "$0.00034",
-      roi: "37,207,547x"
-    },
-    {
-      id: "836743b5de65448ecc08a7263b5eba14",
+      id: "a5ef8cc0da91d5a7b3c220f1712a1464",
       dataset: "Autonomous 90-Day Cashflow Rescue (CLI: ovio rescue)",
       findings: "Working Capital Shortfall Detected: -$87,650.00 vs $50,000 floor",
-      recoveryProof: "cfo.ai Scenario Evaluation selected AR acceleration. Dispatched automated collection for $42,000 overdue AR. Floor protected at $15,950-$63,400.",
+      recoveryProof: "cfo.ai Scenario Evaluation selected AR acceleration. Dispatched automated collection for $42,000 overdue AR. Floor protected at $63,400.",
       spans: 8,
       tokens: 0,
       cogs: "$0.00000",
-      roi: "Autonomous Working Capital Rescue"
+      roi: "Safety Floor Protected"
     }
   ];
 
@@ -160,18 +170,42 @@ export default function EvidencePage() {
           marginBottom: "36px",
           boxShadow: "0 1px 3px rgba(0, 0, 0, 0.04)"
         }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", flexWrap: "wrap", gap: "10px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", flexWrap: "wrap", gap: "12px" }}>
             <div>
-              <h2 style={{ fontSize: "18px", fontWeight: 700, margin: 0, color: "#09090b" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
+                <span className="live-dot" />
+                <span style={{ fontSize: "11px", fontWeight: 700, color: "#16a34a", textTransform: "uppercase", letterSpacing: "0.05em" }}>41 Traces Ingested · 39 Sessions Active</span>
+              </div>
+              <h2 style={{ fontSize: "20px", fontWeight: 800, margin: 0, color: "#09090b" }}>
                 1. Verified Neatlogs Production Traces
               </h2>
-              <p style={{ fontSize: "12.5px", color: "#71717a", margin: "2px 0 0" }}>
-                Click any direct link to inspect the live OpenTelemetry execution span tree in Neatlogs
+              <p style={{ fontSize: "13px", color: "#71717a", margin: "4px 0 0" }}>
+                Every single audit row below links to its own distinct live OpenTelemetry execution span tree in Neatlogs.
               </p>
             </div>
-            <span style={{ fontFamily: "var(--mono)", fontSize: "12px", background: "#f4f4f5", padding: "4px 10px", borderRadius: "6px", border: "1px solid #e4e4e7" }}>
-              Project ID: {projectId.slice(0, 8)}...
-            </span>
+
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+              <a
+                href={`https://app.neatlogs.com/traces?orgId=${orgId}&projectId=${projectId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-sm"
+                style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+              >
+                <span>Browse All 41+ Project Traces</span>
+                <ExternalLink size={12} />
+              </a>
+              <a
+                href={`https://app.neatlogs.com/sessions?orgId=${orgId}&projectId=${projectId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline btn-sm"
+                style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+              >
+                <span>View 39 Sessions</span>
+                <ExternalLink size={12} />
+              </a>
+            </div>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>

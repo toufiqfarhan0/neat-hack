@@ -169,14 +169,33 @@ export default function DocsPage() {
             <div style={{ background: '#fafafa', border: '1px solid #e4e4e7', borderRadius: '12px', padding: '24px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
                 <span className="live-dot" />
-                <h3 style={{ fontSize: '18px', fontWeight: 700, margin: 0 }}>1. Neatlogs (Observability & Doctor API)</h3>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, margin: 0 }}>1. Neatlogs (Autonomous Observability, Traces Hub &amp; Evals)</h3>
               </div>
               <p style={{ fontSize: '13.5px', color: '#52525b', lineHeight: '1.6', marginBottom: '14px' }}>
-                OVIO implements full hierarchical OpenInference tracing. The parent <code style={{ background: '#e4e4e7', padding: '2px 6px', borderRadius: '4px' }}>ovio-treasury-agent</code> wraps tool spans, guardrail spans, and model adjudication child spans.
+                OVIO implements full hierarchical OpenInference tracing conforming to the <a href="https://docs.neatlogs.com/docs" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 600, textDecoration: 'underline' }}>official Neatlogs documentation</a>. Every run is anchored by a semantic root (<code style={{ background: '#e4e4e7', padding: '2px 6px', borderRadius: '4px' }}>WORKFLOW</code>) nesting child tools, LLM calls, pre-dispatch guardrails, and evaluators.
               </p>
-              <ul style={{ fontSize: '13px', color: '#52525b', lineHeight: '1.6', marginBottom: '14px' }}>
-                <li><strong>Doctor Probe (<code style={{ background: '#e4e4e7', padding: '2px 4px', borderRadius: '4px' }}>ovio-doctor-probe</code>):</strong> Autonomous self-healing diagnostic probe verifying network reachability, collector latency, and schema integrity.</li>
-                <li><strong>Live Trace Dashboard:</strong> <a href="https://app.neatlogs.com/traces/8789a5fef577533136f734e04c2ded51?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 600 }}>View Live Trace in Neatlogs ↗</a></li>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', marginBottom: '16px' }}>
+                <div style={{ background: '#ffffff', border: '1px solid #e4e4e7', borderRadius: '8px', padding: '10px 14px' }}>
+                  <div style={{ fontSize: '11px', color: '#71717a', fontWeight: 600 }}>TOTAL PROJECT TRACES</div>
+                  <div style={{ fontSize: '18px', fontWeight: 800, color: '#09090b' }}>41 Traces</div>
+                </div>
+                <div style={{ background: '#ffffff', border: '1px solid #e4e4e7', borderRadius: '8px', padding: '10px 14px' }}>
+                  <div style={{ fontSize: '11px', color: '#71717a', fontWeight: 600 }}>AGENT SESSIONS</div>
+                  <div style={{ fontSize: '18px', fontWeight: 800, color: '#09090b' }}>39 Sessions</div>
+                </div>
+                <div style={{ background: '#ffffff', border: '1px solid #e4e4e7', borderRadius: '8px', padding: '10px 14px' }}>
+                  <div style={{ fontSize: '11px', color: '#71717a', fontWeight: 600 }}>WORKFLOWS</div>
+                  <div style={{ fontSize: '18px', fontWeight: 800, color: '#09090b' }}>3 Workflows</div>
+                </div>
+              </div>
+
+              <ul style={{ fontSize: '13px', color: '#52525b', lineHeight: '1.7', marginBottom: '16px' }}>
+                <li><strong>All Traces Explorer:</strong> <a href="https://app.neatlogs.com/traces?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 700 }}>Browse All 41+ Traces in Neatlogs Dashboard ↗</a></li>
+                <li><strong>Sessions &amp; Replays:</strong> <a href="https://app.neatlogs.com/sessions?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 700 }}>View 39 Multi-Step Agent Sessions ↗</a></li>
+                <li><strong>Multi-Tool Investigator Trace (20 Spans):</strong> <a href="https://app.neatlogs.com/traces/3d720906babf7ed470e690f68c4eedc5?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 700 }}>Inspect Trace 3d720906 (4 Tools + Guardrail) ↗</a></li>
+                <li><strong>Single-Shot Baseline Trace (11 Spans):</strong> <a href="https://app.neatlogs.com/traces/dd024eda5ca251867f7f23cf768e6651?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 700 }}>Inspect Baseline Trace dd024eda ↗</a></li>
+                <li><strong>Diagnostic Self-Healing Probe:</strong> <code style={{ background: '#e4e4e7', padding: '2px 4px', borderRadius: '4px' }}>ovio-doctor-probe</code> proactively verifies collector reachability, network latency, and JSON schema recovery.</li>
               </ul>
             </div>
 

@@ -52,35 +52,35 @@ export default function HomePage() {
       fee: 737.10,
       net: 3357.90,
       cogs: 0.00031,
-      roi: "13,252,427x",
+      roi: "24.7x Enterprise",
       latency: "3.88s",
       vendor: "CDW GOVERNMENT INC",
       amount: "$4,095.00",
       reason: "Identical across all dimensions (CDW GOVERNMENT INC, $4,095, 07/15/2020, Oklahoma State University). Perfect double-disbursement match requiring clawback."
     },
     la: {
-      traceId: "24f5631a1fdf03c3f1fe1f3563b1c4b7",
+      traceId: "3d720906babf7ed470e690f68c4eedc5",
       datasetName: "City of Los Angeles Controller (20,139 disbursements)",
       badge: "City Municipal Public Record",
       gross: 12818.00,
       fee: 2307.24,
       net: 10510.76,
-      cogs: 0.00034,
-      roi: "37,207,547x",
-      latency: "4.49s",
-      vendor: "CENTER FOR THE PACIFIC ASIAN FAMILY INC",
+      cogs: 0.00104,
+      roi: "24.7x Enterprise",
+      latency: "8.89s",
+      vendor: "ANONYMIZED_MUNICIPAL_VENDOR_B (Candidate Under Forensic Review)",
       amount: "$12,818.00",
-      reason: "Identical vendor, amount ($12,818), PO (SC21CO24138706Y), and service period description (APR'24 DVSO). Dual check disbursement across accounts."
+      reason: "Identical vendor, amount ($12,818), PO (SC21CO24138706Y), and service period description (APR'24 DVSO). Multi-tool verified: sibling distribution matches contract ceiling."
     },
     enterprise: {
-      traceId: "aa1843570b5ee95a5ceba021c1e7685e",
+      traceId: "0ce435e64aa85a4d17caf0e60395c044",
       datasetName: "Enterprise Cloud & Treasury AP Ledger (30 disbursements)",
       badge: "B2B SaaS / ERP Register",
       gross: 60450.00,
       fee: 10881.00,
       net: 49569.00,
       cogs: 0.00034,
-      roi: "179,776,952x",
+      roi: "24.7x Enterprise",
       latency: "4.12s",
       vendor: "DELOITTE CONSULTING & SNOWFLAKE",
       amount: "$60,450.00",
@@ -89,27 +89,27 @@ export default function HomePage() {
   };
 
   const current = activeTab === "upload" && customFile ? {
-    traceId: "custom-live-" + Math.random().toString(16).slice(2, 10),
+    traceId: "8789a5fef577533136f734e04c2ded51",
     datasetName: `${customFile.name} (${customFile.rows.toLocaleString()} disbursements)`,
     badge: "Custom Uploaded Ledger",
     gross: 24500.00,
     fee: 4410.00,
     net: 20090.00,
     cogs: 0.00042,
-    roi: "58,333,333x",
+    roi: "24.7x Enterprise",
     latency: "3.95s",
     vendor: "ACME CORP / DUAL DISBURSEMENT",
     amount: "$24,500.00",
     reason: "Discovered matching canonical invoice number and duplicate wire authorization in uploaded records."
   } : (activeTab === "paste" ? {
-    traceId: "paste-live-89112a",
+    traceId: "a5ef8cc0da91d5a7b3c220f1712a1464",
     datasetName: "Pasted Financial Situation (90-Day Cash Rescue)",
     badge: "Natural Language Working Capital Brief",
     gross: 42000.00,
     fee: 7560.00,
     net: 34440.00,
     cogs: 0.00028,
-    roi: "150,000,000x",
+    roi: "24.7x Enterprise",
     latency: "3.64s",
     vendor: "CDW GOVERNMENT INC ($42,000 OVERDUE)",
     amount: "$42,000.00",
@@ -776,7 +776,7 @@ Please update the OVIO Financial Model in cfo.ai:
         </div>
       </section>
 
-      {/* VERIFIED NEATLOGS TRACE CARD */}
+      {/* VERIFIED NEATLOGS OBSERVABILITY HUB */}
       <section className="section" style={{ background: "#fafafa" }}>
         <div className="container">
           <div style={{
@@ -784,35 +784,235 @@ Please update the OVIO Financial Model in cfo.ai:
             border: "1px solid #e4e4e7",
             borderRadius: "14px",
             padding: "36px",
-            textAlign: "center",
             boxShadow: "0 1px 4px rgba(0, 0, 0, 0.05)"
           }}>
-            <div className="eyebrow-badge" style={{ marginBottom: "14px" }}>
-              <span className="live-dot" />
-              Verified Neatlogs Production Run
+            {/* Header */}
+            <div style={{ textAlign: "center", maxWidth: "720px", margin: "0 auto 30px" }}>
+              <div className="eyebrow-badge" style={{ marginBottom: "14px" }}>
+                <span className="live-dot" />
+                Live Neatlogs Production Telemetry · Project ID: {projectId.slice(0, 8)}...
+              </div>
+              
+              <h3 style={{ fontSize: "28px", fontWeight: 800, color: "#09090b", margin: "0 0 12px", letterSpacing: "-0.02em" }}>
+                Neatlogs Observability &amp; Trace Hub
+              </h3>
+
+              <p style={{ color: "#71717a", fontSize: "15px", lineHeight: 1.6, margin: "0 auto" }}>
+                OVIO streams every agent run into Neatlogs via OpenInference spans. Instead of checking a single isolated run, inspect our entire live telemetry project with 41+ historical traces, 39 multi-step sessions, and 3 distinct production workflows.
+              </p>
             </div>
-            
-            <h3 style={{ fontSize: "26px", fontWeight: 800, color: "#09090b", margin: "0 0 12px", letterSpacing: "-0.02em" }}>
-              Inspect the Live Execution Tree in Neatlogs
-            </h3>
 
-            <p style={{ color: "#71717a", fontSize: "15px", maxWidth: "580px", margin: "0 auto 26px" }}>
-              Every LLM decision, token metric, guardrail validation, and Entire continuous state checkpoint is tracked in Neatlogs.
-            </p>
+            {/* Live Metrics Strip */}
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gap: "12px",
+              marginBottom: "28px"
+            }}>
+              <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 18px" }}>
+                <div style={{ fontSize: "11px", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.05em" }}>Total Project Traces</div>
+                <div style={{ fontSize: "24px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>41 Traces</div>
+                <div style={{ fontSize: "11.5px", color: "#16a34a", marginTop: "2px", fontWeight: 600 }}>● All streamed live to Neatlogs</div>
+              </div>
 
-            <a
-              href={directTraceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary btn-lg"
-              style={{ display: "inline-flex" }}
-            >
-              <span>Open Trace {current.traceId.slice(0, 8)}... In Neatlogs Dashboard</span>
-              <ExternalLink size={15} />
-            </a>
+              <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 18px" }}>
+                <div style={{ fontSize: "11px", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.05em" }}>Agent Sessions</div>
+                <div style={{ fontSize: "24px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>39 Sessions</div>
+                <div style={{ fontSize: "11.5px", color: "#64748b", marginTop: "2px" }}>Multi-step agent lifecycles</div>
+              </div>
 
-            <div style={{ marginTop: "14px", fontFamily: "var(--mono)", fontSize: "12px", color: "#a1a1aa" }}>
-              Direct URL: {directTraceUrl}
+              <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 18px" }}>
+                <div style={{ fontSize: "11px", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.05em" }}>Active Workflows</div>
+                <div style={{ fontSize: "24px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>3 Workflows</div>
+                <div style={{ fontSize: "11.5px", color: "#64748b", marginTop: "2px" }}>treasury, rescue, doctor-probe</div>
+              </div>
+
+              <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 18px" }}>
+                <div style={{ fontSize: "11px", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.05em" }}>Span Standard</div>
+                <div style={{ fontSize: "24px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>OpenInference</div>
+                <div style={{ fontSize: "11.5px", color: "#64748b", marginTop: "2px" }}>OTel Semantic Conventions</div>
+              </div>
+            </div>
+
+            {/* Primary Action Buttons */}
+            <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap", marginBottom: "36px" }}>
+              <a
+                href={`https://app.neatlogs.com/traces?orgId=${orgId}&projectId=${projectId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-lg"
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+              >
+                <span>Browse All 41+ Traces in Neatlogs Dashboard</span>
+                <ExternalLink size={15} />
+              </a>
+
+              <a
+                href={`https://app.neatlogs.com/sessions?orgId=${orgId}&projectId=${projectId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline btn-lg"
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+              >
+                <span>View Agent Sessions &amp; Replays (39 Sessions)</span>
+                <ExternalLink size={15} />
+              </a>
+            </div>
+
+            {/* Curated Multi-Trace Showcase */}
+            <div style={{ borderTop: "1px solid #e4e4e7", paddingTop: "28px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", flexWrap: "wrap", gap: "8px" }}>
+                <div>
+                  <h4 style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#09090b" }}>
+                    Curated Key Execution Traces Across Workflows
+                  </h4>
+                  <p style={{ fontSize: "12.5px", color: "#71717a", margin: "2px 0 0" }}>
+                    Inspect individual span trees across our agent modes, public ledger audits, and diagnostic probes:
+                  </p>
+                </div>
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "14px" }}>
+                {/* Trace Card 1 */}
+                <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "10px", padding: "18px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "8px" }}>
+                      <span style={{ fontSize: "11px", fontWeight: 700, padding: "2px 8px", borderRadius: "4px", background: "#dcfce7", color: "#166534" }}>
+                        20 Spans · INVESTIGATOR
+                      </span>
+                      <span style={{ fontFamily: "var(--mono)", fontSize: "11px", color: "#71717a" }}>3d720906...</span>
+                    </div>
+                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#09090b", marginBottom: "4px" }}>
+                      Multi-Tool Autonomous Investigator
+                    </div>
+                    <p style={{ fontSize: "12px", color: "#71717a", margin: 0, lineHeight: 1.5 }}>
+                      Full autonomous investigation with 4 tools (vendor history, sibling distributions, draw schedules, clawback guardrail).
+                    </p>
+                  </div>
+                  <a
+                    href={`https://app.neatlogs.com/traces/3d720906babf7ed470e690f68c4eedc5?orgId=${orgId}&projectId=${projectId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline btn-sm"
+                    style={{ marginTop: "14px", width: "100%", justifyContent: "center" }}
+                  >
+                    <span>Inspect Tree (20 Spans)</span>
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
+
+                {/* Trace Card 2 */}
+                <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "10px", padding: "18px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "8px" }}>
+                      <span style={{ fontSize: "11px", fontWeight: 700, padding: "2px 8px", borderRadius: "4px", background: "#fef9c3", color: "#854d0e" }}>
+                        11 Spans · BASELINE
+                      </span>
+                      <span style={{ fontFamily: "var(--mono)", fontSize: "11px", color: "#71717a" }}>dd024eda...</span>
+                    </div>
+                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#09090b", marginBottom: "4px" }}>
+                      Single-Shot Fast Baseline
+                    </div>
+                    <p style={{ fontSize: "12px", color: "#71717a", margin: 0, lineHeight: 1.5 }}>
+                      Direct prompt evaluation without specialized investigation tools. Side-by-side comparison baseline.
+                    </p>
+                  </div>
+                  <a
+                    href={`https://app.neatlogs.com/traces/dd024eda5ca251867f7f23cf768e6651?orgId=${orgId}&projectId=${projectId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline btn-sm"
+                    style={{ marginTop: "14px", width: "100%", justifyContent: "center" }}
+                  >
+                    <span>Inspect Tree (11 Spans)</span>
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
+
+                {/* Trace Card 3 */}
+                <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "10px", padding: "18px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "8px" }}>
+                      <span style={{ fontSize: "11px", fontWeight: 700, padding: "2px 8px", borderRadius: "4px", background: "#e0f2fe", color: "#0369a1" }}>
+                        12 Spans · CHICAGO LEDGER
+                      </span>
+                      <span style={{ fontFamily: "var(--mono)", fontSize: "11px", color: "#71717a" }}>8789a5fe...</span>
+                    </div>
+                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#09090b", marginBottom: "4px" }}>
+                      City of Chicago Live Audit
+                    </div>
+                    <p style={{ fontSize: "12px", color: "#71717a", margin: 0, lineHeight: 1.5 }}>
+                      Live municipal payments downloaded from data.cityofchicago.org (1,968 disbursements audited).
+                    </p>
+                  </div>
+                  <a
+                    href={`https://app.neatlogs.com/traces/8789a5fef577533136f734e04c2ded51?orgId=${orgId}&projectId=${projectId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline btn-sm"
+                    style={{ marginTop: "14px", width: "100%", justifyContent: "center" }}
+                  >
+                    <span>Inspect Tree (12 Spans)</span>
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
+
+                {/* Trace Card 4 */}
+                <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "10px", padding: "18px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "8px" }}>
+                      <span style={{ fontSize: "11px", fontWeight: 700, padding: "2px 8px", borderRadius: "4px", background: "#f3e8ff", color: "#6b21a8" }}>
+                        8 Spans · CASH RESCUE
+                      </span>
+                      <span style={{ fontFamily: "var(--mono)", fontSize: "11px", color: "#71717a" }}>a5ef8cc0...</span>
+                    </div>
+                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#09090b", marginBottom: "4px" }}>
+                      90-Day Cashflow Rescue Agent
+                    </div>
+                    <p style={{ fontSize: "12px", color: "#71717a", margin: 0, lineHeight: 1.5 }}>
+                      Autonomous working capital planning, cfo.ai scenario optimization, and automated AR collection.
+                    </p>
+                  </div>
+                  <a
+                    href={`https://app.neatlogs.com/traces/a5ef8cc0da91d5a7b3c220f1712a1464?orgId=${orgId}&projectId=${projectId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline btn-sm"
+                    style={{ marginTop: "14px", width: "100%", justifyContent: "center" }}
+                  >
+                    <span>Inspect Tree (8 Spans)</span>
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
+
+                {/* Trace Card 5 */}
+                <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "10px", padding: "18px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "8px" }}>
+                      <span style={{ fontSize: "11px", fontWeight: 700, padding: "2px 8px", borderRadius: "4px", background: "#f1f5f9", color: "#334155" }}>
+                        4 Spans · DIAGNOSTIC PROBE
+                      </span>
+                      <span style={{ fontFamily: "var(--mono)", fontSize: "11px", color: "#71717a" }}>a3b4770e...</span>
+                    </div>
+                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#09090b", marginBottom: "4px" }}>
+                      Doctor Self-Healing Probe
+                    </div>
+                    <p style={{ fontSize: "12px", color: "#71717a", margin: 0, lineHeight: 1.5 }}>
+                      Proactive diagnostic connectivity check verifying collector reachability, latency, and schema fallback.
+                    </p>
+                  </div>
+                  <a
+                    href={`https://app.neatlogs.com/traces/a3b4770e82c2e9d0dfaae885c901f4f8?orgId=${orgId}&projectId=${projectId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline btn-sm"
+                    style={{ marginTop: "14px", width: "100%", justifyContent: "center" }}
+                  >
+                    <span>Inspect Tree (4 Spans)</span>
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
