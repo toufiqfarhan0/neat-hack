@@ -1,0 +1,20 @@
+it's still processing not showing OK please check and what the issue why they are failing
+
+---
+
+Based on the active date filters (**September 27, 2026 – October 11, 2026**), I analyzed all the traces in your project. Currently, **none of your traces are failing**. 
+
+There are exactly **7 traces** recorded within this period, and every single one of them has completed successfully with no errors or flagged issues.
+
+Here is the complete list of traces found within your active filter window:
+
+
+
+### Key Observations:
+* **Error Rate:** 0% (0 out of 7 traces failed).
+* **Detections:** No automatic security, hallucination, or quality detections have flagged any of these runs.
+* **Workflows Active:** `ovio-treasury-agent`, `ovio-doctor-probe`, `neatlogs.doctor.v2`, and `test-export`.
+
+If you expected to see failing traces, they may have been logged outside of this date range or in a different project. Let me know if you would like me to help you check a different timeframe or investigate a specific trace ID!
+
+check this our please
