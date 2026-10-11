@@ -3,9 +3,335 @@
   "checkpoint_id": "01M4N3P0KV661Y05FG58J6ZBGZ",
   "session_id": "45f215bc-78e0-4e7b-bedf-b112d4595a4b",
   "strategy": "manual-commit",
-  "created_at": "2026-10-11T09:11:14.7494486Z",
+  "created_at": "2026-10-11T09:11:18.4939017Z",
+  "branch": "main",
   "checkpoints_count": 58,
-  "files_touched": null,
+  "save_step_count": 12,
+  "files_touched": [
+    "ENTIRE_TEST.md"
+  ],
   "agent": "Antigravity",
-  "model": ""
+  "model": "",
+  "turn_id": "b3c3965350db",
+  "session_metrics": {
+    "turn_count": 58
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-11T09:11:18.1197275Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 0,
+    "total_lines_changed": 0,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 29517,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/post_audit_f1abb873af4efa990d3058f17a0674fb_1791685981.json": 27,
+        ".entire_checkpoints/post_audit_ff04c6d140cb57a7009f0fbe2f1a5e4f_1791685332.json": 27,
+        ".entire_checkpoints/post_audit_ovio-tr-3b74c5292731_1791683819.json": 27,
+        ".entire_checkpoints/post_audit_ovio-tr-974f0a5227fb_1791682117.json": 21,
+        ".entire_checkpoints/pre_adjudication_f1abb873af4efa990d3058f17a0674fb_1791685977.json": 19,
+        ".entire_checkpoints/pre_adjudication_ff04c6d140cb57a7009f0fbe2f1a5e4f_1791685326.json": 19,
+        ".entire_checkpoints/pre_adjudication_ovio-tr-3b74c5292731_1791683810.json": 19,
+        ".entire_checkpoints/pre_adjudication_ovio-tr-974f0a5227fb_1791682108.json": 13,
+        ".entire_checkpoints/test_stage_test_sess_001_1791682169.json": 12,
+        ".entire_checkpoints/test_stage_test_sess_001_1791683439.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791683437.json": 18,
+        ".env.example": 18,
+        ".gitignore": 25,
+        "AGENTS.md": 6,
+        "CFO_BUSINESS_PLAN.md": 154,
+        "CLAUDE.md": 6,
+        "business/drivers.csv": 19,
+        "business/inputs.json": 42,
+        "business/unit_economics.json": 46,
+        "cfo_model.json": 841,
+        "cli/ovio.py": 610,
+        "core/__init__.py": 2,
+        "core/agent.py": 156,
+        "core/blocking.py": 168,
+        "core/cfo.py": 381,
+        "core/checkpoint.py": 199,
+        "core/doctor.py": 168,
+        "core/ledger.py": 166,
+        "core/llm.py": 194,
+        "core/telemetry.py": 384,
+        "data/samples/ATTRIBUTION.md": 19,
+        "data/samples/la_sample.csv": 20138,
+        "data/samples/ok_sample.csv": 5001,
+        "ovio.cmd": 2,
+        "ovio.ps1": 2,
+        "ovio_cli.py": 18,
+        "pyproject.toml": 32,
+        "spans_raw_optimized.log": 7,
+        "tests/test_cfo.py": 73,
+        "tests/test_entire.py": 84,
+        "tests/test_neatlogs.py": 80,
+        "tests/test_pipeline.py": 127
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 129,
+      "user_lines_removed": 0,
+      "agent_lines_added": 29499,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 539,
+      "user_lines_removed": 410,
+      "agent_lines_added": 29545,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        "cfo_model.json": 410
+      },
+      "user_removed_per_file": {
+        "cfo_model.json": 410
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 129,
+      "user_lines_removed": 0,
+      "agent_lines_added": 29928,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 129,
+      "user_lines_removed": 0,
+      "agent_lines_added": 29928,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 201,
+      "user_lines_removed": 1,
+      "agent_lines_added": 29987,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/post_audit_205cb56d474a42785e1167264d894ebd_1791688590.json": 27,
+        ".entire_checkpoints/pre_adjudication_205cb56d474a42785e1167264d894ebd_1791688587.json": 19,
+        "core/telemetry.py": 26
+      },
+      "user_removed_per_file": {
+        "core/telemetry.py": 1
+      }
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 175,
+      "user_lines_removed": 0,
+      "agent_lines_added": 31599,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/post_audit_205cb56d474a42785e1167264d894ebd_1791688590.json": 27,
+        ".entire_checkpoints/pre_adjudication_205cb56d474a42785e1167264d894ebd_1791688587.json": 19
+      }
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 738,
+      "user_lines_removed": 161,
+      "agent_lines_added": 31866,
+      "agent_lines_removed": 2,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/post_audit_205cb56d474a42785e1167264d894ebd_1791688590.json": 27,
+        ".entire_checkpoints/post_audit_aa1843570b5ee95a5ceba021c1e7685e_1791702987.json": 27,
+        ".entire_checkpoints/pre_adjudication_205cb56d474a42785e1167264d894ebd_1791688587.json": 19,
+        ".entire_checkpoints/pre_adjudication_aa1843570b5ee95a5ceba021c1e7685e_1791702974.json": 19,
+        ".entire_checkpoints/test_stage_test_sess_001_1791703166.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791703164.json": 18,
+        "app/page.tsx": 450,
+        "data/samples/enterprise_sample.csv": 31
+      },
+      "user_removed_per_file": {
+        "app/page.tsx": 161
+      }
+    },
+    {
+      "checkpoint_number": 9,
+      "user_lines_added": 336,
+      "user_lines_removed": 22,
+      "agent_lines_added": 33082,
+      "agent_lines_removed": 2,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/post_audit_205cb56d474a42785e1167264d894ebd_1791688590.json": 27,
+        ".entire_checkpoints/post_audit_aa1843570b5ee95a5ceba021c1e7685e_1791702987.json": 27,
+        ".entire_checkpoints/pre_adjudication_205cb56d474a42785e1167264d894ebd_1791688587.json": 19,
+        ".entire_checkpoints/pre_adjudication_aa1843570b5ee95a5ceba021c1e7685e_1791702974.json": 19,
+        ".entire_checkpoints/test_stage_test_sess_001_1791703166.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791705108.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791703164.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791705106.json": 18,
+        "README.md": 1,
+        "core/llm.py": 11,
+        "data/samples/enterprise_sample.csv": 31
+      },
+      "user_removed_per_file": {
+        "README.md": 1,
+        "core/llm.py": 21
+      }
+    },
+    {
+      "checkpoint_number": 10,
+      "user_lines_added": 324,
+      "user_lines_removed": 0,
+      "agent_lines_added": 33072,
+      "agent_lines_removed": 2,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/post_audit_205cb56d474a42785e1167264d894ebd_1791688590.json": 27,
+        ".entire_checkpoints/post_audit_aa1843570b5ee95a5ceba021c1e7685e_1791702987.json": 27,
+        ".entire_checkpoints/pre_adjudication_205cb56d474a42785e1167264d894ebd_1791688587.json": 19,
+        ".entire_checkpoints/pre_adjudication_aa1843570b5ee95a5ceba021c1e7685e_1791702974.json": 19,
+        ".entire_checkpoints/test_stage_test_sess_001_1791703166.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791705108.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791703164.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791705106.json": 18,
+        "data/samples/enterprise_sample.csv": 31
+      }
+    },
+    {
+      "checkpoint_number": 11,
+      "user_lines_added": 324,
+      "user_lines_removed": 0,
+      "agent_lines_added": 33174,
+      "agent_lines_removed": 2,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/post_audit_205cb56d474a42785e1167264d894ebd_1791688590.json": 27,
+        ".entire_checkpoints/post_audit_aa1843570b5ee95a5ceba021c1e7685e_1791702987.json": 27,
+        ".entire_checkpoints/pre_adjudication_205cb56d474a42785e1167264d894ebd_1791688587.json": 19,
+        ".entire_checkpoints/pre_adjudication_aa1843570b5ee95a5ceba021c1e7685e_1791702974.json": 19,
+        ".entire_checkpoints/test_stage_test_sess_001_1791703166.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791705108.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791703164.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791705106.json": 18,
+        "data/samples/enterprise_sample.csv": 31
+      }
+    },
+    {
+      "checkpoint_number": 12,
+      "user_lines_added": 324,
+      "user_lines_removed": 0,
+      "agent_lines_added": 33192,
+      "agent_lines_removed": 2,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/post_audit_205cb56d474a42785e1167264d894ebd_1791688590.json": 27,
+        ".entire_checkpoints/post_audit_aa1843570b5ee95a5ceba021c1e7685e_1791702987.json": 27,
+        ".entire_checkpoints/pre_adjudication_205cb56d474a42785e1167264d894ebd_1791688587.json": 19,
+        ".entire_checkpoints/pre_adjudication_aa1843570b5ee95a5ceba021c1e7685e_1791702974.json": 19,
+        ".entire_checkpoints/test_stage_test_sess_001_1791703166.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791705108.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791703164.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791705106.json": 18,
+        "data/samples/enterprise_sample.csv": 31
+      }
+    },
+    {
+      "checkpoint_number": 13,
+      "user_lines_added": 3446,
+      "user_lines_removed": 0,
+      "agent_lines_added": 30070,
+      "agent_lines_removed": 2,
+      "user_added_per_file": {
+        ".agents/hooks.json": 28,
+        ".claude/settings.json": 101,
+        ".entire_checkpoints/cashflow_rescue_complete_ovio-rescue-6fa6f910_1791705513.json": 20,
+        ".entire_checkpoints/cashflow_rescue_complete_ovio-rescue-bead0842_1791704437.json": 20,
+        ".entire_checkpoints/post_audit_0ce435e64aa85a4d17caf0e60395c044_1791704474.json": 27,
+        ".entire_checkpoints/post_audit_0dc6ac3fc14685c237ded831086032ad_1791687548.json": 27,
+        ".entire_checkpoints/post_audit_205cb56d474a42785e1167264d894ebd_1791688590.json": 27,
+        ".entire_checkpoints/post_audit_24f5631a1fdf03c3f1fe1f3563b1c4b7_1791687594.json": 27,
+        ".entire_checkpoints/post_audit_324c9895d4bfc2297074160961018b8f_1791688257.json": 27,
+        ".entire_checkpoints/post_audit_421eda5faee72ded4d286ffd430ed61b_1791705498.json": 27,
+        ".entire_checkpoints/post_audit_a3b4770e82c2e9d0dfaae885c901f4f8_1791690079.json": 27,
+        ".entire_checkpoints/post_audit_a7f5d3eeb49b21271d4b0b956f26e746_1791687778.json": 27,
+        ".entire_checkpoints/post_audit_aa1843570b5ee95a5ceba021c1e7685e_1791702987.json": 27,
+        ".entire_checkpoints/post_audit_c4866d887b09a929d6bb10fb9044a1b1_1791687530.json": 27,
+        ".entire_checkpoints/post_audit_ovio-tr-36516dd865b0_1791687291.json": 27,
+        ".entire_checkpoints/post_audit_ovio-tr-9bd0ab7ba0e1_1791687396.json": 27,
+        ".entire_checkpoints/pre_adjudication_0ce435e64aa85a4d17caf0e60395c044_1791704459.json": 19,
+        ".entire_checkpoints/pre_adjudication_0dc6ac3fc14685c237ded831086032ad_1791687536.json": 19,
+        ".entire_checkpoints/pre_adjudication_205cb56d474a42785e1167264d894ebd_1791688587.json": 19,
+        ".entire_checkpoints/pre_adjudication_24f5631a1fdf03c3f1fe1f3563b1c4b7_1791687581.json": 19,
+        ".entire_checkpoints/pre_adjudication_324c9895d4bfc2297074160961018b8f_1791688250.json": 19,
+        ".entire_checkpoints/pre_adjudication_421eda5faee72ded4d286ffd430ed61b_1791705485.json": 19,
+        ".entire_checkpoints/pre_adjudication_a3b4770e82c2e9d0dfaae885c901f4f8_1791690075.json": 19,
+        ".entire_checkpoints/pre_adjudication_a7f5d3eeb49b21271d4b0b956f26e746_1791687769.json": 19,
+        ".entire_checkpoints/pre_adjudication_aa1843570b5ee95a5ceba021c1e7685e_1791702974.json": 19,
+        ".entire_checkpoints/pre_adjudication_c4866d887b09a929d6bb10fb9044a1b1_1791687517.json": 19,
+        ".entire_checkpoints/pre_adjudication_fee054b81c9d8840d3285226fb982218_1791690035.json": 19,
+        ".entire_checkpoints/pre_adjudication_ovio-tr-36516dd865b0_1791687286.json": 19,
+        ".entire_checkpoints/pre_adjudication_ovio-tr-9bd0ab7ba0e1_1791687393.json": 19,
+        ".entire_checkpoints/test_stage_test_sess_001_1791702215.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791702303.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791703166.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791703327.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791704512.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791704684.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791705108.json": 18,
+        ".entire_checkpoints/test_stage_test_sess_001_1791705443.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791702211.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791702300.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791703164.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791703324.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791704509.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791704681.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791705106.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791705439.json": 18,
+        ".entire_checkpoints/test_verification_stage_test-session-entire-99_1791707762.json": 18,
+        "app/evidence/page.tsx": 342,
+        "app/globals.css": 487,
+        "app/layout.tsx": 139,
+        "app/page.tsx": 822,
+        "data/samples/enterprise_sample.csv": 31,
+        "next-env.d.ts": 5,
+        "next.config.mjs": 6,
+        "package-lock.json": 518,
+        "package.json": 24,
+        "tsconfig.json": 26
+      }
+    }
+  ]
 }

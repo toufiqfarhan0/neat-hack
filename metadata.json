@@ -2,8 +2,11 @@
   "cli_version": "0.11.4",
   "checkpoint_id": "01M4N3P0KV661Y05FG58J6ZBGZ",
   "strategy": "manual-commit",
+  "branch": "main",
   "checkpoints_count": 58,
-  "files_touched": null,
+  "files_touched": [
+    "ENTIRE_TEST.md"
+  ],
   "sessions": [
     {
       "metadata": "/0/metadata.json",
