@@ -1,0 +1,3 @@
+and aslo check the cfo.ai how can we make best use of it check the docs please https://docs.cfo.ai/ 
+
+and also how our agent is working on the web i mean like when user come and paste the csv and then run how come the agent is working i haven't understood please explain that and how end user will get an output. explain that also
