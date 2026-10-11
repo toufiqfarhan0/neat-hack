@@ -1,0 +1,5 @@
+are we doing right for the entrie
+
+---
+
+fix this it leading to the same localhost:3000 home page
