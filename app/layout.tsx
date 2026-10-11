@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ShieldCheck, Database, Activity, Terminal } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'OVIO — Autonomous Treasury Recovery & Cashflow Rescue Agent',
@@ -52,52 +51,6 @@ export default function RootLayout({
                 </div>
               </div>
             </Link>
-
-            {/* Sponsor Badges */}
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginLeft: '8px' }}>
-              <span style={{
-                fontSize: '11px',
-                padding: '2px 8px',
-                borderRadius: '6px',
-                background: '#f4f4f5',
-                color: '#09090b',
-                border: '1px solid #e4e4e7',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '5px',
-                fontWeight: 600
-              }}>
-                <span className="live-dot" /> Neatlogs Telemetry
-              </span>
-              <span style={{
-                fontSize: '11px',
-                padding: '2px 8px',
-                borderRadius: '6px',
-                background: '#f4f4f5',
-                color: '#09090b',
-                border: '1px solid #e4e4e7',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '5px',
-                fontWeight: 600
-              }}>
-                <ShieldCheck size={12} /> Entire Memory
-              </span>
-              <span style={{
-                fontSize: '11px',
-                padding: '2px 8px',
-                borderRadius: '6px',
-                background: '#f4f4f5',
-                color: '#09090b',
-                border: '1px solid #e4e4e7',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '5px',
-                fontWeight: 600
-              }}>
-                <Database size={12} /> cfo.ai Model
-              </span>
-            </div>
           </div>
 
           <nav style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
