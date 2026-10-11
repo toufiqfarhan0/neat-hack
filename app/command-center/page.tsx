@@ -944,15 +944,6 @@ Please update the OVIO Financial Model in cfo.ai:
                       {copiedPrompt ? <Check size={14} /> : <Copy size={14} />}
                       <span>{copiedPrompt ? "Copied!" : "Copy for cfo.ai"}</span>
                     </button>
-
-                    <a
-                      href="/cfo_model.json"
-                      download
-                      className="btn btn-outline btn-sm"
-                    >
-                      <FileText size={14} />
-                      <span>Download cfo_model.json</span>
-                    </a>
                   </div>
                 </div>
 
