@@ -1,0 +1,157 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4R0V6G9869484RHT5QGEPYC",
+  "session_id": "45f215bc-78e0-4e7b-bedf-b112d4595a4b",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-12T12:19:23.3319538Z",
+  "branch": "main",
+  "checkpoints_count": 8,
+  "save_step_count": 8,
+  "files_touched": [
+    "NEAT_HACKATHON.md",
+    "README.md",
+    "app/command-center/page.tsx",
+    "app/docs/page.tsx",
+    "app/evidence/page.tsx",
+    "app/how-it-works/page.tsx",
+    "app/page.tsx",
+    "cli/ovio.py",
+    "core/cfo_sync.py",
+    "data/cfo_scenario_state.json",
+    "data/samples/live_chicago_open_data_download.csv",
+    "tests/test_cfo_sync.py"
+  ],
+  "agent": "Antigravity",
+  "model": "",
+  "turn_id": "0acfea1d3dff",
+  "checkpoint_transcript_start": 6683,
+  "transcript_lines_at_start": 6683,
+  "session_metrics": {
+    "turn_count": 121
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-12T12:19:22.3496134Z",
+    "agent_lines": 1658,
+    "agent_removed": 0,
+    "human_added": 3529,
+    "human_modified": 1858,
+    "human_removed": 0,
+    "total_committed": 6613,
+    "total_lines_changed": 7045,
+    "agent_percentage": 23.534421575585522,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2973,
+      "agent_lines_removed": 1346
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 38,
+      "user_lines_removed": 13,
+      "agent_lines_added": 2978,
+      "agent_lines_removed": 1347,
+      "user_added_per_file": {
+        "README.md": 18,
+        "app/docs/page.tsx": 3,
+        "app/how-it-works/page.tsx": 4,
+        "app/page.tsx": 13
+      },
+      "user_removed_per_file": {
+        "README.md": 4,
+        "app/docs/page.tsx": 3,
+        "app/how-it-works/page.tsx": 4,
+        "app/page.tsx": 2
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 313,
+      "user_lines_removed": 9,
+      "agent_lines_added": 3016,
+      "agent_lines_removed": 1360,
+      "user_added_per_file": {
+        "data/cfo_scenario_state.json": 313
+      },
+      "user_removed_per_file": {
+        "data/cfo_scenario_state.json": 9
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 313,
+      "user_lines_removed": 9,
+      "agent_lines_added": 3016,
+      "agent_lines_removed": 1360,
+      "user_added_per_file": {
+        "data/cfo_scenario_state.json": 313
+      },
+      "user_removed_per_file": {
+        "data/cfo_scenario_state.json": 9
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 537,
+      "user_lines_removed": 9,
+      "agent_lines_added": 3016,
+      "agent_lines_removed": 1360,
+      "user_added_per_file": {
+        "data/cfo_scenario_state.json": 537
+      },
+      "user_removed_per_file": {
+        "data/cfo_scenario_state.json": 9
+      }
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 601,
+      "user_lines_removed": 9,
+      "agent_lines_added": 6017,
+      "agent_lines_removed": 1360,
+      "user_added_per_file": {
+        "data/cfo_scenario_state.json": 601
+      },
+      "user_removed_per_file": {
+        "data/cfo_scenario_state.json": 9
+      }
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 601,
+      "user_lines_removed": 9,
+      "agent_lines_added": 6017,
+      "agent_lines_removed": 1360,
+      "user_added_per_file": {
+        "data/cfo_scenario_state.json": 601
+      },
+      "user_removed_per_file": {
+        "data/cfo_scenario_state.json": 9
+      }
+    },
+    {
+      "checkpoint_number": 9,
+      "user_lines_added": 601,
+      "user_lines_removed": 9,
+      "agent_lines_added": 6088,
+      "agent_lines_removed": 1361,
+      "user_added_per_file": {
+        "data/cfo_scenario_state.json": 601
+      },
+      "user_removed_per_file": {
+        "data/cfo_scenario_state.json": 9
+      }
+    }
+  ]
+}
