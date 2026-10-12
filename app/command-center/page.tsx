@@ -54,8 +54,9 @@ export default function CommandCenterPage() {
     };
   } | null>(null);
   
-  // Empty financial brief by default (no preloaded text)
-  const [pastedContext, setPastedContext] = useState<string>("");
+  const [pastedContext, setPastedContext] = useState<string>(
+    "We have $120,000 in cash and $85,000 in receivables. $42,000 is 30+ days overdue from CDW Government. Upcoming vendor payables are $72,000 and monthly operating expenses are $35,000. Goal: Maintain $50,000 minimum cash floor for 90 days without debt."
+  );
   
   // Do NOT preload results on page load
   const [auditRunning, setAuditRunning] = useState<boolean>(false);
@@ -340,6 +341,30 @@ Please update the OVIO Financial Model in cfo.ai:
       {/* MAIN WORKSPACE SECTION */}
       <section style={{ padding: "36px 0" }}>
         <div className="container">
+          {/* CLI ENGINE FIRST NOTICE BANNER */}
+          <div style={{
+            background: "#f4f4f5",
+            border: "1px solid #e4e4e7",
+            borderRadius: "10px",
+            padding: "14px 18px",
+            marginBottom: "20px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "12px"
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <Terminal size={17} color="#09090b" style={{ flexShrink: 0 }} />
+              <div style={{ fontSize: "13px", color: "#52525b", lineHeight: 1.5 }}>
+                <strong style={{ color: "#09090b" }}>Visual Representation Only:</strong> This website is an interactive visual cockpit &amp; triage queue demonstrating our audit findings. It does <strong>not</strong> execute live backend model requests in the browser. The actual autonomous agent that executes the multi-tool loop, performs live LLM reasoning calls, and streams real-time Neatlogs spans runs directly via the CLI: <code style={{ background: "#e4e4e7", padding: "2px 6px", borderRadius: "4px", color: "#09090b", fontWeight: 700 }}>ovio run --file &lt;path&gt;</code>.
+              </div>
+            </div>
+            <Link href="/docs" style={{ fontSize: "12.5px", fontWeight: 700, color: "#09090b", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "4px", flexShrink: 0 }}>
+              View CLI Guide <ArrowRight size={13} />
+            </Link>
+          </div>
+
           {/* TAB BAR (3 WAYS TO TEST) */}
           <div style={{ 
             background: "#ffffff", 
@@ -578,7 +603,7 @@ Please update the OVIO Financial Model in cfo.ai:
                     Paste your financial brief or treasury situation:
                   </span>
                   <span style={{ fontSize: "12px", color: "#71717a" }}>
-                    Empty by default · Type or paste below
+                    OVIO extracts cash, AR, AP, and goals
                   </span>
                 </div>
 

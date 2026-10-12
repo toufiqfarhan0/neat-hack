@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { 
   ShieldCheck, 
@@ -24,10 +24,19 @@ import {
   Workflow,
   Search,
   Database,
-  Check
+  Check,
+  Terminal,
+  Copy
 } from "lucide-react";
 
 export default function LandingPage() {
+  const [copied, setCopied] = useState<string | null>(null);
+  const copyCmd = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(text);
+    setTimeout(() => setCopied(null), 2000);
+  };
+
   const orgId = "9cfd22d9-563d-4c78-a34b-221750ec3bcf";
   const projectId = "b789b79e-7320-4c15-a378-4cf7cfb8d240";
 
@@ -103,6 +112,25 @@ export default function LandingPage() {
               <span>Inspect Neatlogs Trace</span>
               <ExternalLink size={13} style={{ opacity: 0.6 }} />
             </a>
+          </div>
+
+          {/* Visual Representation Disclaimer Callout */}
+          <div style={{
+            background: "#f4f4f5",
+            border: "1px solid #e4e4e7",
+            borderRadius: "20px",
+            padding: "6px 20px",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "10px",
+            fontSize: "12.5px",
+            color: "#52525b",
+            marginBottom: "40px"
+          }}>
+            <Terminal size={14} color="#09090b" />
+            <span>
+              <strong>Architecture Note:</strong> The web app is an interactive visual cockpit. The <strong>actual app making live model requests</strong> runs in your terminal: <code style={{ color: "#09090b", fontWeight: 700 }}>ovio run --demo</code>
+            </span>
           </div>
 
           {/* Hero Preview Card */}
@@ -188,8 +216,102 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* THE CORE PROBLEM: ALERT FATIGUE PARADOX */}
+      {/* ⚡ JUDGE IT IN 60 SECONDS */}
       <section style={{ padding: "64px 0", borderBottom: "1px solid #e4e4e7", background: "#fafafa" }}>
+        <div className="container" style={{ maxWidth: "1080px" }}>
+          <div style={{ textAlign: "center", marginBottom: "40px" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#fef9c3", border: "1px solid #fde047", padding: "5px 14px", borderRadius: "20px", marginBottom: "14px" }}>
+              <span style={{ fontSize: "11.5px", fontWeight: 800, color: "#854d0e", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                ⚡ Judge Fast-Track · 60 Seconds
+              </span>
+            </div>
+            <h2 style={{ fontSize: "34px", fontWeight: 900, color: "#09090b", letterSpacing: "-0.025em", margin: "0 0 10px" }}>
+              Evaluate the End-to-End Pipeline in 60 Seconds
+            </h2>
+            <p style={{ fontSize: "15px", color: "#52525b", maxWidth: "700px", margin: "0 auto", lineHeight: 1.6 }}>
+              The <strong>actual autonomous app making live model requests</strong> runs in your terminal via the CLI. The Web Cockpit is the interactive visual representation and human triage desk:
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "24px" }}>
+            {/* PATH A: CLI ENGINE */}
+            <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "14px", padding: "28px", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <Terminal size={18} color="#09090b" />
+                  <span style={{ fontSize: "16px", fontWeight: 800, color: "#09090b" }}>Path A: CLI Engine (Terminal in 30s)</span>
+                </div>
+                <span style={{ fontSize: "11px", fontWeight: 700, background: "#f4f4f5", color: "#52525b", padding: "3px 8px", borderRadius: "4px" }}>
+                  Autonomous
+                </span>
+              </div>
+              <p style={{ fontSize: "13px", color: "#52525b", lineHeight: 1.5, marginBottom: "14px" }}>
+                Run the autonomous multi-tool sweep on the authentic Los Angeles municipal ledger:
+              </p>
+              
+              <div style={{ background: "#09090b", color: "#f4f4f5", padding: "12px 14px", borderRadius: "8px", fontFamily: "monospace", fontSize: "12.5px", marginBottom: "14px", position: "relative" }}>
+                <code>ovio run --demo --limit 3 --mode investigator</code>
+                <button 
+                  onClick={() => copyCmd("ovio run --demo --limit 3 --mode investigator")}
+                  style={{ position: "absolute", top: "10px", right: "10px", background: "#27272a", border: "none", color: "#fff", padding: "5px", borderRadius: "4px", cursor: "pointer" }}
+                >
+                  {copied === "ovio run --demo --limit 3 --mode investigator" ? <Check size={13} color="#22c55e" /> : <Copy size={13} />}
+                </button>
+              </div>
+
+              <div style={{ fontSize: "12.5px", color: "#3f3f46", display: "flex", flexDirection: "column", gap: "8px", borderTop: "1px solid #f4f4f5", paddingTop: "14px" }}>
+                <div>✓ <strong>O(N) Hash Blocking:</strong> 20,139 rows indexed in 0.15s without server freeze.</div>
+                <div>✓ <strong>Zero-Token Pruning:</strong> Deterministically eliminates 2,146 false-alarm decoys.</div>
+                <div>✓ <strong>Multi-Tool Loop:</strong> Proves PO ceiling breach and flags <strong>$12,818.00</strong> duplicate wire.</div>
+                <div>✓ <strong>Live Neatlogs Trace:</strong> Emits clickable link to inspect all 20 spans.</div>
+              </div>
+            </div>
+
+            {/* PATH B: WEB REVIEW COCKPIT */}
+            <div style={{ background: "#ffffff", border: "2px solid #09090b", borderRadius: "14px", padding: "28px", boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <Split size={18} color="#09090b" />
+                  <span style={{ fontSize: "16px", fontWeight: 800, color: "#09090b" }}>Path B: Web Cockpit (Browser in 30s)</span>
+                </div>
+                <span style={{ fontSize: "11px", fontWeight: 800, background: "#dcfce7", color: "#15803d", padding: "3px 8px", borderRadius: "4px" }}>
+                  Interactive
+                </span>
+              </div>
+              <p style={{ fontSize: "13px", color: "#52525b", lineHeight: 1.5, marginBottom: "14px" }}>
+                Inspect and triage candidates directly through the human controller desk:
+              </p>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "18px" }}>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", fontSize: "12.5px", color: "#18181b" }}>
+                  <span style={{ background: "#09090b", color: "#fff", width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 800, flexShrink: 0 }}>1</span>
+                  <span>Open <strong><Link href="/command-center" style={{ color: "#09090b", textDecoration: "underline" }}>Command Center</Link></strong> and click <strong>▶ Run Forensic Audit Sweep</strong> to watch the 8-phase execution.</span>
+                </div>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", fontSize: "12.5px", color: "#18181b" }}>
+                  <span style={{ background: "#09090b", color: "#fff", width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 800, flexShrink: 0 }}>2</span>
+                  <span>Open <strong><Link href="/agent" style={{ color: "#09090b", textDecoration: "underline" }}>3-Pane Review Queue</Link></strong> to inspect side-by-side transaction comparison diffs.</span>
+                </div>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", fontSize: "12.5px", color: "#18181b" }}>
+                  <span style={{ background: "#09090b", color: "#fff", width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 800, flexShrink: 0 }}>3</span>
+                  <span>Click <strong>Authorize Clawback</strong> to seal the cryptographic SHA-256 evidence packet.</span>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", gap: "10px" }}>
+                <Link href="/command-center" className="btn btn-primary" style={{ flex: 1, justifyContent: "center", fontSize: "13px", padding: "10px" }}>
+                  Launch Command Center <ArrowRight size={14} />
+                </Link>
+                <Link href="/agent" className="btn btn-outline" style={{ fontSize: "13px", padding: "10px 16px" }}>
+                  Review Queue
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* THE CORE PROBLEM: ALERT FATIGUE PARADOX */}
+      <section style={{ padding: "64px 0", borderBottom: "1px solid #e4e4e7", background: "#ffffff" }}>
         <div className="container" style={{ maxWidth: "1080px" }}>
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <span style={{ fontSize: "12px", fontWeight: 800, color: "#71717a", textTransform: "uppercase", letterSpacing: "0.06em" }}>

@@ -618,6 +618,27 @@ export default function AgentWorkspacePage() {
         </div>
       </div>
 
+      {/* VISUAL REPRESENTATION NOTICE BANNER */}
+      <div style={{
+        background: "#fafafa",
+        borderBottom: "1px solid #e4e4e7",
+        padding: "8px 28px",
+        fontSize: "12px",
+        color: "#52525b",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: "10px"
+      }}>
+        <div>
+          <strong style={{ color: "#09090b" }}>Visual Review Queue:</strong> Displaying high-risk candidate findings discovered by the autonomous CLI engine. To run live multi-tool audits on any raw CSV, run in your terminal: <code style={{ background: "#e4e4e7", padding: "1px 6px", borderRadius: "3px", color: "#09090b", fontWeight: 700 }}>ovio run --file &lt;path&gt;</code>.
+        </div>
+        <Link href="/docs" style={{ color: "#09090b", fontWeight: 700, textDecoration: "none", fontSize: "11.5px" }}>
+          CLI Reference &rarr;
+        </Link>
+      </div>
+
       {/* 3-PANE INSPECTOR */}
       <div style={{
         display: "grid",

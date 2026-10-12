@@ -82,7 +82,32 @@ export default function RootLayout({
           </nav>
         </header>
 
-        <main style={{ minHeight: 'calc(100vh - 70px)' }}>
+        {/* GLOBAL CLI ENGINE NOTICE BAR */}
+        <div style={{
+          background: '#09090b',
+          color: '#f4f4f5',
+          borderBottom: '1px solid #27272a',
+          padding: '9px 24px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '12px',
+          fontSize: '12.5px',
+          textAlign: 'center',
+          flexWrap: 'wrap'
+        }}>
+          <span style={{ background: '#fef08a', color: '#78350f', padding: '2px 8px', borderRadius: '4px', fontWeight: 800, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            Visual Cockpit
+          </span>
+          <span style={{ color: '#d4d4d8' }}>
+            This website is an interactive visual representation of our audit findings. The <strong>actual autonomous agent</strong> making live model requests and streaming real-time Neatlogs spans runs directly in your terminal via the CLI:
+          </span>
+          <code style={{ background: '#27272a', color: '#22c55e', padding: '2px 8px', borderRadius: '4px', fontWeight: 700, fontFamily: 'monospace' }}>
+            ovio run --demo
+          </code>
+        </div>
+
+        <main style={{ minHeight: 'calc(100vh - 105px)' }}>
           {children}
         </main>
       </body>

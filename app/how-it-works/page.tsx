@@ -112,10 +112,23 @@ export default function HowItWorksPage() {
         <h1 style={{ fontSize: '38px', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '14px' }}>
           How OVIO Solves the False Positive Bottleneck
         </h1>
-        <p style={{ fontSize: '16px', color: '#71717a', maxWidth: '780px', margin: '0 auto', lineHeight: '1.6' }}>
+        <p style={{ fontSize: '16px', color: '#71717a', maxWidth: '780px', margin: '0 auto 16px auto', lineHeight: '1.6' }}>
           Traditional AP audit tools flood finance teams with thousands of alerts that nobody reads. 
           OVIO inverts the paradigm: cheap deterministic stages carry 95%+ of the volume, and the neural agent is asked to prove innocence rather than raise noise.
         </p>
+        <div style={{
+          background: "#f4f4f5",
+          border: "1px solid #e4e4e7",
+          borderRadius: "20px",
+          padding: "6px 18px",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "8px",
+          fontSize: "12px",
+          color: "#52525b"
+        }}>
+          <span><strong>Architecture Note:</strong> This page visualizes the pipeline. The <strong>actual agent making live model requests</strong> runs in your terminal via the CLI: <code style={{ color: "#09090b", fontWeight: 700 }}>ovio run --demo</code></span>
+        </div>
       </div>
 
       {/* Visual Funnel Comparison Cards */}
