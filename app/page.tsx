@@ -103,14 +103,14 @@ export default function LandingPage() {
             </Link>
 
             <a 
-              href={`https://app.neatlogs.com/traces/3d720906babf7ed470e690f68c4eedc5?orgId=${orgId}&projectId=${projectId}`}
+              href={`https://app.neatlogs.com/traces?orgId=${orgId}&projectId=${projectId}&groupBy=none&timezone=Asia%2FKolkata&from=2026-09-28T18%3A30%3A00.000Z&to=2026-10-12T18%3A29%3A59.999Z`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-outline btn-lg"
               style={{ fontSize: "15px", padding: "14px 22px", borderRadius: "10px" }}
             >
               <Activity size={16} color="#16a34a" />
-              <span>Inspect Neatlogs Trace</span>
+              <span>Inspect Neatlogs Traces</span>
               <ExternalLink size={13} style={{ opacity: 0.6 }} />
             </a>
           </div>

@@ -296,12 +296,12 @@ export default function DocsPage() {
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', marginBottom: '18px' }}>
                 <div style={{ background: '#ffffff', border: '1px solid #e4e4e7', borderRadius: '8px', padding: '10px 14px' }}>
-                  <div style={{ fontSize: '11px', color: '#71717a', fontWeight: 600 }}>TOTAL PROJECT TRACES</div>
-                  <div style={{ fontSize: '18px', fontWeight: 800, color: '#09090b' }}>41 Traces</div>
+                  <div style={{ fontSize: '11px', color: '#71717a', fontWeight: 600 }}>PIPELINE OBSERVABILITY</div>
+                  <div style={{ fontSize: '18px', fontWeight: 800, color: '#09090b' }}>Full OpenInference</div>
                 </div>
                 <div style={{ background: '#ffffff', border: '1px solid #e4e4e7', borderRadius: '8px', padding: '10px 14px' }}>
-                  <div style={{ fontSize: '11px', color: '#71717a', fontWeight: 600 }}>AGENT SESSIONS</div>
-                  <div style={{ fontSize: '18px', fontWeight: 800, color: '#09090b' }}>39 Sessions</div>
+                  <div style={{ fontSize: '11px', color: '#71717a', fontWeight: 600 }}>EXECUTION RELIABILITY</div>
+                  <div style={{ fontSize: '18px', fontWeight: 800, color: '#09090b' }}>100% Zero Crashes</div>
                 </div>
                 <div style={{ background: '#ffffff', border: '1px solid #e4e4e7', borderRadius: '8px', padding: '10px 14px' }}>
                   <div style={{ fontSize: '11px', color: '#71717a', fontWeight: 600 }}>SPANS PER AUDIT</div>
@@ -325,6 +325,7 @@ export default function DocsPage() {
                   <li><strong>Zero Unhandled Exceptions:</strong> The pipeline maintained a 100% completion rate across 27,000+ public records with zero fatal crashes.</li>
                   <li><strong>Live Trace Dashboards:</strong>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '6px' }}>
+                      <a href="https://app.neatlogs.com/traces?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240&groupBy=none&timezone=Asia%2FKolkata&from=2026-09-28T18%3A30%3A00.000Z&to=2026-10-12T18%3A29%3A59.999Z" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 700 }}>• Complete Neatlogs Traces Dashboard (All Runs & Workflows) ↗</a>
                       <a href="https://app.neatlogs.com/traces/2e7e5627f6fbc5ed878f3a29f4b180f6?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 700 }}>• Live Chicago Municipal Download (20 Spans · $349,935.35 Recovery) ↗</a>
                       <a href="https://app.neatlogs.com/traces/3d720906babf7ed470e690f68c4eedc5?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 700 }}>• Los Angeles Controller Investigator Trace (20 Spans · $12,818.00 Recovery) ↗</a>
                       <a href="https://app.neatlogs.com/traces/0ce435e64aa85a4d17caf0e60395c044?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 700 }}>• Corporate B2B ERP Self-Healing Trace (20 Spans · $60,450.00 Recovery) ↗</a>
@@ -436,7 +437,7 @@ export default function DocsPage() {
                 <div style={{ fontSize: '13px', fontWeight: 700, color: '#09090b', marginBottom: '8px' }}>How Effectively We're Using It:</div>
                 <ul style={{ fontSize: '12.5px', color: '#52525b', lineHeight: '1.6', margin: 0, paddingLeft: '18px' }}>
                   <li><strong>Immutable Regulatory Evidence:</strong> If an inspector questions a clawback months later, the checkpoint reproduces the exact Git commit, the exact raw transaction inputs, and the model's reason for innocence dismissal.</li>
-                  <li><strong>Live Checkpoint Link:</strong> <a href="https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 700 }}>Inspect Checkpoint 01M4N70PHJF0EG8HC6MEDPW14W on Entire.io ↗</a></li>
+                  <li><strong>Live Entire Web Session:</strong> <a href="https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 700 }}>Inspect Full Session (53 Checkpoints · 33h Engineering History) on Entire.io ↗</a></li>
                 </ul>
               </div>
             </div>

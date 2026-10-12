@@ -131,8 +131,8 @@ export default function HowItWorksPage() {
       badgeColor: '#1d4ed8',
       borderColor: '#bfdbfe',
       desc: 'Captures 169+ cryptographic state snapshots in .entire_checkpoints/ linked to Git commit SHAs via Entire-Checkpoint trailers. Runs 6 automated Trail evaluators to guarantee court-proof clawback audits.',
-      linkText: 'View Checkpoint 01M4N70PHJF0',
-      linkUrl: 'https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4'
+      linkText: 'Inspect Session (53 Checkpoints)',
+      linkUrl: 'https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b'
     },
     {
       name: 'cfo.ai Unit Economics',

@@ -13,7 +13,7 @@
 > **neatHack 2026 Submission** | Team Dot  
 > **Integrated Sponsors:** [Neatlogs](https://neatlogs.com) · [Entire](https://entire.io) · [cfo.ai](https://cfo.ai)  
 > **Repository:** [https://github.com/toufiqfarhan0/neat-hack](https://github.com/toufiqfarhan0/neat-hack)  
-> **Live Entire Checkpoint:** [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4) (`01M4N70PHJF0EG8HC6MEDPW14W`)
+> **Live Entire Session:** [https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b](https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b) (53 Checkpoints · 33h Continuous Trajectory)
 
 ---
 
@@ -66,7 +66,7 @@ To provide judges and evaluators with complete technical and financial transpare
 * **Entire ([entire.io](https://entire.io)) — Continuous Memory & Immutable Verification**:
   - Automatically captures immutable audit state snapshots in `core/checkpoint.py` linking every code change and turn to Git commits via `Entire-Checkpoint: <ID>` trailers.
   - Runs 6 automated Trail evaluators (`trail-confidence`, `trail-drift`, `trail-review`, `trail-risk`, `trail-security`, `trail-summary`) ensuring clawbacks withstand inspector general or court scrutiny.
-  - Live Entire Checkpoint: [`01M4N70PHJF0EG8HC6MEDPW14W`](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4).
+  - Live Entire Session: [`45f215bc-78e0-4e7b-bedf-b112d4595a4b`](https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b) (All 53 Checkpoints · Full Agent Trajectory).
 
 ### 3. How Neatlogs Finds Out Agent Incidents & Drives Code Fixes
 * **Real Distributed Tracing**: Every agent run streams 20 OpenInference spans per audit to `app.neatlogs.com` under `ovio-treasury-agent`.
@@ -594,6 +594,7 @@ OVIO is built around deep, native integrations with our three hackathon sponsors
 * **Micro-Cent Token Accounting**: Evaluates prompt and completion tokens per span, computing exact inference COGS ($0.00031) used directly by cfo.ai.
 * **Zero Fatal Crashes**: Handled 27,000+ public records across 4 municipal checkbooks with 100% pipeline reliability.
 * **Live Trace Dashboards**:
+  - **[Complete Neatlogs Traces Dashboard (All Runs & Workflows)](https://app.neatlogs.com/traces?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240&groupBy=none&timezone=Asia%2FKolkata&from=2026-09-28T18%3A30%3A00.000Z&to=2026-10-12T18%3A29%3A59.999Z)**
   - **[Live Chicago Municipal Download Trace (20 Spans · $349,935.35 Recovery)](https://app.neatlogs.com/traces/2e7e5627f6fbc5ed878f3a29f4b180f6?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)**
   - **[Multi-Tool Investigator Trace (20 Spans · Los Angeles Controller)](https://app.neatlogs.com/traces/3d720906babf7ed470e690f68c4eedc5?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)**
   - **[Enterprise B2B Self-Healing Trace (20 Spans · $60,450 Recovery)](https://app.neatlogs.com/traces/0ce435e64aa85a4d17caf0e60395c044?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)**
@@ -633,7 +634,7 @@ During real agent execution on authentic municipal and enterprise ledgers, Neatl
 #### How Effectively We Are Using Entire:
 * **Immutable Regulatory Replay**: Treasury clawbacks require evidence that withstands court or inspector general review. Any Entire checkpoint can be retrieved months later to prove the exact code version, raw ledger inputs, and model reasoning that cleared innocent vendors.
 * **Session Provenance**: Bound to Antigravity session `45f215bc-78e0-4e7b-bedf-b112d4595a4b` across 27+ Git commit checkpoints.
-* **Live Submission Link**: **[View Checkpoint `01M4N70PHJF0EG8HC6MEDPW14W`](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4)**.
+* **Live Submission Link**: **[View Full Session (53 Checkpoints · 33h Engineering History)](https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b)**.
 
 ---
 

@@ -6,8 +6,8 @@
 **Tracks & Focus:** Autonomous AI Agents, AP/Treasury Forensic Recovery, Observability, Financial Engineering  
 **Integrated Partners:** [Neatlogs](https://neatlogs.com) · [Entire](https://entire.io) · [cfo.ai](https://cfo.ai)  
 **Repository:** [https://github.com/toufiqfarhan0/neat-hack](https://github.com/toufiqfarhan0/neat-hack)  
-**Live Entire Checkpoint:** [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4)  
-**Checkpoint ID:** `01M4N70PHJF0EG8HC6MEDPW14W`
+**Live Entire Session (All 53 Checkpoints):** [https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b](https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b)  
+**Session ID:** `45f215bc-78e0-4e7b-bedf-b112d4595a4b` (33h Continuous Trajectory · 53 Sealed Checkpoints)
 
 ---
 
@@ -34,13 +34,14 @@ While existing ERP tools claim "100% population testing," they produce thousands
 * **Autonomous Multi-Tool Investigator**: Queries vendor ledger history, sibling lines on purchase orders, draw schedules, and pre-dispatch clawback guardrails.
 * **Autonomous Doctor Probe**: `ovio-doctor-probe` proactively monitors external API latency and output schema drift. If an LLM returns malformed JSON or times out, the Doctor probe intercepts the error, logs a diagnostic span to Neatlogs, and activates a deterministic fallback adjudicator so the audit never halts.
 * **Live Neatlogs Trace Dashboards**:
+  * **[Complete Neatlogs Traces Dashboard (All Runs & Workflows)](https://app.neatlogs.com/traces?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240&groupBy=none&timezone=Asia%2FKolkata&from=2026-09-28T18%3A30%3A00.000Z&to=2026-10-12T18%3A29%3A59.999Z)**
   * **[Multi-Tool Investigator Trace (20 Spans)](https://app.neatlogs.com/traces/3d720906babf7ed470e690f68c4eedc5?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)**
   * **[Single-Shot Baseline Trace (11 Spans)](https://app.neatlogs.com/traces/dd024eda5ca251867f7f23cf768e6651?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)**
 
 ### B. Entire.io (Continuous Agent Provenance & Checkpoint Memory)
 * **Session Tracking**: Tracked under Antigravity CLI / IDE session `45f215bc-78e0-4e7b-bedf-b112d4595a4b`.
 * **27 Checkpoints Captured on `main`**: Every single commit automatically carries an `Entire-Checkpoint: <ID>` Git trailer linked to the session's prompt turns, tool calls, code diffs, and 6 Trail evaluators.
-* **Submission Checkpoint URL**: [https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4](https://entire.io/gh/toufiqfarhan0/neat-hack/commit/596d9fa03e1b9d738405c3c9d784d1e1a52ee7b4) (`01M4N70PHJF0EG8HC6MEDPW14W`).
+* **Submission Session URL**: [https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b](https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b) (Full Interactive Trajectory with 53 Checkpoints).
 * **Cloud Repository Mirror**: `/et/gh:mirrors:.../neat-hack` on `aws-ap-south-1.entire.io`.
 
 ### C. cfo.ai (Financial Reality & Unit Economics Modeling)

@@ -345,7 +345,7 @@ export default function CommandCenterPage() {
               </Link>
 
               <a
-                href={`https://app.neatlogs.com/traces?orgId=${orgId}&projectId=${projectId}`}
+                href={`https://app.neatlogs.com/traces?orgId=${orgId}&projectId=${projectId}&groupBy=none&timezone=Asia%2FKolkata&from=2026-09-28T18%3A30%3A00.000Z&to=2026-10-12T18%3A29%3A59.999Z`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-outline"

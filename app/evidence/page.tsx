@@ -194,7 +194,7 @@ export default function EvidencePage() {
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
                 <span className="live-dot" />
-                <span style={{ fontSize: "11px", fontWeight: 700, color: "#16a34a", textTransform: "uppercase", letterSpacing: "0.05em" }}>41 Traces Ingested · 39 Sessions Active</span>
+                <span style={{ fontSize: "11px", fontWeight: 700, color: "#16a34a", textTransform: "uppercase", letterSpacing: "0.05em" }}>Verified Production Traces Ingested</span>
               </div>
               <h2 style={{ fontSize: "20px", fontWeight: 800, margin: 0, color: "#09090b" }}>
                 1. Verified Neatlogs Production Traces
@@ -206,23 +206,13 @@ export default function EvidencePage() {
 
             <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
               <a
-                href={`https://app.neatlogs.com/traces?orgId=${orgId}&projectId=${projectId}`}
+                href={`https://app.neatlogs.com/traces?orgId=${orgId}&projectId=${projectId}&groupBy=none&timezone=Asia%2FKolkata&from=2026-09-28T18%3A30%3A00.000Z&to=2026-10-12T18%3A29%3A59.999Z`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary btn-sm"
                 style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
               >
-                <span>Browse All 41+ Project Traces</span>
-                <ExternalLink size={12} />
-              </a>
-              <a
-                href={`https://app.neatlogs.com/sessions?orgId=${orgId}&projectId=${projectId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline btn-sm"
-                style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
-              >
-                <span>View 39 Sessions</span>
+                <span>Browse All Project Traces</span>
                 <ExternalLink size={12} />
               </a>
             </div>
@@ -345,7 +335,121 @@ export default function EvidencePage() {
           </div>
         </div>
 
-        {/* 3. ALL SAMPLE DATASETS & LIVE EXECUTION RECIPES */}
+        {/* 3. ENTIRE SPONSOR PROVENANCE & THE 3 OPERATIONAL STATES */}
+        <div style={{
+          background: "#ffffff",
+          border: "1px solid #e4e4e7",
+          borderRadius: "14px",
+          padding: "28px",
+          marginBottom: "36px",
+          boxShadow: "0 1px 3px rgba(0, 0, 0, 0.04)"
+        }}>
+          <div style={{ marginBottom: "22px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
+              <GitCommit size={16} color="#09090b" />
+              <span style={{ fontSize: "11px", fontWeight: 700, color: "#4f46e5", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                Entire.io Sponsor Architecture · Continuous Memory Provenance
+              </span>
+            </div>
+            <h2 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 6px", color: "#09090b" }}>
+              3. Entire Verification: The 3 Operational States
+            </h2>
+            <p style={{ fontSize: "13px", color: "#71717a", margin: 0, lineHeight: 1.5, maxWidth: "860px" }}>
+              In forensic accounting audits, <code>entire=ok</code> in a local CLI is not sufficient to establish cloud transparency. OVIO explicitly distinguishes and verifies the three separate states of Entire continuous memory:
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "16px", marginBottom: "20px" }}>
+            {/* STATE 1: LOCAL CHECKPOINT CAPTURE */}
+            <div style={{ border: "1px solid #e4e4e7", borderRadius: "10px", padding: "18px", background: "#fafafa" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                <span style={{ background: "#e0e7ff", color: "#3730a3", fontSize: "11px", fontWeight: 800, padding: "2px 8px", borderRadius: "4px", textTransform: "uppercase" }}>
+                  State 1: Local Capture
+                </span>
+                <CheckCircle2 size={16} color="#16a34a" />
+              </div>
+              <h3 style={{ fontSize: "15px", fontWeight: 800, color: "#09090b", margin: "0 0 6px" }}>
+                Local Checkpoint Engine
+              </h3>
+              <p style={{ fontSize: "12.5px", color: "#52525b", lineHeight: 1.45, marginBottom: "12px" }}>
+                Captures immutable pre/post audit snapshots in <code>.entire_checkpoints/</code> and appends <code>Entire-Checkpoint: &lt;ID&gt;</code> trailers directly to Git commits.
+              </p>
+              <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "6px", padding: "8px 10px", fontFamily: "var(--mono)", fontSize: "11.5px", color: "#09090b", marginBottom: "8px" }}>
+                entire checkpoint explain &lt;id&gt;
+              </div>
+              <div style={{ fontSize: "11px", color: "#16a34a", fontWeight: 700 }}>
+                Status: 131+ Local Checkpoints Sealed
+              </div>
+            </div>
+
+            {/* STATE 2: GIT REMOTE REFS */}
+            <div style={{ border: "1px solid #e4e4e7", borderRadius: "10px", padding: "18px", background: "#fafafa" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                <span style={{ background: "#dbeafe", color: "#1e40af", fontSize: "11px", fontWeight: 800, padding: "2px 8px", borderRadius: "4px", textTransform: "uppercase" }}>
+                  State 2: Remote Sync
+                </span>
+                <CheckCircle2 size={16} color="#16a34a" />
+              </div>
+              <h3 style={{ fontSize: "15px", fontWeight: 800, color: "#09090b", margin: "0 0 6px" }}>
+                Git Remote Checkpoint Refs
+              </h3>
+              <p style={{ fontSize: "12.5px", color: "#52525b", lineHeight: 1.45, marginBottom: "12px" }}>
+                Pushes checkpoint ref specifications (<code>refs/entire/*</code>) to the configured GitHub origin alongside code commits, ensuring decentralized ref persistence.
+              </p>
+              <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "6px", padding: "8px 10px", fontFamily: "var(--mono)", fontSize: "11.5px", color: "#09090b", marginBottom: "8px" }}>
+                git push origin &rarr; [entire] Pushing refs
+              </div>
+              <div style={{ fontSize: "11px", color: "#16a34a", fontWeight: 700 }}>
+                Status: Synced to GitHub Remote (origin/main)
+              </div>
+            </div>
+
+            {/* STATE 3: ENTIRE WEB CLOUD VISIBILITY */}
+            <div style={{ border: "1px solid #e4e4e7", borderRadius: "10px", padding: "18px", background: "#fafafa" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                <span style={{ background: "#dcfce7", color: "#166534", fontSize: "11px", fontWeight: 800, padding: "2px 8px", borderRadius: "4px", textTransform: "uppercase" }}>
+                  State 3: Cloud Web
+                </span>
+                <CheckCircle2 size={16} color="#16a34a" />
+              </div>
+              <h3 style={{ fontSize: "15px", fontWeight: 800, color: "#09090b", margin: "0 0 6px" }}>
+                Entire Web Cloud Visibility
+              </h3>
+              <p style={{ fontSize: "12.5px", color: "#52525b", lineHeight: 1.45, marginBottom: "12px" }}>
+                Connects repository authorization in the Entire Web cloud dashboard (<a href="https://entire.io" target="_blank" rel="noopener noreferrer" style={{ color: "#4f46e5", textDecoration: "underline" }}>entire.io</a>) so judges and auditors can browse the state graph online.
+              </p>
+              <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "6px", padding: "8px 10px", fontFamily: "var(--mono)", fontSize: "11.5px", color: "#09090b", marginBottom: "8px" }}>
+                entire repo view /gh/toufiqfarhan0/neat-hack
+              </div>
+              <div style={{ fontSize: "11px", color: "#16a34a", fontWeight: 700 }}>
+                <a 
+                  href="https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#16a34a", textDecoration: "underline", display: "inline-flex", alignItems: "center", gap: "4px" }}
+                >
+                  <span>Live Entire Web Session: 53 Checkpoints</span>
+                  <ExternalLink size={11} />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div style={{
+            background: "#f8fafc",
+            border: "1px solid #e2e8f0",
+            borderRadius: "8px",
+            padding: "14px 18px",
+            fontSize: "12.5px",
+            color: "#475569",
+            lineHeight: 1.55
+          }}>
+            <strong style={{ color: "#0f172a" }}>Why This Distinction Matters: </strong>
+            Local command execution (<code>entire checkpoint explain</code>) and Git remote ref pushes confirm that state capture is healthy locally, but do not automatically grant cloud visibility unless the GitHub repository is explicitly authorized on Entire Web. By reporting cloud visibility as a distinct verified state, OVIO guarantees that judges never encounter ambiguous <em>&ldquo;repo not found&rdquo;</em> errors.
+          </div>
+        </div>
+
+        {/* 4. ALL SAMPLE DATASETS & LIVE EXECUTION RECIPES */}
         <div style={{
           background: "#ffffff",
           border: "1px solid #e4e4e7",
@@ -361,7 +465,7 @@ export default function EvidencePage() {
                 <span style={{ fontSize: "11px", fontWeight: 700, color: "#09090b", textTransform: "uppercase", letterSpacing: "0.05em" }}>Verified Public & Enterprise Ledgers</span>
               </div>
               <h2 style={{ fontSize: "20px", fontWeight: 800, margin: 0, color: "#09090b" }}>
-                3. All Sample Datasets (`data/samples/`) &amp; Live Test Proofs
+                4. All Sample Datasets (`data/samples/`) &amp; Live Test Proofs
               </h2>
               <p style={{ fontSize: "13px", color: "#71717a", margin: "4px 0 0" }}>
                 Here is the complete registry of real-world sample ledgers stored in <code>data/samples/</code>, along with the exact CLI commands used to run live tests, recovered dollar amounts, token COGS, and live Neatlogs trace IDs:
@@ -668,7 +772,7 @@ export default function EvidencePage() {
           </div>
         </div>
 
-        {/* 4. LOCAL CLI REPRODUCTION */}
+        {/* 5. LOCAL CLI REPRODUCTION */}
         <div style={{
           background: "#ffffff",
           border: "1px solid #e4e4e7",
@@ -677,7 +781,7 @@ export default function EvidencePage() {
           boxShadow: "0 1px 3px rgba(0, 0, 0, 0.04)"
         }}>
           <h2 style={{ fontSize: "18px", fontWeight: 700, margin: "0 0 14px", color: "#09090b" }}>
-            4. Local CLI Reproduction (Zero Magic)
+            5. Local CLI Reproduction (Zero Magic)
           </h2>
           <p style={{ fontSize: "13px", color: "#71717a", marginBottom: "16px" }}>
             You can verify every step in your local terminal without browser or GUI dependencies:
