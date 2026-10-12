@@ -10,6 +10,7 @@ import os
 import sys
 import time
 import uuid
+import json
 import logging
 from contextlib import contextmanager
 from typing import Optional, Dict, Any, List, Generator
@@ -136,12 +137,14 @@ def trace_scope(
     name: str = "autonomous_audit_sweep",
     session_id: Optional[str] = None,
     metadata: Optional[Dict[str, Any]] = None,
-    input_data: Optional[Dict[str, Any]] = None
+    input_data: Optional[Dict[str, Any]] = None,
+    span_kind: str = "WORKFLOW"
 ) -> Generator[Dict[str, Any], None, None]:
     """
     Top-level execution trace scope for an agent run.
     Captures end-to-end timing, telemetry spans, root input/output attributes,
     and publishes finalized trace state to Neatlogs with StatusCode.OK.
+    Supports span_kind='WORKFLOW' or span_kind='CHAIN'.
     """
     global _CURRENT_TRACE_ID
     start_ts = time.time()
@@ -151,6 +154,7 @@ def trace_scope(
         "trace_id": get_active_trace_id(),
         "session_id": sess_id,
         "name": name,
+        "kind": span_kind,
         "workflow": _WORKFLOW_NAME,
         "metadata": metadata or {},
         "input": input_data or metadata or {},
@@ -162,7 +166,7 @@ def trace_scope(
 
     if _NEATLOGS_AVAILABLE and _INITIALIZED and _ACTIVE_API_KEY:
         try:
-            with neatlogs.trace(name, kind="WORKFLOW", session_id=sess_id) as root:
+            with neatlogs.trace(name, kind=span_kind, session_id=sess_id) as root:
                 ctx = root.get_span_context()
                 real_trace_id = f"{ctx.trace_id:032x}"
                 _CURRENT_TRACE_ID = real_trace_id
