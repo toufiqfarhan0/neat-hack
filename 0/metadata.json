@@ -1,0 +1,97 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4R4AK61B82M79PPG291FJVW",
+  "session_id": "45f215bc-78e0-4e7b-bedf-b112d4595a4b",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-12T13:20:12.4502839Z",
+  "branch": "main",
+  "checkpoints_count": 7,
+  "save_step_count": 4,
+  "files_touched": [
+    "NEAT_HACKATHON.md",
+    "README.md",
+    "app/docs/page.tsx",
+    "app/evidence/page.tsx",
+    "app/page.tsx"
+  ],
+  "agent": "Antigravity",
+  "model": "",
+  "turn_id": "971aff728bd1",
+  "checkpoint_transcript_start": 7203,
+  "transcript_lines_at_start": 7203,
+  "session_metrics": {
+    "turn_count": 128
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-12T13:20:11.909513Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 123,
+    "human_modified": 17,
+    "human_removed": 0,
+    "total_committed": 123,
+    "total_lines_changed": 140,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 299,
+      "user_lines_removed": 11,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "NEAT_HACKATHON.md": 15,
+        "README.md": 45,
+        "app/docs/page.tsx": 121,
+        "app/evidence/page.tsx": 118
+      },
+      "user_removed_per_file": {
+        "NEAT_HACKATHON.md": 1,
+        "README.md": 8,
+        "app/docs/page.tsx": 1,
+        "app/evidence/page.tsx": 1
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 299,
+      "agent_lines_removed": 11
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 299,
+      "agent_lines_removed": 11
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 140,
+      "user_lines_removed": 6,
+      "agent_lines_added": 299,
+      "agent_lines_removed": 11,
+      "user_added_per_file": {
+        "NEAT_HACKATHON.md": 8,
+        "README.md": 8,
+        "app/docs/page.tsx": 58,
+        "app/evidence/page.tsx": 64,
+        "app/page.tsx": 2
+      },
+      "user_removed_per_file": {
+        "NEAT_HACKATHON.md": 4,
+        "app/page.tsx": 2
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 439,
+      "agent_lines_removed": 17
+    }
+  ]
+}
