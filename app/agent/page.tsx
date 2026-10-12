@@ -1433,8 +1433,8 @@ export default function AgentWorkspacePage() {
                   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)"
                 }}
               >
-                <span>{tourStep === TOUR_STEPS.length - 1 ? "Finish Tour ✓" : "Next Step"}</span>
-                {tourStep < TOUR_STEPS.length - 1 && <ChevronRight size={14} />}
+                <span>{tourStep === TOUR_STEPS.length - 1 ? "Finish Tour" : "Next Step"}</span>
+                {tourStep === TOUR_STEPS.length - 1 ? <CheckCircle2 size={14} /> : <ChevronRight size={14} />}
               </button>
             </div>
           </div>

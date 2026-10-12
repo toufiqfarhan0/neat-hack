@@ -25,6 +25,7 @@ import {
   Search,
   Database,
   Check,
+  X,
   Terminal,
   Copy
 } from "lucide-react";
@@ -216,13 +217,13 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ⚡ JUDGE IT IN 60 SECONDS */}
+      {/* JUDGE IT IN 60 SECONDS */}
       <section style={{ padding: "64px 0", borderBottom: "1px solid #e4e4e7", background: "#fafafa" }}>
         <div className="container" style={{ maxWidth: "1080px" }}>
           <div style={{ textAlign: "center", marginBottom: "40px" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#fef9c3", border: "1px solid #fde047", padding: "5px 14px", borderRadius: "20px", marginBottom: "14px" }}>
               <span style={{ fontSize: "11.5px", fontWeight: 800, color: "#854d0e", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-                ⚡ Judge Fast-Track · 60 Seconds
+                Judge Fast-Track · 60 Seconds
               </span>
             </div>
             <h2 style={{ fontSize: "34px", fontWeight: 900, color: "#09090b", letterSpacing: "-0.025em", margin: "0 0 10px" }}>
@@ -260,10 +261,10 @@ export default function LandingPage() {
               </div>
 
               <div style={{ fontSize: "12.5px", color: "#3f3f46", display: "flex", flexDirection: "column", gap: "8px", borderTop: "1px solid #f4f4f5", paddingTop: "14px" }}>
-                <div>✓ <strong>O(N) Hash Blocking:</strong> 20,139 rows indexed in 0.15s without server freeze.</div>
-                <div>✓ <strong>Zero-Token Pruning:</strong> Deterministically eliminates 2,146 false-alarm decoys.</div>
-                <div>✓ <strong>Multi-Tool Loop:</strong> Proves PO ceiling breach and flags <strong>$12,818.00</strong> duplicate wire.</div>
-                <div>✓ <strong>Live Neatlogs Trace:</strong> Emits clickable link to inspect all 20 spans.</div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Check size={14} color="#16a34a" /> <span><strong>O(N) Hash Blocking:</strong> 20,139 rows indexed in 0.15s without server freeze.</span></div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Check size={14} color="#16a34a" /> <span><strong>Zero-Token Pruning:</strong> Deterministically eliminates 2,146 false-alarm decoys.</span></div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Check size={14} color="#16a34a" /> <span><strong>Multi-Tool Loop:</strong> Proves PO ceiling breach and flags <strong>$12,818.00</strong> duplicate wire.</span></div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Check size={14} color="#16a34a" /> <span><strong>Live Neatlogs Trace:</strong> Emits clickable link to inspect all 20 spans.</span></div>
               </div>
             </div>
 
@@ -329,7 +330,7 @@ export default function LandingPage() {
             {/* Traditional Tools */}
             <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "12px", padding: "28px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
-                <span style={{ color: "#ef4444", fontWeight: 900, fontSize: "18px" }}>✕</span>
+                <X size={18} color="#ef4444" />
                 <span style={{ fontSize: "16px", fontWeight: 800, color: "#09090b" }}>Traditional Enterprise Auditing</span>
               </div>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px", fontSize: "13.5px", color: "#52525b" }}>
@@ -343,7 +344,7 @@ export default function LandingPage() {
             {/* Ovio's Inverted Architecture */}
             <div style={{ background: "#ffffff", border: "2px solid #09090b", borderRadius: "12px", padding: "28px", boxShadow: "0 4px 16px rgba(0, 0, 0, 0.05)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
-                <span style={{ color: "#16a34a", fontWeight: 900, fontSize: "18px" }}>✓</span>
+                <Check size={18} color="#16a34a" />
                 <span style={{ fontSize: "16px", fontWeight: 800, color: "#09090b" }}>Ovio Autonomous Architecture</span>
               </div>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px", fontSize: "13.5px", color: "#18181b" }}>

@@ -33,7 +33,8 @@ import {
   AlertTriangle,
   Lock,
   Workflow,
-  Zap
+  Zap,
+  X
 } from "lucide-react";
 
 export default function CommandCenterPage() {
@@ -577,7 +578,7 @@ export default function CommandCenterPage() {
                   <div style={{ marginTop: "18px", padding: "10px 16px", borderRadius: "8px", background: "#f0fdf4", border: "1px solid #bbf7d0", display: "inline-flex", alignItems: "center", gap: "10px" }}>
                     <FileSpreadsheet size={16} color="#16a34a" />
                     <span style={{ fontSize: "13px", fontWeight: 700, color: "#166534" }}>{customFile.name} ({customFile.size})</span>
-                    <button type="button" onClick={() => setCustomFile(null)} style={{ background: "none", border: "none", color: "#71717a", cursor: "pointer", fontSize: "12px" }}>✕</button>
+                    <button type="button" onClick={() => setCustomFile(null)} style={{ background: "none", border: "none", color: "#71717a", cursor: "pointer", display: "inline-flex", alignItems: "center", padding: 0 }}><X size={14} /></button>
                   </div>
                 )}
               </div>
@@ -610,8 +611,8 @@ export default function CommandCenterPage() {
                       </div>
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      <span style={{ fontSize: "11px", fontWeight: 800, background: "#dcfce7", color: "#166534", padding: "3px 8px", borderRadius: "4px" }}>
-                        ✓ Ledger Attached
+                      <span style={{ fontSize: "11px", fontWeight: 800, background: "#dcfce7", color: "#166534", padding: "3px 8px", borderRadius: "4px", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                        <Check size={12} color="#166534" /> Ledger Attached
                       </span>
                       <button 
                         type="button" 

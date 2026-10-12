@@ -84,7 +84,7 @@ export default function DocsPage() {
         <div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#fef9c3', border: '1px solid #fde047', padding: '4px 12px', borderRadius: '16px', marginBottom: '14px' }}>
             <span style={{ fontSize: '11px', fontWeight: 800, color: '#854d0e', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              ⚡ Real-Time Observability &amp; Closed-Loop Architecture
+              Real-Time Observability &amp; Closed-Loop Architecture
             </span>
           </div>
 
@@ -92,7 +92,7 @@ export default function DocsPage() {
           <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '12px', padding: '20px 24px', marginBottom: '24px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '16px' }}>🛡️</span>
+                <ShieldCheck size={18} color="#0f172a" />
                 <h3 style={{ fontSize: '15px', fontWeight: 800, color: '#0f172a', margin: 0 }}>
                   How Neatlogs Finds &amp; Resolves Agent Failures (Closed-Loop Observability)
                 </h3>
