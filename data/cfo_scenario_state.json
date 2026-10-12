@@ -2,7 +2,7 @@
   "scenario_id": "ovio-treasury-production",
   "scenario_title": "OVIO Autonomous AP Treasury Recovery & Unit Economics",
   "created_at": "2026-10-12T00:00:00Z",
-  "last_synced_at": "2026-10-12T12:05:29Z",
+  "last_synced_at": "2026-10-12T14:09:05Z",
   "tables": {
     "Audit_Run_Ledger": {
       "columns": [
@@ -314,6 +314,22 @@
           "routing_model": "claude-3-haiku",
           "cost_type": "measured_telemetry",
           "neatlogs_trace_id": "117dab947ba417c5a7b0d52b4885fb91",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791814145",
+          "timestamp": "2026-10-12T14:09:05Z",
+          "dataset": "la_sample.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 0.0,
+          "contingency_fee_earned_usd": 0.0,
+          "measured_tokens_in": 7054,
+          "measured_tokens_out": 462,
+          "inference_cogs_usd": 0.00234,
+          "net_roi_multiplier": 0.0,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "996c7705e287fef4eb63fcc7369c884f",
           "entire_checkpoint_ref": "chk-latest"
         }
       ]
@@ -896,6 +912,54 @@
           "pruned_at_zero_tokens": false,
           "decision_rationale": "Both transactions lack invoice numbers entirely (empty/null fields), preventing definitive duplicate adjudication under strict invoice comparison rules. Without invoice identifiers, vendor name, amount, date, and PO alone are insufficient to establish a true duplicate, as these fields may represent distinct authorized vouchers or separate distribution lines under the same purchase order.",
           "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791814145:CAND-EX-0003",
+          "run_id": "ovio-run-1791814145",
+          "task_id": "CAND-EX-0003",
+          "candidate_vendor": "CENTER FOR THE PACIFIC ASIAN FAMILY INC",
+          "amount_at_risk_usd": 12818.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.95,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Invoice 212410021D294 and invoice 2124424210232 are completely different alphanumeric strings that do not conform to known transcription patterns or canonical variants. These represent distinct authorized vouchers and must not be conflated as duplicate payments despite matching vendor, amount, PO, and date.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791814145:CAND-EX-0004",
+          "run_id": "ovio-run-1791814145",
+          "task_id": "CAND-EX-0004",
+          "candidate_vendor": "MUNICIPAL EMERGENCY SERVICES INC.",
+          "amount_at_risk_usd": 386969.72,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Transactions A and B share identical vendor, amount, and description but are governed by distinct purchase orders (CPO38240000475670 vs CPO38240000475699) and carry substantially different invoice numbers (38240000068056 vs 38240000070447). These represent two authorized separate procurements for identical Firedex turnout equipment under different PO authorizations.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791814145:CAND-EX-0005",
+          "run_id": "ovio-run-1791814145",
+          "task_id": "CAND-EX-0005",
+          "candidate_vendor": "UNITED RIGGERS/ERECTORS INC",
+          "amount_at_risk_usd": 9900.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Invoice numbers 4024100408250 and 4024100408251 are sequential but represent distinct authorized work orders (WO#H9140100 vs WO#H0550100) at different project sites under the same PO. The descriptions reference different Notice-to-Proceed numbers (NTP#3037 vs NTP#3038) and distinct locations, indicating separate rigging and transportation services.",
+          "evidence_digest": "digest-verified"
         }
       ]
     },
@@ -1013,13 +1077,13 @@
   },
   "ari_context_metadata": {
     "scenario_title": "OVIO Treasury Ledger & Inference Control",
-    "scenario_markdown": "# CFO.ai Scenario Context Guide for Ari: OVIO Autonomous AP Audit Ledger\n\n### Executive Overview for Finance Leadership:\n- **Application:** OVIO Autonomous AP & Treasury Recovery Agent\n- **Scenario Role:** Treasury Recovery Ledger & AI Inference Cost Control\n- **Total Validated Recoveries:** $533,320.01\n- **Earned Contingency Revenue:** $95,997.60 (18% contingency rate)\n- **Cumulative Inference COGS:** $0.02324 (Measured from live Neatlogs spans)\n- **Blended Token ROI:** 22,948,365x cash recovery per dollar of AI compute\n\n---\n\n### Data Contracts & Table Interpretation:\n\n1. **`Audit_Run_Ledger`**:\n   - Contains immutable, run-level records of each completed AP ledger audit.\n   - **`cost_type = 'measured_telemetry'`**: Indicates tokens are empirical measurements recorded via OpenInference spans in Neatlogs (Trace IDs match `https://app.neatlogs.com/traces/<trace_id>`).\n   - **`cost_type = 'list_price_estimate'`**: Indicates token consumption was derived using rate card formulas.\n\n2. **`Adjudication_Decision_Trail`**:\n   - Contains granular per-candidate-pair forensic findings.\n   - **`pruned_at_zero_tokens = True`**: The pair was identified as a legitimate recurring charge, credit memo, or line-item split during deterministic Stage 1 filtering. Zero LLM prompt tokens were consumed.\n   - **`routing_tier`**: Records the model invoked for ambiguous forensic analysis (`claude-3-haiku` by default for cost efficiency).\n\n3. **`Pricing_Assumptions`**:\n   - Contains official API rate cards for what-if repricing simulations.\n   - All rate entries list provider, asOf dates, and list-price indicators.\n\n---\n\n### Key Caveats for Ari When Answering CFO Inquiries:\n- **Do not invent missing token data:** If a run does not include explicit measured tokens, identify it as a list-price estimate.\n- **Contingency is post-recovery:** 18% contingency fees are collected post-clawback; they are not deducted upfront from client treasury cash.\n- **Zero-token dismissals:** When asked why false alarm candidates cost $0, explain that deterministic hash-bucket blocking pruned them before LLM dispatch.",
+    "scenario_markdown": "# CFO.ai Scenario Context Guide for Ari: OVIO Autonomous AP Audit Ledger\n\n### Executive Overview for Finance Leadership:\n- **Application:** OVIO Autonomous AP & Treasury Recovery Agent\n- **Scenario Role:** Treasury Recovery Ledger & AI Inference Cost Control\n- **Total Validated Recoveries:** $533,320.01\n- **Earned Contingency Revenue:** $95,997.60 (18% contingency rate)\n- **Cumulative Inference COGS:** $0.02558 (Measured from live Neatlogs spans)\n- **Blended Token ROI:** 20,849,101x cash recovery per dollar of AI compute\n\n---\n\n### Data Contracts & Table Interpretation:\n\n1. **`Audit_Run_Ledger`**:\n   - Contains immutable, run-level records of each completed AP ledger audit.\n   - **`cost_type = 'measured_telemetry'`**: Indicates tokens are empirical measurements recorded via OpenInference spans in Neatlogs (Trace IDs match `https://app.neatlogs.com/traces/<trace_id>`).\n   - **`cost_type = 'list_price_estimate'`**: Indicates token consumption was derived using rate card formulas.\n\n2. **`Adjudication_Decision_Trail`**:\n   - Contains granular per-candidate-pair forensic findings.\n   - **`pruned_at_zero_tokens = True`**: The pair was identified as a legitimate recurring charge, credit memo, or line-item split during deterministic Stage 1 filtering. Zero LLM prompt tokens were consumed.\n   - **`routing_tier`**: Records the model invoked for ambiguous forensic analysis (`claude-3-haiku` by default for cost efficiency).\n\n3. **`Pricing_Assumptions`**:\n   - Contains official API rate cards for what-if repricing simulations.\n   - All rate entries list provider, asOf dates, and list-price indicators.\n\n---\n\n### Key Caveats for Ari When Answering CFO Inquiries:\n- **Do not invent missing token data:** If a run does not include explicit measured tokens, identify it as a list-price estimate.\n- **Contingency is post-recovery:** 18% contingency fees are collected post-clawback; they are not deducted upfront from client treasury cash.\n- **Zero-token dismissals:** When asked why false alarm candidates cost $0, explain that deterministic hash-bucket blocking pruned them before LLM dispatch.",
     "summary_metrics": {
-      "total_runs_indexed": 14,
-      "total_decisions_indexed": 31,
+      "total_runs_indexed": 15,
+      "total_decisions_indexed": 34,
       "total_gross_recovered_usd": 533320.01,
       "total_contingency_earned_usd": 95997.6,
-      "total_measured_cogs_usd": 0.02324
+      "total_measured_cogs_usd": 0.02558
     }
   }
 }

@@ -412,15 +412,17 @@ def graph_cmd(
             [str(entire_bin), "graph", "search", "--query", query, "--repo", ".", "--format", "text"],
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             timeout=15
         )
-        if res.returncode == 0:
+        if res.returncode == 0 and res.stdout:
             lines = res.stdout.strip().splitlines()
             for line in lines[:25]:
                 print(f"  {line}")
             if len(lines) > 25:
                 print(f"  {paint(f'... ({len(lines) - 25} more graph hits truncated)', FAINT)}")
-        else:
+        elif res.returncode != 0:
             print(f" {paint('Error running entire-graph:', ACCENT, BOLD)} {res.stderr}")
     except Exception as e:
         print(f" {paint('Failed to execute entire-graph:', ACCENT, BOLD)} {e}")
