@@ -310,7 +310,7 @@ Please update the OVIO Financial Model in cfo.ai:
                 style={{ fontSize: "13px", padding: "8px 16px" }}
               >
                 <Split size={14} />
-                <span>3-Pane Review Queue</span>
+                <span>Review Queue</span>
               </Link>
 
               <a
@@ -697,7 +697,7 @@ Please update the OVIO Financial Model in cfo.ai:
                   style={{ fontSize: "13.5px", padding: "10px 18px", fontWeight: 700 }}
                 >
                   <Split size={14} />
-                  <span>Open 3-Pane Queue</span>
+                  <span>Open Review Queue</span>
                 </Link>
               </div>
 
@@ -892,7 +892,7 @@ Please update the OVIO Financial Model in cfo.ai:
                 </div>
               </div>
 
-              {/* ACTION BUTTON TO OPEN IN 3-PANE REVIEW QUEUE */}
+              {/* ACTION BUTTON TO OPEN IN REVIEW QUEUE */}
               <div style={{
                 background: "#fafafa",
                 border: "1px solid #e4e4e7",
@@ -910,7 +910,7 @@ Please update the OVIO Financial Model in cfo.ai:
                     Candidate Ready for Human Controller Signoff
                   </div>
                   <div style={{ fontSize: "12.5px", color: "#71717a", marginTop: "2px" }}>
-                    Inspect the transaction diff, PO ceiling proofs, and authorize clawback in the 3-pane desk.
+                    Inspect the transaction diff, PO ceiling proofs, and authorize clawback in the review queue desk.
                   </div>
                 </div>
 
@@ -921,7 +921,7 @@ Please update the OVIO Financial Model in cfo.ai:
                     style={{ fontSize: "13.5px", padding: "10px 20px" }}
                   >
                     <Split size={14} />
-                    <span>Open in 3-Pane Review Queue &rarr;</span>
+                    <span>Open in Review Queue &rarr;</span>
                   </Link>
 
                   <a 

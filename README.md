@@ -72,7 +72,7 @@ npm run dev
 1. Open **[http://localhost:3000/command-center](http://localhost:3000/command-center)**.
 2. Select **State of Oklahoma** (or drag & drop `data/samples/live_google_download.csv`).
 3. Click **Run Forensic Audit Sweep &rarr;**: Watch the 8-phase pipeline execute live with telemetry status badges.
-4. Click **Open in 3-Pane Review Queue &rarr;** ([http://localhost:3000/agent](http://localhost:3000/agent)):
+4. Click **Open in Review Queue &rarr;** ([http://localhost:3000/agent](http://localhost:3000/agent)):
    - **Left Pane**: Dynamic findings queue with confidence meters and risk amounts.
    - **Center Pane**: Step-by-step discovery timeline showing what tools discovered at every stage.
    - **Right Pane**: Side-by-side disbursement comparison (`Disbursement 1` vs `Disbursement 2`) with differing invoice suffixes and dates highlighted in warm amber.
@@ -146,7 +146,7 @@ Instead of asking a generative model to "find duplicates" (which hallucinates fa
 The Next.js web application (`http://localhost:3000`) is **the visual representation and human-in-the-loop review cockpit for the CLI engine**:
 
 - **Command Center (`/command-center`)**: An operational cockpit that mirrors the CLI's multi-stage execution pipeline in real time. It enables treasury teams to upload custom CSV ledgers, trigger the autonomous audit sweep, and view passing `[PASS]` verdicts live.
-- **3-Pane Review Queue (`/agent`)**: A high-density triage desk inspired by modern financial controllers. It visualizes the CLI's candidate findings, displays step-by-step discovery timelines, and renders side-by-side transaction diffs (`Disbursement 1` vs `Disbursement 2`) so humans never have to read raw JSON logs.
+- **Review Queue (`/agent`)**: A high-density triage desk inspired by modern financial controllers. It visualizes the CLI's candidate findings, displays step-by-step discovery timelines, and renders side-by-side transaction diffs (`Disbursement 1` vs `Disbursement 2`) so humans never have to read raw JSON logs.
 - **Evidence Ledger (`/evidence`)**: A visual ledger of sealed clawback demand letters, SHA-256 evidence digests, and direct links to live Neatlogs trace sessions.
 - **Architecture Showcase (`/how-it-works`)**: Interactive visualizers illustrating linear hash blocking, the multi-tool investigator loop, and adversarial decoy elimination.
 
@@ -342,7 +342,7 @@ ovio gate
 |                                        CLIENT / USER TIER                                        |
 |                                                                                                  |
 |   Headless CLI / CI Runner                             Human Controller / Treasury Manager       |
-|  [ python ovio_cli.py run ]                          [ 3-Pane Review Queue /agent ]              |
+|  [ python ovio_cli.py run ]                          [ Review Queue /agent ]                     |
 |          |                                                  |                                    |
 |          | (Direct Execution)                               | (Visual Triage & Signoff)          |
 |          v                                                  v                                    |
@@ -350,7 +350,7 @@ ovio gate
 |  | NEXT.JS FRONTEND (React 19 / App Router :3000)                                             |  |
 |  |   - Landing Page (/) & Executive Overview                                                  |  |
 |  |   - Command Center (/command-center) with 8-Phase Visualizer & CSV Uploader                |  |
-|  |   - 3-Pane Review Queue (/agent) with Side-by-Side Transaction Diff Table                  |  |
+|  |   - Review Queue (/agent) with Side-by-Side Transaction Diff Table                           |  |
 |  |   - Evidence Ledger (/evidence) with Sealed SHA-256 Dossiers                               |  |
 |  +--------------------------------------------------------------------------------------------+  |
 +=============================================|====================================================+

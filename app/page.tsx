@@ -98,7 +98,7 @@ export default function LandingPage() {
               style={{ fontSize: "15px", padding: "14px 24px", borderRadius: "10px" }}
             >
               <Split size={16} />
-              <span>3-Pane Review Queue</span>
+              <span>Review Queue</span>
             </Link>
 
             <a 
@@ -178,7 +178,7 @@ export default function LandingPage() {
                 <strong>Neatlogs Trace:</strong> <code>3d720906babf7ed4...</code> (20 spans sealed, latency 310ms)
               </div>
               <Link href="/agent" style={{ fontSize: "12px", fontWeight: 700, color: "#09090b", textDecoration: "none" }}>
-                Inspect in 3-Pane Queue &rarr;
+                Inspect in Review Queue &rarr;
               </Link>
             </div>
           </div>
@@ -289,7 +289,7 @@ export default function LandingPage() {
                 </div>
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", fontSize: "12.5px", color: "#18181b" }}>
                   <span style={{ background: "#09090b", color: "#fff", width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 800, flexShrink: 0 }}>2</span>
-                  <span>Open <strong><Link href="/agent" style={{ color: "#09090b", textDecoration: "underline" }}>3-Pane Review Queue</Link></strong> to inspect side-by-side transaction comparison diffs.</span>
+                  <span>Open <strong><Link href="/agent" style={{ color: "#09090b", textDecoration: "underline" }}>Review Queue</Link></strong> to inspect side-by-side transaction comparison diffs.</span>
                 </div>
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", fontSize: "12.5px", color: "#18181b" }}>
                   <span style={{ background: "#09090b", color: "#fff", width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 800, flexShrink: 0 }}>3</span>
@@ -350,7 +350,7 @@ export default function LandingPage() {
                 <li>• <strong>Inverted Instruction:</strong> Actively hunts for reasons to dismiss candidates as legitimate, eliminating 99.8% of noise.</li>
                 <li>• <strong>O(N) Hash Blocking:</strong> Partitioned amount &amp; phonetic buckets block 20,139 rows in 0.15 seconds.</li>
                 <li>• <strong>Multi-Tool Investigator:</strong> Proves PO contract ceiling overdraw, sibling invoice history, and voucher resubmission flags.</li>
-                <li>• <strong>Cryptographic Dossiers:</strong> Attaches SHA-256 evidence packets directly into a 3-pane review desk for human controller authorization.</li>
+                <li>• <strong>Cryptographic Dossiers:</strong> Attaches SHA-256 evidence packets directly into the review queue desk for human controller authorization.</li>
               </ul>
             </div>
           </div>
@@ -394,7 +394,7 @@ export default function LandingPage() {
               <div style={{ width: "36px", height: "36px", borderRadius: "8px", background: "#09090b", color: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px" }}>
                 <Split size={18} />
               </div>
-              <h3 style={{ fontSize: "16px", fontWeight: 800, color: "#09090b", marginBottom: "6px" }}>3. 3-Pane Review Queue</h3>
+              <h3 style={{ fontSize: "16px", fontWeight: 800, color: "#09090b", marginBottom: "6px" }}>3. Review Queue</h3>
               <p style={{ fontSize: "13px", color: "#52525b", lineHeight: 1.5 }}>
                 High-density controller desk displaying step findings, side-by-side transaction comparison, and human authorization buttons.
               </p>
@@ -465,7 +465,7 @@ export default function LandingPage() {
                 }}
               >
                 <Split size={15} />
-                <span>Open 3-Pane Review Queue</span>
+                <span>Open Review Queue</span>
               </Link>
             </div>
           </div>

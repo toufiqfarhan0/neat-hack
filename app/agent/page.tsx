@@ -639,7 +639,7 @@ export default function AgentWorkspacePage() {
         </Link>
       </div>
 
-      {/* 3-PANE INSPECTOR */}
+      {/* REVIEW QUEUE INSPECTOR */}
       <div style={{
         display: "grid",
         gridTemplateColumns: "310px 470px 1fr",
