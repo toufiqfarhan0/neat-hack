@@ -1,0 +1,43 @@
+@[TerminalName: pwsh, ProcessId: 27624] why there this this?? comming please fix it
+
+---
+
+@[TerminalName: python, ProcessId: 27624] in this neathack why this assembly ai thing is comming please remove all the traces of  assembly ai
+
+---
+
+@[c:\Users\toufi\Desktop\neatlogs-hack\ovio.cmd] @[c:\Users\toufi\Desktop\neatlogs-hack\ovio.ps1]  make it clean why there are these files
+
+---
+
+clean our files and repo please
+
+---
+
+that project is diff and neathack project is diff why in the neathack comming assembly ai project cli
+
+---
+
+don't commit or push anything please I'll verify it
+
+---
+
+PS C:\Users\toufi\Desktop\neatlogs-hack> ovio run --file data/samples/live_google_download.csv
+ovio: The term 'ovio' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+
+[General Feedback]
+  The command "ovio" was not found, but does exist in the current location.
+  PowerShell does not load commands from the current location by default (see 'Get-Help about_Command_Precedence').
+  
+  If you trust this command, run the following command instead:
+    ➤ .\ovio
+
+PS C:\Users\toufi\Desktop\neatlogs-hack>  
+
+
+i want like this commad ovio, ovio run etc...
+
+---
+
+can you please do that
