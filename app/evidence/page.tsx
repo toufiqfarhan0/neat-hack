@@ -416,9 +416,68 @@ export default function EvidencePage() {
                   <div style={{ fontSize: "15px", fontWeight: 800, color: "#16a34a" }}>20 Spans (8.04s)</div>
                 </div>
               </div>
-              <p style={{ fontSize: "12.5px", color: "#52525b", lineHeight: 1.5, margin: 0 }}>
-                <strong>Findings Identified:</strong> Flagged two high-confidence double disbursements: (1) <strong>CHICAGO DESIGN MUSEUM</strong> ($7,000.00, PO 112510, FY 2019, 95% conf) and (2) <strong>HEARTLAND HUMAN CARE SERVICES, INC.</strong> ($342,935.35, PO 27887, FY 2013, 95% conf). All spans streamed live to Neatlogs.
-              </p>
+              {/* REAL CASH LEAKAGE IDENTIFIED TABLE */}
+              <div style={{ marginTop: "14px", marginBottom: "14px", overflowX: "auto" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px", textAlign: "left" }}>
+                  <thead>
+                    <tr style={{ background: "#f4f4f5", borderBottom: "1px solid #e4e4e7" }}>
+                      <th style={{ padding: "8px 10px", fontWeight: 700, color: "#09090b" }}>Candidate ID</th>
+                      <th style={{ padding: "8px 10px", fontWeight: 700, color: "#09090b" }}>Vendor Name</th>
+                      <th style={{ padding: "8px 10px", fontWeight: 700, color: "#09090b" }}>Amount</th>
+                      <th style={{ padding: "8px 10px", fontWeight: 700, color: "#09090b" }}>PO #</th>
+                      <th style={{ padding: "8px 10px", fontWeight: 700, color: "#09090b" }}>Confidence</th>
+                      <th style={{ padding: "8px 10px", fontWeight: 700, color: "#09090b" }}>Signal</th>
+                      <th style={{ padding: "8px 10px", fontWeight: 700, color: "#09090b" }}>Finding Detail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style={{ borderBottom: "1px solid #e4e4e7", background: "#ffffff" }}>
+                      <td style={{ padding: "8px 10px", fontFamily: "var(--mono)", fontWeight: 700 }}>CAND-EX-0002</td>
+                      <td style={{ padding: "8px 10px", fontWeight: 600 }}>CHICAGO DESIGN MUSEUM</td>
+                      <td style={{ padding: "8px 10px", fontWeight: 700, color: "#16a34a" }}>$7,000.00</td>
+                      <td style={{ padding: "8px 10px", fontFamily: "var(--mono)" }}>112510</td>
+                      <td style={{ padding: "8px 10px" }}><span style={{ background: "#dcfce7", color: "#166534", padding: "2px 6px", borderRadius: "4px", fontWeight: 700 }}>95%</span></td>
+                      <td style={{ padding: "8px 10px", fontFamily: "var(--mono)" }}>exact_duplicate</td>
+                      <td style={{ padding: "8px 10px", color: "#52525b" }}>Identical vendor, amount, PO, FY 2019; sequential transaction IDs indicating system double-entry.</td>
+                    </tr>
+                    <tr style={{ borderBottom: "1px solid #e4e4e7", background: "#fafafa" }}>
+                      <td style={{ padding: "8px 10px", fontFamily: "var(--mono)", fontWeight: 700 }}>CAND-EX-0003</td>
+                      <td style={{ padding: "8px 10px", fontWeight: 600 }}>HEARTLAND HUMAN CARE SERVICES, INC.</td>
+                      <td style={{ padding: "8px 10px", fontWeight: 700, color: "#16a34a" }}>$342,935.35</td>
+                      <td style={{ padding: "8px 10px", fontFamily: "var(--mono)" }}>27887</td>
+                      <td style={{ padding: "8px 10px" }}><span style={{ background: "#dcfce7", color: "#166534", padding: "2px 6px", borderRadius: "4px", fontWeight: 700 }}>95%</span></td>
+                      <td style={{ padding: "8px 10px", fontFamily: "var(--mono)" }}>exact_duplicate</td>
+                      <td style={{ padding: "8px 10px", color: "#52525b" }}>Duplicate wire with identical canonical vendor, identical sum ($342,935.35), identical PO, and no invoice suffix offset.</td>
+                    </tr>
+                    <tr style={{ background: "#f4f4f5", fontWeight: 800 }}>
+                      <td colSpan={2} style={{ padding: "8px 10px", color: "#09090b" }}>Total Gross Leakage Identified</td>
+                      <td style={{ padding: "8px 10px", color: "#16a34a", fontSize: "13px" }}>$349,935.35</td>
+                      <td colSpan={4} style={{ padding: "8px 10px", color: "#52525b", fontWeight: 600 }}>Contingency Fee @ 18%: $62,988.36 · Net Treasury Benefit: $286,946.99</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* CFO.AI UNIT ECONOMICS & FORMULA CALCULATION */}
+              <div style={{ background: "#ffffff", border: "1px solid #e4e4e7", borderRadius: "8px", padding: "14px 18px", marginTop: "12px" }}>
+                <div style={{ fontSize: "12.5px", fontWeight: 700, color: "#09090b", marginBottom: "6px" }}>
+                  cfo.ai Mathematical Model &amp; Recovery Yield Formulas:
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "10px", fontSize: "11.5px", color: "#52525b", fontFamily: "var(--mono)" }}>
+                  <div style={{ background: "#fafafa", padding: "8px 10px", borderRadius: "6px", border: "1px solid #f0f0f2" }}>
+                    <strong>Contingency Fee:</strong> $349,935.35 × 18% = $62,988.36
+                  </div>
+                  <div style={{ background: "#fafafa", padding: "8px 10px", borderRadius: "6px", border: "1px solid #f0f0f2" }}>
+                    <strong>Net Treasury:</strong> $349,935.35 - $62,988.36 = $286,946.99
+                  </div>
+                  <div style={{ background: "#fafafa", padding: "8px 10px", borderRadius: "6px", border: "1px solid #f0f0f2" }}>
+                    <strong>Inference COGS:</strong> (1,788 tok / 1M) × $0.50 = $0.00090
+                  </div>
+                  <div style={{ background: "#fafafa", padding: "8px 10px", borderRadius: "6px", border: "1px solid #f0f0f2" }}>
+                    <strong>ROI Multiplier:</strong> $349,935.35 / $0.00090 = 386,668,895×
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* 2. Los Angeles Controller */}

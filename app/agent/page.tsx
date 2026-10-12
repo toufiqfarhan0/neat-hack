@@ -28,6 +28,10 @@ import {
   XCircle,
   AlertTriangle,
   ChevronRight,
+  ChevronLeft,
+  X,
+  HelpCircle,
+  Info,
   Workflow,
   Hash,
   Zap,
@@ -78,6 +82,97 @@ interface Finding {
   right: Transaction;
   traceId: string;
 }
+
+interface TourStep {
+  step: number;
+  badge: string;
+  badgeColor: string;
+  title: string;
+  command?: string;
+  explanation: string;
+  solvedProof: string;
+  focusPane: "none" | "left" | "center" | "right";
+  metrics: { label: string; value: string }[];
+}
+
+const TOUR_STEPS: TourStep[] = [
+  {
+    step: 1,
+    badge: "1. Headless CLI Execution",
+    badgeColor: "#3b82f6",
+    title: "What Happened in the CLI (Autonomous Sweep)",
+    command: "ovio run --demo --limit 3 --mode investigator",
+    explanation: "In your terminal, we launched Ovio across 20,139 real Los Angeles municipal disbursement rows. Rather than flooding an LLM with 20k rows, the CLI executed an 8-phase pipeline headless in under 10 seconds, streaming 20+ OpenInference spans live to Neatlogs and saving continuous memory snapshots to Entire.",
+    solvedProof: "Aggregated 3,425 payment vouchers and blocked candidate pairs in 0.15s without server freeze.",
+    focusPane: "none",
+    metrics: [
+      { label: "Ledger Rows", value: "20,139 raw" },
+      { label: "Disbursements", value: "3,425 vouchers" },
+      { label: "Neatlogs Spans", value: "20+ live spans" },
+      { label: "Elapsed Time", value: "< 10s elapsed" }
+    ]
+  },
+  {
+    step: 2,
+    badge: "2. Pane 1: Review Queue",
+    badgeColor: "#10b981",
+    title: "How the Agent Solved Scale: O(N) Hash Blocking & 0-Token Pruning",
+    explanation: "Standard LLMs fail on O(N²) quadratic explosion (400 million pairs for 20,000 transactions). Look at the left pane: Ovio partitions canonical vendor names and dollar amounts into linear hash buckets in 0.15s, then automatically prunes benign utility meters and recurring lease draws at 0 token cost before any model is invoked.",
+    solvedProof: "Pruned 2,146 false-alarm decoys with $0.00 inference cost, isolating genuine duplicate risk.",
+    focusPane: "left",
+    metrics: [
+      { label: "Algorithm", value: "O(N) Hash" },
+      { label: "Decoys Pruned", value: "2,146 pairs" },
+      { label: "Pruning Tokens", value: "0 tokens ($0)" },
+      { label: "Queue Focus", value: "High-Signal" }
+    ]
+  },
+  {
+    step: 3,
+    badge: "3. Pane 2: Discovery Timeline",
+    badgeColor: "#f59e0b",
+    title: "How the Agent Investigated: Autonomous Multi-Tool Sequence",
+    explanation: "Look at the center pane. Before making a verdict, the agent autonomously called specialized forensic tools: tool.ledger_fetch (historical entity spend), tool.check_sibling (contract sibling lines & PO ceilings), and tool.verify_draw (temporal cadence). Every step records latency, discovery findings, and telemetry scope.",
+    solvedProof: "Discovered PO SC21CO24138706Y ceiling match and verified no contractual addendum existed for duplicate draw.",
+    focusPane: "center",
+    metrics: [
+      { label: "Historical Spend", value: "tool.ledger_fetch" },
+      { label: "Contract Ceiling", value: "tool.check_sibling" },
+      { label: "Interval Check", value: "tool.verify_draw" },
+      { label: "Safety Gate", value: "guardrail.clawback" }
+    ]
+  },
+  {
+    step: 4,
+    badge: "4. Pane 3: Forensic Comparison",
+    badgeColor: "#8b5cf6",
+    title: "How the Agent Solved Duplicate Detection: Side-by-Side Diff",
+    explanation: "Look at the right pane. Claude Haiku evaluates the forensic evidence packet side-by-side. Notice the highlighted invoice numbers (APR'24 DVSO vs APR'24 DVSO-DUP). The agent identified that while the invoice suffixes differed, all other attributes—PO SC21CO24138706Y, amount $12,818.00, and department—were identical, proving an unjustified double wire.",
+    solvedProof: "Flagged $12,818.00 LA duplicate with 95% confidence and $349,935.35 Chicago duplicate across 2 disbursements.",
+    focusPane: "right",
+    metrics: [
+      { label: "Model", value: "Claude Haiku" },
+      { label: "Confidence", value: "95% Match" },
+      { label: "Identified Leak", value: "$12,818 ($350k Chi)" },
+      { label: "Inference Spend", value: "$0.00104" }
+    ]
+  },
+  {
+    step: 5,
+    badge: "5. Action Gate & Clawback Seal",
+    badgeColor: "#ec4899",
+    title: "Human Governance & Cryptographic Evidence Packet",
+    explanation: "Human auditors retain final decision power. Clicking 'Authorize Clawback' seals a cryptographic recovery packet with SHA-256 evidence digests, Entire continuous memory snapshots, and direct links to the live Neatlogs trace. CFO.ai computes the recovery yield ($349.9k recovery, 386M× token ROI).",
+    solvedProof: "One-click clawback authorization seals immutable audit packet with live Neatlogs trace URL.",
+    focusPane: "right",
+    metrics: [
+      { label: "Governance", value: "Human-in-Loop" },
+      { label: "Integrity", value: "SHA-256 Digest" },
+      { label: "CFO Yield", value: "18% yield" },
+      { label: "Token ROI", value: "386M×" }
+    ]
+  }
+];
 
 const INITIAL_FINDINGS: Finding[] = [
   {
@@ -550,6 +645,8 @@ const INITIAL_FINDINGS: Finding[] = [
 export default function AgentWorkspacePage() {
   const [findings, setFindings] = useState<Finding[]>(INITIAL_FINDINGS);
   const [selectedFindingId, setSelectedFindingId] = useState<string>("la-parks-12818");
+  const [tourActive, setTourActive] = useState<boolean>(true);
+  const [tourStep, setTourStep] = useState<number>(0);
 
   const selectedFinding = findings.find(f => f.id === selectedFindingId) || findings[0];
 
@@ -615,6 +712,28 @@ export default function AgentWorkspacePage() {
             <FileText size={13} />
             <span>Evidence Ledger</span>
           </Link>
+          <button
+            type="button"
+            onClick={() => { setTourActive(prev => !prev); if (!tourActive) setTourStep(0); }}
+            className="btn btn-sm"
+            style={{
+              fontSize: "12px",
+              height: "30px",
+              padding: "0 12px",
+              background: tourActive ? "#09090b" : "#ffffff",
+              color: tourActive ? "#ffffff" : "#09090b",
+              border: "1px solid " + (tourActive ? "#09090b" : "#e4e4e7"),
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              cursor: "pointer",
+              borderRadius: "6px",
+              fontWeight: 600
+            }}
+          >
+            <Sparkles size={13} color={tourActive ? "#facc15" : "#ca8a04"} />
+            <span>{tourActive ? "Tour Active (Step " + (tourStep + 1) + "/5)" : "Guided Tour"}</span>
+          </button>
         </div>
       </div>
 
@@ -651,7 +770,9 @@ export default function AgentWorkspacePage() {
           borderRight: "1px solid #e4e4e7",
           background: "#fafafa",
           overflowY: "auto",
-          maxHeight: "calc(100vh - 120px)"
+          maxHeight: "calc(100vh - 120px)",
+          boxShadow: tourActive && TOUR_STEPS[tourStep].focusPane === "left" ? "inset 0 0 0 2px #10b981, 0 0 24px rgba(16, 185, 129, 0.2)" : undefined,
+          transition: "box-shadow 0.3s ease"
         }}>
           <div style={{
             padding: "14px 18px",
@@ -734,7 +855,9 @@ export default function AgentWorkspacePage() {
           background: "#ffffff",
           padding: "28px",
           overflowY: "auto",
-          maxHeight: "calc(100vh - 120px)"
+          maxHeight: "calc(100vh - 120px)",
+          boxShadow: tourActive && TOUR_STEPS[tourStep].focusPane === "center" ? "inset 0 0 0 2px #f59e0b, 0 0 24px rgba(245, 158, 11, 0.2)" : undefined,
+          transition: "box-shadow 0.3s ease"
         }}>
           {/* Header Summary */}
           <div style={{ marginBottom: "20px" }}>
@@ -956,7 +1079,9 @@ export default function AgentWorkspacePage() {
           background: "#fafafa",
           padding: "24px 28px",
           overflowY: "auto",
-          maxHeight: "calc(100vh - 120px)"
+          maxHeight: "calc(100vh - 120px)",
+          boxShadow: tourActive && TOUR_STEPS[tourStep].focusPane === "right" ? "inset 0 0 0 2px #8b5cf6, 0 0 24px rgba(139, 92, 246, 0.2)" : undefined,
+          transition: "box-shadow 0.3s ease"
         }}>
           <div style={{ marginBottom: "16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div style={{ fontSize: "14px", fontWeight: 800, color: "#09090b" }}>
@@ -1044,6 +1169,277 @@ export default function AgentWorkspacePage() {
           </div>
         </div>
       </div>
+
+      {/* INTERACTIVE TOUR GUIDE OVERLAY (Light Mode) */}
+      {tourActive && (
+        <div style={{
+          position: "fixed",
+          bottom: "24px",
+          right: "24px",
+          maxWidth: "580px",
+          width: "calc(100vw - 48px)",
+          boxSizing: "border-box",
+          background: "#ffffff",
+          color: "#09090b",
+          borderRadius: "14px",
+          boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.18), 0 0 0 1px #e4e4e7, 0 4px 12px rgba(0, 0, 0, 0.05)",
+          border: "1px solid #e4e4e7",
+          padding: "20px 22px",
+          zIndex: 9999,
+          fontFamily: "system-ui, -apple-system, sans-serif"
+        }}>
+          {/* Header */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px", paddingBottom: "12px", borderBottom: "1px solid #f1f5f9" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <div style={{ width: "26px", height: "26px", borderRadius: "6px", background: "#fef9c3", border: "1px solid #fde047", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Sparkles size={14} color="#ca8a04" />
+              </div>
+              <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "-0.01em", color: "#09090b" }}>
+                Agent Tour Guide
+              </span>
+            </div>
+
+            {/* Step Counter & Step Dots */}
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <div style={{ display: "flex", gap: "4px" }}>
+                {TOUR_STEPS.map((s, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setTourStep(idx)}
+                    style={{
+                      width: idx === tourStep ? "20px" : "6px",
+                      height: "6px",
+                      borderRadius: "999px",
+                      background: idx === tourStep ? "#09090b" : "#e2e8f0",
+                      border: "none",
+                      padding: 0,
+                      cursor: "pointer",
+                      transition: "all 0.25s ease"
+                    }}
+                    title={`Go to step ${idx + 1}`}
+                  />
+                ))}
+              </div>
+              <span style={{ fontSize: "11px", fontWeight: 600, color: "#64748b" }}>
+                Step {tourStep + 1} of {TOUR_STEPS.length}
+              </span>
+              <button
+                type="button"
+                onClick={() => setTourActive(false)}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  color: "#94a3b8",
+                  cursor: "pointer",
+                  padding: "2px",
+                  display: "flex",
+                  alignItems: "center"
+                }}
+                title="Close Tour"
+              >
+                <X size={16} />
+              </button>
+            </div>
+          </div>
+
+          {/* Step Badge & Title */}
+          <div style={{ marginBottom: "10px" }}>
+            <span style={{
+              display: "inline-block",
+              fontSize: "11px",
+              fontWeight: 700,
+              padding: "3px 8px",
+              borderRadius: "4px",
+              background: `${TOUR_STEPS[tourStep].badgeColor}15`,
+              color: TOUR_STEPS[tourStep].badgeColor,
+              border: `1px solid ${TOUR_STEPS[tourStep].badgeColor}35`,
+              marginBottom: "8px"
+            }}>
+              {TOUR_STEPS[tourStep].badge}
+            </span>
+            <h4 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#09090b", lineHeight: 1.35 }}>
+              {TOUR_STEPS[tourStep].title}
+            </h4>
+          </div>
+
+          {/* Command Pill if available */}
+          {TOUR_STEPS[tourStep].command && (
+            <div style={{
+              background: "#f8fafc",
+              border: "1px solid #e2e8f0",
+              borderRadius: "6px",
+              padding: "8px 12px",
+              fontFamily: "monospace",
+              fontSize: "12px",
+              color: "#0f172a",
+              marginBottom: "12px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px"
+            }}>
+              <Terminal size={13} color="#0f172a" />
+              <span style={{ fontWeight: 600 }}>{TOUR_STEPS[tourStep].command}</span>
+            </div>
+          )}
+
+          {/* Narrative Explanation */}
+          <p style={{ fontSize: "13px", color: "#475569", lineHeight: 1.55, margin: "0 0 12px 0" }}>
+            {TOUR_STEPS[tourStep].explanation}
+          </p>
+
+          {/* How Agent Solved This Callout */}
+          <div style={{
+            background: "#ecfdf5",
+            border: "1px solid #a7f3d0",
+            borderRadius: "8px",
+            padding: "9px 12px",
+            marginBottom: "14px",
+            fontSize: "12px",
+            color: "#065f46",
+            lineHeight: 1.45
+          }}>
+            <strong style={{ color: "#047857" }}>How Agent Solved This: </strong>
+            {TOUR_STEPS[tourStep].solvedProof}
+          </div>
+
+          {/* 4 Metric Chips */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+            gap: "8px",
+            marginBottom: "18px",
+            width: "100%",
+            boxSizing: "border-box"
+          }}>
+            {TOUR_STEPS[tourStep].metrics.map((m, mi) => (
+              <div
+                key={mi}
+                style={{
+                  background: "#f8fafc",
+                  border: "1px solid #e2e8f0",
+                  borderRadius: "6px",
+                  padding: "6px 4px",
+                  textAlign: "center",
+                  minWidth: 0,
+                  overflow: "hidden",
+                  boxSizing: "border-box"
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "9.5px",
+                    fontWeight: 600,
+                    color: "#64748b",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.02em",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    lineHeight: 1.2
+                  }}
+                  title={m.label}
+                >
+                  {m.label}
+                </div>
+                <div
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 700,
+                    color: "#09090b",
+                    marginTop: "2px",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    lineHeight: 1.3
+                  }}
+                  title={m.value}
+                >
+                  {m.value}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Action Buttons: Skip Tour vs Next Step */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "12px", borderTop: "1px solid #f1f5f9" }}>
+            {/* Option 1: Skip Tour */}
+            <button
+              type="button"
+              onClick={() => setTourActive(false)}
+              style={{
+                background: "transparent",
+                border: "none",
+                color: "#64748b",
+                fontSize: "12.5px",
+                fontWeight: 600,
+                cursor: "pointer",
+                padding: "8px 10px",
+                borderRadius: "6px",
+                transition: "color 0.2s"
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#09090b")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#64748b")}
+            >
+              Skip Tour
+            </button>
+
+            {/* Option 2: Previous & Next Step */}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              {tourStep > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setTourStep(prev => prev - 1)}
+                  style={{
+                    background: "#ffffff",
+                    border: "1px solid #e2e8f0",
+                    color: "#09090b",
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    padding: "7px 12px",
+                    borderRadius: "6px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "4px"
+                  }}
+                >
+                  <ChevronLeft size={13} />
+                  <span>Back</span>
+                </button>
+              )}
+
+              <button
+                type="button"
+                onClick={() => {
+                  if (tourStep < TOUR_STEPS.length - 1) {
+                    setTourStep(prev => prev + 1);
+                  } else {
+                    setTourActive(false);
+                  }
+                }}
+                style={{
+                  background: tourStep === TOUR_STEPS.length - 1 ? "#16a34a" : "#09090b",
+                  color: "#ffffff",
+                  border: "none",
+                  fontSize: "12.5px",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  padding: "8px 16px",
+                  borderRadius: "6px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)"
+                }}
+              >
+                <span>{tourStep === TOUR_STEPS.length - 1 ? "Finish Tour ✓" : "Next Step"}</span>
+                {tourStep < TOUR_STEPS.length - 1 && <ChevronRight size={14} />}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
