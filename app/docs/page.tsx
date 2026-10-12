@@ -148,6 +148,56 @@ export default function DocsPage() {
             </div>
           </div>
 
+          {/* SPECIALIZED PROJECT DOSSIERS */}
+          <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '20px 24px', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+              <FileText size={18} color="#0f172a" />
+              <h3 style={{ fontSize: '15px', fontWeight: 800, color: '#0f172a', margin: 0 }}>
+                Specialized Repository Dossiers &amp; Reports
+              </h3>
+            </div>
+            <p style={{ fontSize: '13px', color: '#64748b', lineHeight: 1.5, margin: '0 0 14px 0' }}>
+              For in-depth evaluation, review the dedicated Markdown dossiers located in the repository root:
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
+              <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '14px' }}>
+                <div style={{ fontSize: '11px', fontWeight: 800, color: '#2563eb', textTransform: 'uppercase', marginBottom: '4px' }}>
+                  NEAT_HACKATHON.md
+                </div>
+                <div style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a', marginBottom: '4px' }}>
+                  Official neatHack Submission Brief
+                </div>
+                <div style={{ fontSize: '12px', color: '#64748b', lineHeight: 1.5 }}>
+                  Executive brief detailing Team Dot, partner integration matrices (Neatlogs, Entire, cfo.ai), live Entire Checkpoints, municipal audit proofs, and academic citations.
+                </div>
+              </div>
+
+              <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '14px' }}>
+                <div style={{ fontSize: '11px', fontWeight: 800, color: '#b45309', textTransform: 'uppercase', marginBottom: '4px' }}>
+                  CFO_BUSINESS_PLAN.md
+                </div>
+                <div style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a', marginBottom: '4px' }}>
+                  CFO.ai Financial Reality &amp; Unit Economics
+                </div>
+                <div style={{ fontSize: '12px', color: '#64748b', lineHeight: 1.5 }}>
+                  $186B addressable AP leakage sizing, 3 commercial tiers (Contingency, Hybrid SaaS, Enterprise), fully-loaded 24.7x Enterprise ROI model, and 24-month runway.
+                </div>
+              </div>
+
+              <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '14px' }}>
+                <div style={{ fontSize: '11px', fontWeight: 800, color: '#047857', textTransform: 'uppercase', marginBottom: '4px' }}>
+                  RESULTS.md
+                </div>
+                <div style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a', marginBottom: '4px' }}>
+                  Scientific Benchmark &amp; Decoy Report
+                </div>
+                <div style={{ fontSize: '12px', color: '#64748b', lineHeight: 1.5 }}>
+                  Empirical benchmarks across 20,139 rows: 0.983 F1 vendor resolution, 82% planted decoy false-alarm elimination, $0 wrongly seized, and telemetry comparisons.
+                </div>
+              </div>
+            </div>
+          </div>
+
           <h2 style={{ fontSize: '22px', fontWeight: 700, margin: '0 0 10px 0' }}>Getting Started with OVIO</h2>
           <p style={{ fontSize: '14px', color: '#52525b', lineHeight: '1.6', marginBottom: '24px' }}>
             Judges can evaluate the full system in under 60 seconds with <strong>zero external API keys</strong>. All public municipal datasets and replay caches are committed directly to the repository:

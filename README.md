@@ -19,6 +19,7 @@
 
 ### Quick Links
 - [⚡ Judge it in 60 Seconds](#-judge-it-in-60-seconds)
+- [📑 Project Dossiers & Specialized Docs](#-project-dossiers--specialized-documentation-library)
 - [🛡️ How Neatlogs Finds & Resolves Agent Incidents](#️-how-neatlogs-finds--resolves-agent-incidents-closed-loop-observability)
 - [🚨 Neatlogs Critical Incidents & Resolution](#-critical-incidents-identified--resolved-via-neatlogs-triage-tabfixes)
 - [🌍 The Real-World Problem We Are Solving](#-the-real-world-problem-we-are-solving)
@@ -33,6 +34,19 @@
 
 ---
 
+## 📑 Project Dossiers & Specialized Documentation Library
+
+To provide judges and evaluators with complete technical and financial transparency, the repository includes four specialized documentation dossiers:
+
+| Dossier | File | Core Focus & Why It Was Created |
+| :--- | :--- | :--- |
+| **Official Hackathon Submission Brief** | [`NEAT_HACKATHON.md`](NEAT_HACKATHON.md) | **neatHack 2026 Executive Brief**: Complete submission dossier summarizing Team Dot's focus, multi-sponsor integration matrix ([Neatlogs](https://neatlogs.com), [Entire](https://entire.io), [cfo.ai](https://cfo.ai)), live Entire Checkpoint URLs, municipal audit proofs, and academic citations on auditor alert fatigue. |
+| **CFO Financial Plan & Unit Economics** | [`CFO_BUSINESS_PLAN.md`](CFO_BUSINESS_PLAN.md) | **CFO.ai Business Reality Model**: Comprehensive market sizing ($186B AP leakage), multi-tier commercial monetization architecture (Contingency, Hybrid SaaS, Enterprise), fully-loaded **24.7x Enterprise ROI** derivations ($1.024M recovered vs $41.4K operating costs), and 24-month runway projections in native `cfo.ai` schema. |
+| **Scientific Benchmark Report** | [`RESULTS.md`](RESULTS.md) | **Empirical Evaluation Data**: Measured benchmarks across 20,139 real municipal ledger rows: **0.983 F1 vendor resolution**, **82% planted decoy false-alarm elimination**, **$0.00 wrongly flagged or seized**, and side-by-side Neatlogs telemetry comparisons (Single-Shot vs Multi-Tool Investigator). |
+| **Master Technical & CLI Manual** | [`README.md`](README.md) | **Operational Guide & Quickstart**: 60-second judge fast-track, full CLI engine command cheat sheet, closed-loop Neatlogs incident resolution, and Next.js web review cockpit setup. |
+
+---
+
 ## 🛡️ How Neatlogs Finds & Resolves Agent Incidents (Closed-Loop Observability)
 
 > **Closed-Loop Observability**: How OVIO captures live municipal data, how Entire & CFO.ai govern execution, and how Neatlogs automatically finds live trace anomalies to drive prompt and code fixes:
@@ -41,12 +55,14 @@
 * **Accounts Payable Cash Leakage**: Mid-market enterprises and municipal governments disburse between $50M and $500M annually. Between **0.5% and 2.0%** of these disbursements are double-paid due to vendor typographic invoice errors, unlinked purchase orders, fragmented line-item splits, or decentralized department vouchers.
 * **The Manual Audit Impasse**: Traditional external recovery firms audit checkbooks 12–18 months after year-end, charging 25–40% contingency fees while missing urgent cashflow windows.
 * **The OVIO Autonomous Solution**: OVIO runs an autonomous multi-tool recovery loop on live checkbooks, combining $O(N)$ linear hash blocking (eliminating 82% of false alarms at **0 token cost**) with Claude-Haiku residual adjudication to recover millions in unbudgeted cash in seconds.
+* **Detailed Submission Overview**: See [`NEAT_HACKATHON.md`](NEAT_HACKATHON.md) for the official competition breakdown.
 
 ### 2. How cfo.ai and Entire Were Part of the Project
 * **cfo.ai ([docs.cfo.ai](https://docs.cfo.ai)) — Unit Economics & Working Capital Rescue**:
   - Implements the native `cfo_model.json` schema to prove a **24.7x Enterprise ROI** ($1,024,000 recovered cash vs $41,400 fully-loaded costs).
   - Powers `ovio rescue` to model 90-day cash floor interventions (AR acceleration vs AP deferral) and `ovio cfo` for 24-month seed-to-profitability runway forecasting.
   - On the live Chicago municipal dataset, generated **$62,988.36 contingency fee revenue** against **$0.00090 token inference COGS** &rarr; **386,668,895× Token ROI**.
+  - Detailed financial derivations are documented in [`CFO_BUSINESS_PLAN.md`](CFO_BUSINESS_PLAN.md).
 * **Entire ([entire.io](https://entire.io)) — Continuous Memory & Immutable Verification**:
   - Automatically captures immutable audit state snapshots in `core/checkpoint.py` linking every code change and turn to Git commits via `Entire-Checkpoint: <ID>` trailers.
   - Runs 6 automated Trail evaluators (`trail-confidence`, `trail-drift`, `trail-review`, `trail-risk`, `trail-security`, `trail-summary`) ensuring clawbacks withstand inspector general or court scrutiny.
@@ -59,6 +75,7 @@
   2. **Score 64 (False Positives on Line-Item Splits)**: Vendors sharing amount and date under the same PO (e.g. bulk fuel vs excise tax on Falcon Fuels) were borderline candidates. Resolved by encoding strict Treasury line-split rules in the adjudication prompt.
   3. **Score 71 (Strict Invoice Number Validation)**: Sequential billing periods (e.g. modular trailer leases) risked duplicate flags. Resolved by enforcing canonical invoice matching and classifying sequential periods as `recurring`.
 * **Dashboard Triage & Resolution**: All 3 incidents were reviewed in the Neatlogs UI, patched in `core/llm.py`, verified with 23/23 passing tests, and marked **Resolved**!
+* **Full Benchmark Metrics**: See [`RESULTS.md`](RESULTS.md) for false-positive reduction breakdown.
 
 ---
 
