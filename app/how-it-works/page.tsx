@@ -98,7 +98,7 @@ export default function HowItWorksPage() {
       title: 'Continuous Memory & CFO Economics',
       badge: 'Entire Checkpoint + cfo.ai',
       summary: 'Seal SHA-256 evidence packets, record Git memory, model cash ROI',
-      detail: 'Generates formal clawback dossiers with SHA-256 integrity hashes, commits audit state to Entire continuous Git memory (169+ checkpoints), and updates cfo.ai financial scenario models with Net Cash Recovered, 24.7x ROI, and infinite cash runway.',
+      detail: 'Generates formal clawback dossiers with SHA-256 integrity hashes, commits audit state to Entire continuous Git memory (169+ checkpoints), and publishes cfo.ai scenario tables (Audit_Run_Ledger & Adjudication_Decision_Trail) for Ari with Net Cash Recovered, 24.7x ROI, and what-if model repricing headroom.',
       volume: 'Entire Checkpoint Sealed + cfo_model.json generated',
       sponsor: 'Entire.io & cfo.ai'
     }
@@ -135,12 +135,12 @@ export default function HowItWorksPage() {
       linkUrl: 'https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b'
     },
     {
-      name: 'cfo.ai Unit Economics',
-      tag: 'Working Capital Rescue',
+      name: 'cfo.ai Decision Contract',
+      tag: 'Decision Ledger & What-If Repricing',
       badgeBg: '#fef3c7',
       badgeColor: '#b45309',
       borderColor: '#fde68a',
-      desc: 'Powers 90-day cashflow rescue models (ovio rescue) and 24-month runway projections in native cfo_model.json schema. Demonstrates 24.7x Enterprise ROI and 452,000x Token ROI on municipal ledgers.',
+      desc: 'Powers resilient edit_table_blocks scenario provisioning, decision-level audit trails for Ari, what-if token repricing (ovio cfo --what-if gpt-4o), and 90-day cashflow rescue models in native cfo_model.json schema with 24.7x Enterprise ROI.',
       linkText: 'Explore CFO.ai Architecture',
       linkUrl: 'https://docs.cfo.ai'
     }

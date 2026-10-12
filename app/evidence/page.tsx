@@ -17,7 +17,8 @@ import {
   Search, 
   Copy, 
   Check, 
-  ArrowLeft 
+  ArrowLeft,
+  TrendingUp
 } from "lucide-react";
 
 export default function EvidencePage() {
@@ -449,7 +450,166 @@ export default function EvidencePage() {
           </div>
         </div>
 
-        {/* 4. ALL SAMPLE DATASETS & LIVE EXECUTION RECIPES */}
+        {/* 4. CFO.AI DECISION-LEVEL LEDGER & ARI INTEGRATION */}
+        <div style={{
+          background: "#ffffff",
+          border: "1px solid #e4e4e7",
+          borderRadius: "14px",
+          padding: "28px",
+          marginBottom: "36px",
+          boxShadow: "0 1px 3px rgba(0, 0, 0, 0.04)"
+        }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", flexWrap: "wrap", gap: "10px" }}>
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
+                <TrendingUp size={16} color="#7c3aed" />
+                <span style={{ fontSize: "11px", fontWeight: 700, color: "#7c3aed", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  Autonomous Financial Contract · edit_table_blocks
+                </span>
+              </div>
+              <h2 style={{ fontSize: "20px", fontWeight: 800, margin: 0, color: "#09090b" }}>
+                4. CFO.ai Decision-Level Ledger &amp; Ari Query Contract
+              </h2>
+              <p style={{ fontSize: "13px", color: "#71717a", margin: "4px 0 0" }}>
+                Empowers Ari (cfo.ai’s conversational CFO) to answer organizational finance inquiries with verifiable run provenance, granular per-candidate rationale, and what-if model repricing.
+              </p>
+            </div>
+
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+              <span style={{ fontSize: "11px", fontWeight: 700, padding: "4px 10px", borderRadius: "6px", background: "#f5f3ff", color: "#6d28d9", border: "1px solid #ddd6fe" }}>
+                ovio cfo --provision
+              </span>
+              <span style={{ fontSize: "11px", fontWeight: 700, padding: "4px 10px", borderRadius: "6px", background: "#f0fdf4", color: "#15803d", border: "1px solid #bbf7d0" }}>
+                ovio cfo --what-if gpt-4o
+              </span>
+              <span style={{ fontSize: "11px", fontWeight: 700, padding: "4px 10px", borderRadius: "6px", background: "#f8fafc", color: "#475569", border: "1px solid #e2e8f0" }}>
+                ovio cfo --ari
+              </span>
+            </div>
+          </div>
+
+          {/* Table 1: Audit_Run_Ledger */}
+          <div style={{ marginBottom: "20px" }}>
+            <div style={{ fontSize: "13px", fontWeight: 800, color: "#09090b", marginBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
+              <span>Table 1: `Audit_Run_Ledger` (Immutable Run Summaries)</span>
+            </div>
+            <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px", textAlign: "left" }}>
+                <thead>
+                  <tr style={{ background: "#f8fafc", borderBottom: "1px solid #e2e8f0", color: "#475569" }}>
+                    <th style={{ padding: "8px 10px", fontWeight: 700 }}>Run ID</th>
+                    <th style={{ padding: "8px 10px", fontWeight: 700 }}>Dataset</th>
+                    <th style={{ padding: "8px 10px", fontWeight: 700 }}>Rows</th>
+                    <th style={{ padding: "8px 10px", fontWeight: 700 }}>Gross Recovered</th>
+                    <th style={{ padding: "8px 10px", fontWeight: 700 }}>18% Fee</th>
+                    <th style={{ padding: "8px 10px", fontWeight: 700 }}>Tokens (Neatlogs)</th>
+                    <th style={{ padding: "8px 10px", fontWeight: 700 }}>Inference COGS</th>
+                    <th style={{ padding: "8px 10px", fontWeight: 700 }}>Token ROI</th>
+                    <th style={{ padding: "8px 10px", fontWeight: 700 }}>Cost Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: "1px solid #f1f5f9" }}>
+                    <td style={{ padding: "8px 10px", fontFamily: "var(--mono)", fontWeight: 700 }}>run-la-controller-2024</td>
+                    <td style={{ padding: "8px 10px" }}>City of Los Angeles</td>
+                    <td style={{ padding: "8px 10px" }}>20,139</td>
+                    <td style={{ padding: "8px 10px", fontWeight: 700, color: "#16a34a" }}>$12,818.00</td>
+                    <td style={{ padding: "8px 10px", fontWeight: 700 }}>$2,307.24</td>
+                    <td style={{ padding: "8px 10px", fontFamily: "var(--mono)" }}>2,080 tok</td>
+                    <td style={{ padding: "8px 10px", fontFamily: "var(--mono)" }}>$0.00100</td>
+                    <td style={{ padding: "8px 10px", fontWeight: 700, color: "#7c3aed" }}>12,818,000x</td>
+                    <td style={{ padding: "8px 10px" }}><span style={{ fontSize: "10px", fontWeight: 700, padding: "2px 6px", borderRadius: "4px", background: "#dcfce7", color: "#15803d" }}>measured_telemetry</span></td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid #f1f5f9" }}>
+                    <td style={{ padding: "8px 10px", fontFamily: "var(--mono)", fontWeight: 700 }}>run-chicago-municipal-ap</td>
+                    <td style={{ padding: "8px 10px" }}>City of Chicago</td>
+                    <td style={{ padding: "8px 10px" }}>2,502</td>
+                    <td style={{ padding: "8px 10px", fontWeight: 700, color: "#16a34a" }}>$349,935.35</td>
+                    <td style={{ padding: "8px 10px", fontWeight: 700 }}>$62,988.36</td>
+                    <td style={{ padding: "8px 10px", fontFamily: "var(--mono)" }}>1,788 tok</td>
+                    <td style={{ padding: "8px 10px", fontFamily: "var(--mono)" }}>$0.00090</td>
+                    <td style={{ padding: "8px 10px", fontWeight: 700, color: "#7c3aed" }}>388,817,000x</td>
+                    <td style={{ padding: "8px 10px" }}><span style={{ fontSize: "10px", fontWeight: 700, padding: "2px 6px", borderRadius: "4px", background: "#dcfce7", color: "#15803d" }}>measured_telemetry</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Table 2: Adjudication_Decision_Trail & What-If Repricing */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "16px", marginBottom: "16px" }}>
+            <div style={{ border: "1px solid #e2e8f0", borderRadius: "8px", padding: "14px", background: "#f8fafc" }}>
+              <div style={{ fontSize: "12.5px", fontWeight: 800, color: "#09090b", marginBottom: "6px" }}>
+                Table 2: `Adjudication_Decision_Trail` (Per-Candidate Provenance)
+              </div>
+              <div style={{ fontSize: "12px", color: "#52525b", lineHeight: 1.5, marginBottom: "8px" }}>
+                Ari consults this table to answer <em>&ldquo;Why was this vendor flagged or dismissed?&rdquo;</em>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "11.5px" }}>
+                <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "6px", padding: "8px 10px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", fontWeight: 700 }}>
+                    <span>ANONYMIZED_MUNICIPAL_VENDOR_B</span>
+                    <span style={{ color: "#16a34a" }}>$12,818.00 (CLAWBACK)</span>
+                  </div>
+                  <div style={{ color: "#64748b", marginTop: "2px" }}>
+                    Routing: Claude-3-Haiku (4 tool calls) · Rationale: PO SC21CO24138706Y ceiling breached on 2nd wire.
+                  </div>
+                </div>
+                <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "6px", padding: "8px 10px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", fontWeight: 700 }}>
+                    <span>Falcon Fuels Inc</span>
+                    <span style={{ color: "#64748b" }}>$4,410.00 (DISMISSED)</span>
+                  </div>
+                  <div style={{ color: "#64748b", marginTop: "2px" }}>
+                    Pruned at 0 Tokens: <strong>TRUE</strong> · Rationale: State excise fuel tax line-item split under single PO voucher.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ border: "1px solid #e2e8f0", borderRadius: "8px", padding: "14px", background: "#f8fafc" }}>
+              <div style={{ fontSize: "12.5px", fontWeight: 800, color: "#09090b", marginBottom: "6px" }}>
+                What-If Model Repricing Simulator (`ovio cfo --what-if &lt;model&gt;`)
+              </div>
+              <div style={{ fontSize: "12px", color: "#52525b", lineHeight: 1.5, marginBottom: "8px" }}>
+                Ari reprices measured Neatlogs token actuals across candidate models to evaluate gross margin headroom:
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "6px", fontSize: "11.5px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", padding: "6px 8px", background: "#ffffff", borderRadius: "4px", border: "1px solid #e2e8f0" }}>
+                  <span>Claude 3 Haiku (Active Baseline):</span>
+                  <strong>$0.00100 COGS &rarr; 12,818,000x ROI</strong>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", padding: "6px 8px", background: "#ffffff", borderRadius: "4px", border: "1px solid #e2e8f0" }}>
+                  <span>Amazon Nova Lite (Ultra Low-Cost):</span>
+                  <strong>$0.00021 COGS &rarr; 60,748,810x ROI</strong>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", padding: "6px 8px", background: "#ffffff", borderRadius: "4px", border: "1px solid #e2e8f0" }}>
+                  <span>OpenAI GPT-4o (Frontier Model):</span>
+                  <strong>$0.00880 COGS &rarr; 1,456,591x ROI</strong>
+                </div>
+              </div>
+              <div style={{ marginTop: "8px", fontSize: "11px", color: "#16a34a", fontWeight: 700 }}>
+                Verdict: Even on frontier models (GPT-4o), &gt;99% gross margin is maintained on recovery fees.
+              </div>
+            </div>
+          </div>
+
+          {/* Resilient Provisioning Callout */}
+          <div style={{
+            background: "#faf5ff",
+            border: "1px solid #e9d5ff",
+            borderRadius: "8px",
+            padding: "12px 16px",
+            fontSize: "12px",
+            color: "#6b21a8",
+            lineHeight: 1.55
+          }}>
+            <strong>Resilient Table Provisioning Against Live MCP Schema: </strong>
+            To prevent first-time onboarding failures, <code>core/cfo_sync.py</code> pre-validates table creation payloads against the live <code>edit_table_blocks</code> input layout, re-inspects tables and verifies read access immediately after creation, preserves existing data across re-runs, and emits clean, sanitized diagnostics if table creation encounters schema drift.
+          </div>
+        </div>
+
+        {/* 5. ALL SAMPLE DATASETS & LIVE EXECUTION RECIPES */}
         <div style={{
           background: "#ffffff",
           border: "1px solid #e4e4e7",
@@ -465,7 +625,7 @@ export default function EvidencePage() {
                 <span style={{ fontSize: "11px", fontWeight: 700, color: "#09090b", textTransform: "uppercase", letterSpacing: "0.05em" }}>Verified Public & Enterprise Ledgers</span>
               </div>
               <h2 style={{ fontSize: "20px", fontWeight: 800, margin: 0, color: "#09090b" }}>
-                4. All Sample Datasets (`data/samples/`) &amp; Live Test Proofs
+                5. All Sample Datasets (`data/samples/`) &amp; Live Test Proofs
               </h2>
               <p style={{ fontSize: "13px", color: "#71717a", margin: "4px 0 0" }}>
                 Here is the complete registry of real-world sample ledgers stored in <code>data/samples/</code>, along with the exact CLI commands used to run live tests, recovered dollar amounts, token COGS, and live Neatlogs trace IDs:

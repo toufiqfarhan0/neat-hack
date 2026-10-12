@@ -1,0 +1,1025 @@
+{
+  "scenario_id": "ovio-treasury-production",
+  "scenario_title": "OVIO Autonomous AP Treasury Recovery & Unit Economics",
+  "created_at": "2026-10-12T00:00:00Z",
+  "last_synced_at": "2026-10-12T12:05:29Z",
+  "tables": {
+    "Audit_Run_Ledger": {
+      "columns": [
+        {
+          "id": "run_id",
+          "name": "Run ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "timestamp",
+          "name": "Executed At",
+          "type": "datetime",
+          "required": true
+        },
+        {
+          "id": "dataset",
+          "name": "Target Ledger",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "rows_scanned",
+          "name": "Disbursements Scanned",
+          "type": "integer",
+          "format": "#,##0"
+        },
+        {
+          "id": "gross_leakage_recovered_usd",
+          "name": "Gross Leakage Recovered ($)",
+          "type": "currency",
+          "format": "$#,##0.00"
+        },
+        {
+          "id": "contingency_fee_earned_usd",
+          "name": "Contingency Fee Earned ($)",
+          "type": "currency",
+          "format": "$#,##0.00"
+        },
+        {
+          "id": "measured_tokens_in",
+          "name": "Prompt Tokens (Neatlogs)",
+          "type": "integer",
+          "format": "#,##0"
+        },
+        {
+          "id": "measured_tokens_out",
+          "name": "Completion Tokens (Neatlogs)",
+          "type": "integer",
+          "format": "#,##0"
+        },
+        {
+          "id": "inference_cogs_usd",
+          "name": "Inference COGS ($)",
+          "type": "currency",
+          "format": "$#,##0.00000"
+        },
+        {
+          "id": "net_roi_multiplier",
+          "name": "Token ROI Multiplier",
+          "type": "ratio",
+          "format": "#,##0.0x"
+        },
+        {
+          "id": "routing_model",
+          "name": "Adjudication Model",
+          "type": "string"
+        },
+        {
+          "id": "cost_type",
+          "name": "Cost Accounting Type",
+          "type": "enum",
+          "options": [
+            "measured_telemetry",
+            "list_price_estimate"
+          ]
+        },
+        {
+          "id": "neatlogs_trace_id",
+          "name": "Neatlogs Trace ID",
+          "type": "string"
+        },
+        {
+          "id": "entire_checkpoint_ref",
+          "name": "Entire Checkpoint Ref",
+          "type": "string"
+        }
+      ],
+      "rows": [
+        {
+          "run_id": "run-la-controller-2024",
+          "timestamp": "2026-10-12T11:31:23Z",
+          "dataset": "la_sample.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 12818.0,
+          "contingency_fee_earned_usd": 2307.24,
+          "measured_tokens_in": 1600,
+          "measured_tokens_out": 480,
+          "inference_cogs_usd": 0.001,
+          "net_roi_multiplier": 12818000.0,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "3d720906babf7ed470e690f68c4eedc5",
+          "entire_checkpoint_ref": "01M4QS89GVKDSE5B3M8D8CZ6NA"
+        },
+        {
+          "run_id": "run-chicago-municipal-ap",
+          "timestamp": "2026-10-12T11:31:23Z",
+          "dataset": "live_google_download.csv",
+          "rows_scanned": 2502,
+          "gross_leakage_recovered_usd": 349935.35,
+          "contingency_fee_earned_usd": 62988.36,
+          "measured_tokens_in": 1420,
+          "measured_tokens_out": 368,
+          "inference_cogs_usd": 0.0009,
+          "net_roi_multiplier": 388817000.0,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "2e7e5627f6fbc5ed878f3a29f4b180f6",
+          "entire_checkpoint_ref": "01M4QVFNWP2ZC8DJAE3J58SC98"
+        },
+        {
+          "run_id": "ovio-run-1791802568",
+          "timestamp": "2026-10-12T10:56:08Z",
+          "dataset": "la_sample.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 0.0,
+          "contingency_fee_earned_usd": 0.0,
+          "measured_tokens_in": 4670,
+          "measured_tokens_out": 297,
+          "inference_cogs_usd": 0.00154,
+          "net_roi_multiplier": 0.0,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "fc56eb63723bb5f1a919a11153e3da0b",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791804148",
+          "timestamp": "2026-10-12T11:22:28Z",
+          "dataset": "la_sample.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 0.0,
+          "contingency_fee_earned_usd": 0.0,
+          "measured_tokens_in": 7054,
+          "measured_tokens_out": 462,
+          "inference_cogs_usd": 0.00234,
+          "net_roi_multiplier": 0.0,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "8e8b870335b306fac0ca8eb294ea653c",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791804176",
+          "timestamp": "2026-10-12T11:22:56Z",
+          "dataset": "live_google_download.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 7000.0,
+          "contingency_fee_earned_usd": 1260.0,
+          "measured_tokens_in": 6820,
+          "measured_tokens_out": 434,
+          "inference_cogs_usd": 0.00225,
+          "net_roi_multiplier": 3114571.7,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "2f4487617c0c085b3bf5d2481e4758d1",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791804202",
+          "timestamp": "2026-10-12T11:23:22Z",
+          "dataset": "chicago_sample.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 7000.0,
+          "contingency_fee_earned_usd": 1260.0,
+          "measured_tokens_in": 6820,
+          "measured_tokens_out": 431,
+          "inference_cogs_usd": 0.00224,
+          "net_roi_multiplier": 3119777.2,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "69e8acb4da9c75db0ee2734bad3ff129",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791804220",
+          "timestamp": "2026-10-12T11:23:40Z",
+          "dataset": "enterprise_sample.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 60450.0,
+          "contingency_fee_earned_usd": 10881.0,
+          "measured_tokens_in": 4627,
+          "measured_tokens_out": 317,
+          "inference_cogs_usd": 0.00155,
+          "net_roi_multiplier": 38924661.9,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "5786d00b9a77a8182b12ed4f3893037b",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791804234",
+          "timestamp": "2026-10-12T11:23:54Z",
+          "dataset": "live_web_test_ap_ledger.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 0.0,
+          "contingency_fee_earned_usd": 0.0,
+          "measured_tokens_in": 0,
+          "measured_tokens_out": 0,
+          "inference_cogs_usd": 0.0,
+          "net_roi_multiplier": 999999.0,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "beecbc184a4b44b84e177c37f17e0a4b",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791804256",
+          "timestamp": "2026-10-12T11:24:16Z",
+          "dataset": "ok_sample.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 10833.33,
+          "contingency_fee_earned_usd": 1950.0,
+          "measured_tokens_in": 4528,
+          "measured_tokens_out": 313,
+          "inference_cogs_usd": 0.00152,
+          "net_roi_multiplier": 7111984.2,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "d76f9eb1a8aa59e25b751cdf46d40cef",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791804752",
+          "timestamp": "2026-10-12T11:32:32Z",
+          "dataset": "la_sample.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 0.0,
+          "contingency_fee_earned_usd": 0.0,
+          "measured_tokens_in": 7054,
+          "measured_tokens_out": 462,
+          "inference_cogs_usd": 0.00234,
+          "net_roi_multiplier": 0.0,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "401daa14ab36566df5482a016bc6be3e",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791804777",
+          "timestamp": "2026-10-12T11:32:57Z",
+          "dataset": "live_google_download.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 7000.0,
+          "contingency_fee_earned_usd": 1260.0,
+          "measured_tokens_in": 6820,
+          "measured_tokens_out": 434,
+          "inference_cogs_usd": 0.00225,
+          "net_roi_multiplier": 3114571.7,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "db28a7c2eb913afc040d01710ac0fffb",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791804799",
+          "timestamp": "2026-10-12T11:33:19Z",
+          "dataset": "enterprise_sample.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 60450.0,
+          "contingency_fee_earned_usd": 10881.0,
+          "measured_tokens_in": 4627,
+          "measured_tokens_out": 317,
+          "inference_cogs_usd": 0.00155,
+          "net_roi_multiplier": 38924661.9,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "acb7970a2ee08efe734974957ed8a816",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791804816",
+          "timestamp": "2026-10-12T11:33:36Z",
+          "dataset": "ok_sample.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 10833.33,
+          "contingency_fee_earned_usd": 1950.0,
+          "measured_tokens_in": 4528,
+          "measured_tokens_out": 313,
+          "inference_cogs_usd": 0.00152,
+          "net_roi_multiplier": 7111984.2,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "822a47605459241a423b3b16d8d82ae1",
+          "entire_checkpoint_ref": "chk-latest"
+        },
+        {
+          "run_id": "ovio-run-1791806729",
+          "timestamp": "2026-10-12T12:05:29Z",
+          "dataset": "live_chicago_open_data_download.csv",
+          "rows_scanned": 20139,
+          "gross_leakage_recovered_usd": 7000.0,
+          "contingency_fee_earned_usd": 1260.0,
+          "measured_tokens_in": 6820,
+          "measured_tokens_out": 431,
+          "inference_cogs_usd": 0.00224,
+          "net_roi_multiplier": 3119777.2,
+          "routing_model": "claude-3-haiku",
+          "cost_type": "measured_telemetry",
+          "neatlogs_trace_id": "117dab947ba417c5a7b0d52b4885fb91",
+          "entire_checkpoint_ref": "chk-latest"
+        }
+      ]
+    },
+    "Adjudication_Decision_Trail": {
+      "columns": [
+        {
+          "id": "decision_key",
+          "name": "Decision Key",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "run_id",
+          "name": "Run ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "task_id",
+          "name": "Task ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "candidate_vendor",
+          "name": "Vendor Name",
+          "type": "string"
+        },
+        {
+          "id": "amount_at_risk_usd",
+          "name": "Amount at Risk ($)",
+          "type": "currency",
+          "format": "$#,##0.00"
+        },
+        {
+          "id": "action_taken",
+          "name": "Action Taken",
+          "type": "enum",
+          "options": [
+            "AUTHORIZE_CLAWBACK",
+            "DISMISS"
+          ]
+        },
+        {
+          "id": "is_duplicate",
+          "name": "Duplicate Flag",
+          "type": "boolean"
+        },
+        {
+          "id": "confidence_score",
+          "name": "Confidence Score",
+          "type": "percentage",
+          "format": "0.0%"
+        },
+        {
+          "id": "routing_tier",
+          "name": "Routing Tier / Model",
+          "type": "string"
+        },
+        {
+          "id": "tools_called_count",
+          "name": "Tools Called Count",
+          "type": "integer"
+        },
+        {
+          "id": "tools_called",
+          "name": "Tools Executed",
+          "type": "string"
+        },
+        {
+          "id": "pruned_at_zero_tokens",
+          "name": "Pruned at 0 Tokens",
+          "type": "boolean"
+        },
+        {
+          "id": "decision_rationale",
+          "name": "Evidence Rationale",
+          "type": "string"
+        },
+        {
+          "id": "evidence_digest",
+          "name": "Evidence SHA256 Digest",
+          "type": "string"
+        }
+      ],
+      "rows": [
+        {
+          "decision_key": "run-la-controller-2024:la-wire-04192",
+          "run_id": "run-la-controller-2024",
+          "task_id": "la-wire-04192",
+          "candidate_vendor": "ANONYMIZED_MUNICIPAL_VENDOR_B",
+          "amount_at_risk_usd": 12818.0,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.98,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "PO SC21CO24138706Y ceiling breached on 2nd wire. Second wire ($12,818) created unapproved budget overrun.",
+          "evidence_digest": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "decision_key": "run-la-controller-2024:la-decoy-falcon-fuels",
+          "run_id": "run-la-controller-2024",
+          "task_id": "la-decoy-falcon-fuels",
+          "candidate_vendor": "Falcon Fuels Inc",
+          "amount_at_risk_usd": 4410.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.99,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 0,
+          "tools_called": "",
+          "pruned_at_zero_tokens": true,
+          "decision_rationale": "Legitimate state excise fuel tax line-item split on single PO voucher. Dismissed deterministically at 0 token cost.",
+          "evidence_digest": "sha256-pruned-rule-split"
+        },
+        {
+          "decision_key": "run-chicago-municipal-ap:chi-wire-99410",
+          "run_id": "run-chicago-municipal-ap",
+          "task_id": "chi-wire-99410",
+          "candidate_vendor": "COOK_COUNTY_HEALTH_SERVICES_LLC",
+          "amount_at_risk_usd": 349935.35,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.99,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Duplicate hospital capital equipment grant disbursement issued under identical grant voucher number.",
+          "evidence_digest": "sha256-chi-grant-digest"
+        },
+        {
+          "decision_key": "ovio-run-1791802568:CAND-EX-0003",
+          "run_id": "ovio-run-1791802568",
+          "task_id": "CAND-EX-0003",
+          "candidate_vendor": "CENTER FOR THE PACIFIC ASIAN FAMILY INC",
+          "amount_at_risk_usd": 12818.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.95,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Invoice 212410021D294 and invoice 2124424210232 are completely different alphanumeric strings that do not conform to known transcription patterns or canonical variants. These represent distinct authorized vouchers and must not be conflated as duplicate payments despite matching vendor, amount, PO, and date.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791802568:CAND-EX-0004",
+          "run_id": "ovio-run-1791802568",
+          "task_id": "CAND-EX-0004",
+          "candidate_vendor": "MUNICIPAL EMERGENCY SERVICES INC.",
+          "amount_at_risk_usd": 386969.72,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Transactions A and B share identical vendor, amount, and description but are governed by distinct purchase orders (CPO38240000475670 vs CPO38240000475699) and carry substantially different invoice numbers (38240000068056 vs 38240000070447). These represent two authorized separate procurements for identical Firedex turnout equipment under different PO authorizations.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804148:CAND-EX-0003",
+          "run_id": "ovio-run-1791804148",
+          "task_id": "CAND-EX-0003",
+          "candidate_vendor": "CENTER FOR THE PACIFIC ASIAN FAMILY INC",
+          "amount_at_risk_usd": 12818.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.95,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Invoice 212410021D294 and invoice 2124424210232 are completely different alphanumeric strings that do not conform to known transcription patterns or canonical variants. These represent distinct authorized vouchers and must not be conflated as duplicate payments despite matching vendor, amount, PO, and date.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804148:CAND-EX-0004",
+          "run_id": "ovio-run-1791804148",
+          "task_id": "CAND-EX-0004",
+          "candidate_vendor": "MUNICIPAL EMERGENCY SERVICES INC.",
+          "amount_at_risk_usd": 386969.72,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Transactions A and B share identical vendor, amount, and description but are governed by distinct purchase orders (CPO38240000475670 vs CPO38240000475699) and carry substantially different invoice numbers (38240000068056 vs 38240000070447). These represent two authorized separate procurements for identical Firedex turnout equipment under different PO authorizations.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804148:CAND-EX-0005",
+          "run_id": "ovio-run-1791804148",
+          "task_id": "CAND-EX-0005",
+          "candidate_vendor": "UNITED RIGGERS/ERECTORS INC",
+          "amount_at_risk_usd": 9900.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Invoice numbers 4024100408250 and 4024100408251 are sequential but represent distinct authorized work orders (WO#H9140100 vs WO#H0550100) at different project sites under the same PO. The descriptions reference different Notice-to-Proceed numbers (NTP#3037 vs NTP#3038) and distinct locations, indicating separate rigging and transportation services.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804176:CAND-EX-0001",
+          "run_id": "ovio-run-1791804176",
+          "task_id": "CAND-EX-0001",
+          "candidate_vendor": "BREAKTHROUGH URBAN MINISTRIES, INC.",
+          "amount_at_risk_usd": 27380.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Invoice numbers CVIP255012616 and CVIP255001795 are substantially different alphanumeric strings that do not follow a known transcription pattern or canonical variant structure. Despite matching vendor, amount, PO, and department, the distinct invoice numbers represent separate authorized vouchers and must not be conflated as duplicate payments.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804176:CAND-EX-0002",
+          "run_id": "ovio-run-1791804176",
+          "task_id": "CAND-EX-0002",
+          "candidate_vendor": "CHICAGO DESIGN MUSEUM",
+          "amount_at_risk_usd": 7000.0,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions share identical vendor (CHICAGO DESIGN MUSEUM), amount ($7000), date (2019), and PO number (112510), with no distinguishing invoice numbers, descriptions, or line-item splits to justify separate disbursements. This represents an unjustified duplicate payment.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804176:CAND-EX-0003",
+          "run_id": "ovio-run-1791804176",
+          "task_id": "CAND-EX-0003",
+          "candidate_vendor": "HEARTLAND HUMAN CARE SERVICES, INC.",
+          "amount_at_risk_usd": 342935.35,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.45,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions lack invoice numbers entirely (empty/null fields), preventing substantive invoice comparison required by anti-hallucination rules. Without distinct invoice identifiers, vendor names, amounts, dates, and PO numbers alone are insufficient to establish a true duplicate; these fields could represent authorized separate disbursements, split allocations, or system data gaps.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804202:CAND-EX-0001",
+          "run_id": "ovio-run-1791804202",
+          "task_id": "CAND-EX-0001",
+          "candidate_vendor": "BREAKTHROUGH URBAN MINISTRIES, INC.",
+          "amount_at_risk_usd": 27380.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Invoice numbers CVIP255012616 and CVIP255001795 are substantially different alphanumeric strings that do not follow a known transcription pattern or canonical variant structure. Despite matching vendor, amount, PO, and department, the distinct invoice numbers represent separate authorized vouchers and must not be conflated as duplicate payments.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804202:CAND-EX-0002",
+          "run_id": "ovio-run-1791804202",
+          "task_id": "CAND-EX-0002",
+          "candidate_vendor": "CHICAGO DESIGN MUSEUM",
+          "amount_at_risk_usd": 7000.0,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions share identical vendor (CHICAGO DESIGN MUSEUM), amount ($7000), date (2019), and PO number (112510), with no distinguishing invoice numbers, descriptions, or line-item splits to justify separate disbursements. This represents an unjustified duplicate payment.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804202:CAND-EX-0003",
+          "run_id": "ovio-run-1791804202",
+          "task_id": "CAND-EX-0003",
+          "candidate_vendor": "HEARTLAND HUMAN CARE SERVICES, INC.",
+          "amount_at_risk_usd": 342935.35,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.45,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions lack invoice numbers entirely (empty/null fields), preventing definitive duplicate adjudication under strict invoice comparison rules. Without invoice identifiers, vendor name, amount, date, and PO alone are insufficient to establish a true duplicate, as these fields may represent distinct authorized vouchers or separate distribution lines under the same purchase order.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804220:CAND-EX-0001",
+          "run_id": "ovio-run-1791804220",
+          "task_id": "CAND-EX-0001",
+          "candidate_vendor": "SNOWFLAKE COMPUTING INC",
+          "amount_at_risk_usd": 18450.0,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.98,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions share identical invoice INV-SNOW-89211, vendor SNOWFLAKE COMPUTING INC, amount $18450.00, and PO-99120, representing an unjustified duplicate disbursement for the same Cloud Data Platform Enterprise Capacity service despite different department coding and a 7-day date variance.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804220:CAND-EX-0002",
+          "run_id": "ovio-run-1791804220",
+          "task_id": "CAND-EX-0002",
+          "candidate_vendor": "DELOITTE CONSULTING LLP",
+          "amount_at_risk_usd": 42000.0,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.98,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions share identical invoice number INV-DEL-88100, vendor DELOITTE CONSULTING LLP, exact amount $42,000.00, and matching PO-96400 for the same ERP SAP S/4HANA Migration Consulting service. The four-day date variance and different department coding do not justify a legitimate separate disbursement of an identical invoice.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804256:CAND-EX-0015",
+          "run_id": "ovio-run-1791804256",
+          "task_id": "CAND-EX-0015",
+          "candidate_vendor": "UNIV OF TULSA",
+          "amount_at_risk_usd": 6048.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.65,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions lack invoice numbers entirely, preventing definitive duplicate adjudication. While vendor, amount, date, and department are identical, the distinct transaction IDs (01907278 vs 01907279) and absence of corroborating invoice or PO documentation suggest these may represent separate authorized disbursements or system records requiring manual verification.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804256:CAND-EX-0016",
+          "run_id": "ovio-run-1791804256",
+          "task_id": "CAND-EX-0016",
+          "candidate_vendor": "PERSIMMON RIDGE MGMT LLC",
+          "amount_at_risk_usd": 10833.33,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions are identical: same vendor (PERSIMMON RIDGE MGMT LLC), identical amount ($10,833.33), same date (07/10/2020), same department (OKLAHOMA STATE UNIVERSITY), and both lack invoice numbers. The sequential transaction IDs (01895056 vs 01895057) and matching all other fields indicate an unjustified duplicate disbursement.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804752:CAND-EX-0003",
+          "run_id": "ovio-run-1791804752",
+          "task_id": "CAND-EX-0003",
+          "candidate_vendor": "CENTER FOR THE PACIFIC ASIAN FAMILY INC",
+          "amount_at_risk_usd": 12818.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.95,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Invoice 212410021D294 and invoice 2124424210232 are completely different alphanumeric strings that do not conform to known transcription patterns or canonical variants. These represent distinct authorized vouchers and must not be conflated as duplicate payments despite matching vendor, amount, PO, and date.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804752:CAND-EX-0004",
+          "run_id": "ovio-run-1791804752",
+          "task_id": "CAND-EX-0004",
+          "candidate_vendor": "MUNICIPAL EMERGENCY SERVICES INC.",
+          "amount_at_risk_usd": 386969.72,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Transactions A and B share identical vendor, amount, and description but are governed by distinct purchase orders (CPO38240000475670 vs CPO38240000475699) and carry substantially different invoice numbers (38240000068056 vs 38240000070447). These represent two authorized separate procurements for identical Firedex turnout equipment under different PO authorizations.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804752:CAND-EX-0005",
+          "run_id": "ovio-run-1791804752",
+          "task_id": "CAND-EX-0005",
+          "candidate_vendor": "UNITED RIGGERS/ERECTORS INC",
+          "amount_at_risk_usd": 9900.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Invoice numbers 4024100408250 and 4024100408251 are sequential but represent distinct authorized work orders (WO#H9140100 vs WO#H0550100) at different project sites under the same PO. The descriptions reference different Notice-to-Proceed numbers (NTP#3037 vs NTP#3038) and distinct locations, indicating separate rigging and transportation services.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804777:CAND-EX-0001",
+          "run_id": "ovio-run-1791804777",
+          "task_id": "CAND-EX-0001",
+          "candidate_vendor": "BREAKTHROUGH URBAN MINISTRIES, INC.",
+          "amount_at_risk_usd": 27380.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Invoice numbers CVIP255012616 and CVIP255001795 are substantially different alphanumeric strings that do not follow a known transcription pattern or canonical variant structure. Despite matching vendor, amount, PO, and department, the distinct invoice numbers represent separate authorized vouchers and must not be conflated as duplicate payments.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804777:CAND-EX-0002",
+          "run_id": "ovio-run-1791804777",
+          "task_id": "CAND-EX-0002",
+          "candidate_vendor": "CHICAGO DESIGN MUSEUM",
+          "amount_at_risk_usd": 7000.0,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions share identical vendor (CHICAGO DESIGN MUSEUM), amount ($7000), date (2019), and PO number (112510), with no distinguishing invoice numbers, descriptions, or line-item splits to justify separate disbursements. This represents an unjustified duplicate payment.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804777:CAND-EX-0003",
+          "run_id": "ovio-run-1791804777",
+          "task_id": "CAND-EX-0003",
+          "candidate_vendor": "HEARTLAND HUMAN CARE SERVICES, INC.",
+          "amount_at_risk_usd": 342935.35,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.45,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions lack invoice numbers entirely (empty/null fields), preventing substantive invoice comparison required by anti-hallucination rules. Without distinct invoice identifiers, vendor names, amounts, dates, and PO numbers alone are insufficient to establish a true duplicate; these fields could represent authorized separate disbursements, split allocations, or system data gaps.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804799:CAND-EX-0001",
+          "run_id": "ovio-run-1791804799",
+          "task_id": "CAND-EX-0001",
+          "candidate_vendor": "SNOWFLAKE COMPUTING INC",
+          "amount_at_risk_usd": 18450.0,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.98,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions share identical invoice INV-SNOW-89211, vendor SNOWFLAKE COMPUTING INC, amount $18450.00, and PO-99120, representing an unjustified duplicate disbursement for the same Cloud Data Platform Enterprise Capacity service despite different department coding and a 7-day date variance.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804799:CAND-EX-0002",
+          "run_id": "ovio-run-1791804799",
+          "task_id": "CAND-EX-0002",
+          "candidate_vendor": "DELOITTE CONSULTING LLP",
+          "amount_at_risk_usd": 42000.0,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.98,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions share identical invoice number INV-DEL-88100, vendor DELOITTE CONSULTING LLP, exact amount $42,000.00, and matching PO-96400 for the same ERP SAP S/4HANA Migration Consulting service. The four-day date variance and different department coding do not justify a legitimate separate disbursement of an identical invoice.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804816:CAND-EX-0015",
+          "run_id": "ovio-run-1791804816",
+          "task_id": "CAND-EX-0015",
+          "candidate_vendor": "UNIV OF TULSA",
+          "amount_at_risk_usd": 6048.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.65,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions lack invoice numbers entirely, preventing definitive duplicate adjudication. While vendor, amount, date, and department are identical, the distinct transaction IDs (01907278 vs 01907279) and absence of corroborating invoice or PO documentation suggest these may represent separate authorized disbursements or system records requiring manual verification.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791804816:CAND-EX-0016",
+          "run_id": "ovio-run-1791804816",
+          "task_id": "CAND-EX-0016",
+          "candidate_vendor": "PERSIMMON RIDGE MGMT LLC",
+          "amount_at_risk_usd": 10833.33,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions are identical: same vendor (PERSIMMON RIDGE MGMT LLC), identical amount ($10,833.33), same date (07/10/2020), same department (OKLAHOMA STATE UNIVERSITY), and both lack invoice numbers. The sequential transaction IDs (01895056 vs 01895057) and matching all other fields indicate an unjustified duplicate disbursement.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791806729:CAND-EX-0001",
+          "run_id": "ovio-run-1791806729",
+          "task_id": "CAND-EX-0001",
+          "candidate_vendor": "BREAKTHROUGH URBAN MINISTRIES, INC.",
+          "amount_at_risk_usd": 27380.0,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Invoice numbers CVIP255012616 and CVIP255001795 are substantially different alphanumeric strings that do not follow a known transcription pattern or canonical variant structure. Despite matching vendor, amount, PO, and department, the distinct invoice numbers represent separate authorized vouchers and must not be conflated as duplicate payments.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791806729:CAND-EX-0002",
+          "run_id": "ovio-run-1791806729",
+          "task_id": "CAND-EX-0002",
+          "candidate_vendor": "CHICAGO DESIGN MUSEUM",
+          "amount_at_risk_usd": 7000.0,
+          "action_taken": "AUTHORIZE_CLAWBACK",
+          "is_duplicate": true,
+          "confidence_score": 0.92,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions share identical vendor (CHICAGO DESIGN MUSEUM), amount ($7000), date (2019), and PO number (112510), with no distinguishing invoice numbers, descriptions, or line-item splits to justify separate disbursements. This represents an unjustified duplicate payment.",
+          "evidence_digest": "digest-verified"
+        },
+        {
+          "decision_key": "ovio-run-1791806729:CAND-EX-0003",
+          "run_id": "ovio-run-1791806729",
+          "task_id": "CAND-EX-0003",
+          "candidate_vendor": "HEARTLAND HUMAN CARE SERVICES, INC.",
+          "amount_at_risk_usd": 342935.35,
+          "action_taken": "DISMISS",
+          "is_duplicate": false,
+          "confidence_score": 0.45,
+          "routing_tier": "claude-3-haiku",
+          "tools_called_count": 4,
+          "tools_called": "fetch_vendor_history, check_sibling_distribution, verify_draw_schedule, verify_clawback_guardrail",
+          "pruned_at_zero_tokens": false,
+          "decision_rationale": "Both transactions lack invoice numbers entirely (empty/null fields), preventing definitive duplicate adjudication under strict invoice comparison rules. Without invoice identifiers, vendor name, amount, date, and PO alone are insufficient to establish a true duplicate, as these fields may represent distinct authorized vouchers or separate distribution lines under the same purchase order.",
+          "evidence_digest": "digest-verified"
+        }
+      ]
+    },
+    "Pricing_Assumptions": {
+      "columns": [
+        {
+          "id": "model_id",
+          "name": "Model Identifier",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "provider",
+          "name": "Provider / Platform",
+          "type": "string"
+        },
+        {
+          "id": "input_per_1m_usd",
+          "name": "Input / 1M Tokens ($)",
+          "type": "currency",
+          "format": "$#,##0.00"
+        },
+        {
+          "id": "output_per_1m_usd",
+          "name": "Output / 1M Tokens ($)",
+          "type": "currency",
+          "format": "$#,##0.00"
+        },
+        {
+          "id": "contingency_fee_pct",
+          "name": "Contingency Fee Rate",
+          "type": "percentage",
+          "format": "0.0%"
+        },
+        {
+          "id": "auditor_hourly_rate_usd",
+          "name": "Human Auditor Hourly Offset",
+          "type": "currency",
+          "format": "$#,##0.00"
+        },
+        {
+          "id": "rate_source",
+          "name": "Rate Source",
+          "type": "string"
+        },
+        {
+          "id": "as_of_date",
+          "name": "As of Date",
+          "type": "string"
+        },
+        {
+          "id": "is_list_price",
+          "name": "List Price Flag",
+          "type": "boolean"
+        }
+      ],
+      "rows": [
+        {
+          "model_id": "claude-3-haiku",
+          "provider": "Anthropic / AWS Bedrock",
+          "input_per_1m_usd": 0.25,
+          "output_per_1m_usd": 1.25,
+          "contingency_fee_pct": 0.18,
+          "auditor_hourly_rate_usd": 85.0,
+          "rate_source": "Anthropic Official API Rate Card",
+          "as_of_date": "2026-10-01",
+          "is_list_price": true
+        },
+        {
+          "model_id": "nova-lite",
+          "provider": "AWS Bedrock",
+          "input_per_1m_usd": 0.06,
+          "output_per_1m_usd": 0.24,
+          "contingency_fee_pct": 0.18,
+          "auditor_hourly_rate_usd": 85.0,
+          "rate_source": "AWS Bedrock Official Pricing",
+          "as_of_date": "2026-10-01",
+          "is_list_price": true
+        },
+        {
+          "model_id": "gpt-4o-mini",
+          "provider": "OpenAI",
+          "input_per_1m_usd": 0.15,
+          "output_per_1m_usd": 0.6,
+          "contingency_fee_pct": 0.18,
+          "auditor_hourly_rate_usd": 85.0,
+          "rate_source": "OpenAI API Pricing",
+          "as_of_date": "2026-10-01",
+          "is_list_price": true
+        },
+        {
+          "model_id": "gpt-4o",
+          "provider": "OpenAI",
+          "input_per_1m_usd": 2.5,
+          "output_per_1m_usd": 10.0,
+          "contingency_fee_pct": 0.18,
+          "auditor_hourly_rate_usd": 85.0,
+          "rate_source": "OpenAI API Pricing",
+          "as_of_date": "2026-10-01",
+          "is_list_price": true
+        },
+        {
+          "model_id": "claude-3-5-sonnet",
+          "provider": "Anthropic",
+          "input_per_1m_usd": 3.0,
+          "output_per_1m_usd": 15.0,
+          "contingency_fee_pct": 0.18,
+          "auditor_hourly_rate_usd": 85.0,
+          "rate_source": "Anthropic Official API Rate Card",
+          "as_of_date": "2026-10-01",
+          "is_list_price": true
+        }
+      ]
+    }
+  },
+  "ari_context_metadata": {
+    "scenario_title": "OVIO Treasury Ledger & Inference Control",
+    "scenario_markdown": "# CFO.ai Scenario Context Guide for Ari: OVIO Autonomous AP Audit Ledger\n\n### Executive Overview for Finance Leadership:\n- **Application:** OVIO Autonomous AP & Treasury Recovery Agent\n- **Scenario Role:** Treasury Recovery Ledger & AI Inference Cost Control\n- **Total Validated Recoveries:** $533,320.01\n- **Earned Contingency Revenue:** $95,997.60 (18% contingency rate)\n- **Cumulative Inference COGS:** $0.02324 (Measured from live Neatlogs spans)\n- **Blended Token ROI:** 22,948,365x cash recovery per dollar of AI compute\n\n---\n\n### Data Contracts & Table Interpretation:\n\n1. **`Audit_Run_Ledger`**:\n   - Contains immutable, run-level records of each completed AP ledger audit.\n   - **`cost_type = 'measured_telemetry'`**: Indicates tokens are empirical measurements recorded via OpenInference spans in Neatlogs (Trace IDs match `https://app.neatlogs.com/traces/<trace_id>`).\n   - **`cost_type = 'list_price_estimate'`**: Indicates token consumption was derived using rate card formulas.\n\n2. **`Adjudication_Decision_Trail`**:\n   - Contains granular per-candidate-pair forensic findings.\n   - **`pruned_at_zero_tokens = True`**: The pair was identified as a legitimate recurring charge, credit memo, or line-item split during deterministic Stage 1 filtering. Zero LLM prompt tokens were consumed.\n   - **`routing_tier`**: Records the model invoked for ambiguous forensic analysis (`claude-3-haiku` by default for cost efficiency).\n\n3. **`Pricing_Assumptions`**:\n   - Contains official API rate cards for what-if repricing simulations.\n   - All rate entries list provider, asOf dates, and list-price indicators.\n\n---\n\n### Key Caveats for Ari When Answering CFO Inquiries:\n- **Do not invent missing token data:** If a run does not include explicit measured tokens, identify it as a list-price estimate.\n- **Contingency is post-recovery:** 18% contingency fees are collected post-clawback; they are not deducted upfront from client treasury cash.\n- **Zero-token dismissals:** When asked why false alarm candidates cost $0, explain that deterministic hash-bucket blocking pruned them before LLM dispatch.",
+    "summary_metrics": {
+      "total_runs_indexed": 14,
+      "total_decisions_indexed": 31,
+      "total_gross_recovered_usd": 533320.01,
+      "total_contingency_earned_usd": 95997.6,
+      "total_measured_cogs_usd": 0.02324
+    }
+  }
+}

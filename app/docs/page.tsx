@@ -410,6 +410,64 @@ export default function DocsPage() {
                     </div>
                   </div>
                 </div>
+
+                {/* Official Neatlogs Production Digest & Platform Verification */}
+                <div style={{ marginTop: '16px', background: '#ffffff', border: '1px solid #bbf7d0', borderRadius: '8px', padding: '16px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', flexWrap: 'wrap', gap: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ fontSize: '11px', fontWeight: 800, background: '#dcfce7', color: '#15803d', padding: '2px 8px', borderRadius: '4px' }}>
+                        PLATFORM DIGEST (hello@neatlogs.com)
+                      </span>
+                      <span style={{ fontSize: '13px', fontWeight: 800, color: '#09090b' }}>
+                        Live Production Digest &amp; Error Rate Verification
+                      </span>
+                    </div>
+                    <a
+                      href="https://app.neatlogs.com/home?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240&digestId=c185e9ac-9966-4e36-a513-3fce7f2aa699"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ fontSize: '12px', fontWeight: 700, color: '#15803d', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                    >
+                      Open Live Digest &rarr;
+                    </a>
+                  </div>
+
+                  <p style={{ fontSize: '12px', color: '#52525b', lineHeight: 1.5, margin: '0 0 12px 0' }}>
+                    Official platform notification received from Neatlogs evaluating <code>toufiq&apos;s project</code> across 89 sessions. Confirms <strong>0.0% error rate</strong>, <strong>100% requests without recorded errors</strong>, and <strong>3/3 resolved incidents</strong>:
+                  </p>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '8px', marginBottom: '12px' }}>
+                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '8px 10px', textAlign: 'center' }}>
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>ERROR RATE</div>
+                      <div style={{ fontSize: '16px', fontWeight: 900, color: '#16a34a' }}>0.0%</div>
+                      <div style={{ fontSize: '10px', color: '#94a3b8' }}>was 7.5%</div>
+                    </div>
+                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '8px 10px', textAlign: 'center' }}>
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>REQUEST SUCCESS</div>
+                      <div style={{ fontSize: '16px', fontWeight: 900, color: '#16a34a' }}>100.0%</div>
+                      <div style={{ fontSize: '10px', color: '#94a3b8' }}>31 recorded</div>
+                    </div>
+                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '8px 10px', textAlign: 'center' }}>
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>INCIDENTS RESOLVED</div>
+                      <div style={{ fontSize: '16px', fontWeight: 900, color: '#2563eb' }}>3 of 3</div>
+                      <div style={{ fontSize: '10px', color: '#94a3b8' }}>Board verified</div>
+                    </div>
+                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '8px 10px', textAlign: 'center' }}>
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>ACTIVE SESSIONS</div>
+                      <div style={{ fontSize: '16px', fontWeight: 900, color: '#09090b' }}>89</div>
+                      <div style={{ fontSize: '10px', color: '#94a3b8' }}>all clear now</div>
+                    </div>
+                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '8px 10px', textAlign: 'center' }}>
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>P95 LATENCY</div>
+                      <div style={{ fontSize: '16px', fontWeight: 900, color: '#09090b' }}>15.54s</div>
+                      <div style={{ fontSize: '10px', color: '#94a3b8' }}>8-phase sweep</div>
+                    </div>
+                  </div>
+
+                  <div style={{ fontSize: '11.5px', color: '#475569', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '6px', padding: '8px 12px', lineHeight: 1.45 }}>
+                    <strong>Production Platform Verdict:</strong> &ldquo;The error rate for recorded requests is 0.0%, an improvement from 7.5% in the previous period. Three incidents are now resolved... All clear for now: No incident, anomaly, or alert activity is waiting for review.&rdquo;
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -543,6 +601,49 @@ export default function DocsPage() {
                   </div>
                 </div>
               </div>
+
+              {/* NEW: CFO.AI DECISION-LEVEL LEDGER & ARI INTEGRATION */}
+              <div style={{ background: '#ffffff', border: '1px solid #c7d2fe', borderRadius: '8px', padding: '16px', marginTop: '16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 800, background: '#e0e7ff', color: '#4338ca', padding: '2px 8px', borderRadius: '4px' }}>
+                      CFO.AI DECISION CONTRACT
+                    </span>
+                    <span style={{ fontSize: '14px', fontWeight: 800, color: '#09090b' }}>
+                      Resilient Scenario Provisioning &amp; Ari Query Contract
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '11px', fontWeight: 700, color: '#4338ca', fontFamily: 'monospace' }}>
+                    edit_table_blocks Compliant
+                  </span>
+                </div>
+                <p style={{ fontSize: '12.5px', color: '#52525b', lineHeight: 1.6, margin: '0 0 12px 0' }}>
+                  To enable <strong>Ari</strong> (cfo.ai’s autonomous conversational CFO agent) to answer executive questions with empirical precision, OVIO deploys an append-only, decision-level data contract into cfo.ai scenarios:
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '10px', marginBottom: '12px' }}>
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '10px 14px' }}>
+                    <div style={{ fontSize: '12px', fontWeight: 700, color: '#09090b', marginBottom: '4px' }}>1. Resilient Provisioning</div>
+                    <div style={{ fontSize: '11.5px', color: '#64748b', lineHeight: 1.5 }}>
+                      <code>ovio cfo --provision</code> pre-validates payloads against live <code>edit_table_blocks</code> layouts and immediately verifies table reads post-creation, eliminating silent onboarding failures.
+                    </div>
+                  </div>
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '10px 14px' }}>
+                    <div style={{ fontSize: '12px', fontWeight: 700, color: '#09090b', marginBottom: '4px' }}>2. Idempotent Run Ledgers</div>
+                    <div style={{ fontSize: '11.5px', color: '#64748b', lineHeight: 1.5 }}>
+                      Publishes <code>Audit_Run_Ledger</code> and <code>Adjudication_Decision_Trail</code> with immutable keys (<code>run_id</code> + <code>task_id</code>). Repeats preserve history without duplicate records.
+                    </div>
+                  </div>
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '10px 14px' }}>
+                    <div style={{ fontSize: '12px', fontWeight: 700, color: '#09090b', marginBottom: '4px' }}>3. What-If Model Repricing</div>
+                    <div style={{ fontSize: '11.5px', color: '#64748b', lineHeight: 1.5 }}>
+                      <code>ovio cfo --what-if gpt-4o</code> reprices measured Neatlogs token actuals across candidate models (Nova-Lite, GPT-4o, Sonnet) to project COGS headroom and margins for Ari.
+                    </div>
+                  </div>
+                </div>
+                <div style={{ background: '#fafafa', border: '1px solid #e4e4e7', borderRadius: '6px', padding: '10px 14px', fontSize: '12px', color: '#3f3f46', lineHeight: 1.6 }}>
+                  <strong>Explicit Ari Decision Caveats:</strong> Ari distinguishes measured Neatlogs OpenTelemetry tokens from catalog list-price estimates, understands that contingency fees (18%) are collected post-recovery rather than deducted upfront, and confirms why false alarms cost $0 in prompt tokens due to deterministic $O(N)$ filtering. Run <code>ovio cfo --ari</code> to inspect the full injected prompt guide.
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -634,10 +735,10 @@ export default function DocsPage() {
                     },
                     {
                       cmd: 'ovio cfo',
-                      category: 'Economics & Pricing',
-                      desc: 'Displays CFO.ai commercial pricing tiers (Contingency 18%, Continuous Shield $42k/yr, Enterprise $120k/yr), token ROI multipliers (up to 2.9M:1), and 24-month runway.',
+                      category: 'Economics & Decision Contract',
+                      desc: 'Displays CFO.ai pricing tiers and 24-month runway. Provisions edit_table_blocks scenario tables (--provision), syncs audit runs (--sync), reprices tokens across candidate models (--what-if <model>), and generates Ari query context (--ari).',
                       sponsors: ['cfo.ai'],
-                      output: 'Exports cfo_model.json with 4 error-rate sensitivity tiers and 24-month cash runway projection.'
+                      output: 'Provisions Audit_Run_Ledger & Decision_Trail; reprices token COGS across Haiku, Nova-Lite, and GPT-4o with >99% margin.'
                     },
                     {
                       cmd: 'ovio checkpoint',

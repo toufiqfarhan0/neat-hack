@@ -265,6 +265,7 @@ export default function LandingPage() {
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Check size={14} color="#16a34a" /> <span><strong>Zero-Token Pruning:</strong> Deterministically eliminates 2,146 false-alarm decoys.</span></div>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Check size={14} color="#16a34a" /> <span><strong>Multi-Tool Loop:</strong> Proves PO ceiling breach and flags <strong>$12,818.00</strong> duplicate wire.</span></div>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Check size={14} color="#16a34a" /> <span><strong>Live Neatlogs Trace:</strong> Emits clickable link to inspect all 20 spans.</span></div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Check size={14} color="#16a34a" /> <span><strong>CFO.ai Decision Sync:</strong> Provisions resilient scenario tables &amp; syncs per-candidate rationale for Ari.</span></div>
               </div>
             </div>
 
@@ -358,7 +359,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 4 CORE PILLARS */}
+      {/* 5 CORE ARCHITECTURAL PILLARS */}
       <section style={{ padding: "64px 0", borderBottom: "1px solid #e4e4e7", background: "#ffffff" }}>
         <div className="container" style={{ maxWidth: "1080px" }}>
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
@@ -370,7 +371,7 @@ export default function LandingPage() {
             </h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "20px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
             <div style={{ background: "#fafafa", border: "1px solid #e4e4e7", borderRadius: "10px", padding: "22px" }}>
               <div style={{ width: "36px", height: "36px", borderRadius: "8px", background: "#09090b", color: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px" }}>
                 <Zap size={18} />
@@ -408,6 +409,16 @@ export default function LandingPage() {
               <h3 style={{ fontSize: "16px", fontWeight: 800, color: "#09090b", marginBottom: "6px" }}>4. Neatlogs Tracing</h3>
               <p style={{ fontSize: "13px", color: "#52525b", lineHeight: 1.5 }}>
                 20 OpenInference spans per audit with doctor self-healing fallback, latency attribution, and Entire Git versioning.
+              </p>
+            </div>
+
+            <div style={{ background: "#fafafa", border: "1px solid #e4e4e7", borderRadius: "10px", padding: "22px" }}>
+              <div style={{ width: "36px", height: "36px", borderRadius: "8px", background: "#09090b", color: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px" }}>
+                <TrendingUp size={18} />
+              </div>
+              <h3 style={{ fontSize: "16px", fontWeight: 800, color: "#09090b", marginBottom: "6px" }}>5. CFO.ai Decision Ledger</h3>
+              <p style={{ fontSize: "13px", color: "#52525b", lineHeight: 1.5 }}>
+                Provisions <code>edit_table_blocks</code> scenario tables, logs forensic rationale for Ari, and models what-if token repricing.
               </p>
             </div>
           </div>

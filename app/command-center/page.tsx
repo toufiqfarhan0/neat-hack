@@ -1291,11 +1291,11 @@ export default function CommandCenterPage() {
                       <span style={{ fontSize: "11px", fontFamily: "monospace", fontWeight: 700, color: "#7c3aed", background: "#ede9fe", padding: "2px 6px", borderRadius: "4px" }}>
                         2. ovio cfo
                       </span>
-                      <span style={{ fontSize: "11px", fontWeight: 700, color: "#7c3aed" }}>RUNWAY & TIERS</span>
+                      <span style={{ fontSize: "11px", fontWeight: 700, color: "#7c3aed" }}>DECISION CONTRACT</span>
                     </div>
-                    <div style={{ fontSize: "13.5px", fontWeight: 800, color: "#09090b" }}>24-Month Financial Plan</div>
+                    <div style={{ fontSize: "13.5px", fontWeight: 800, color: "#09090b" }}>Decision Ledger &amp; What-If</div>
                     <div style={{ fontSize: "12px", color: "#64748b", marginTop: "4px", lineHeight: 1.5 }}>
-                      Simulates $1.5M seed capital in native cfo_model.json across 3 pricing tiers (Contingency, Hybrid, Enterprise), proving Month 7-9 break-even.
+                      Provisions <code>edit_table_blocks</code> tables (<code>--provision</code>), syncs runs (<code>--sync</code>), and tests what-if repricing (<code>--what-if gpt-4o</code>) for Ari.
                     </div>
                   </div>
 
@@ -1325,6 +1325,28 @@ export default function CommandCenterPage() {
                     <div style={{ fontSize: "12px", color: "#64748b", marginTop: "4px", lineHeight: 1.5 }}>
                       Verifies SHA-256 evidence digests, Neatlogs trace IDs, and Entire memory checkpoints before authorizing treasury clawback wires.
                     </div>
+                  </div>
+                </div>
+
+                {/* CFO.AI DECISION CONTRACT SHOWCASE BANNER */}
+                <div style={{ marginTop: "16px", background: "#ffffff", border: "1px solid #c7d2fe", borderRadius: "10px", padding: "16px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px", marginBottom: "8px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ fontSize: "11px", fontWeight: 800, background: "#e0e7ff", color: "#4338ca", padding: "2px 8px", borderRadius: "4px" }}>
+                        CFO.AI DECISION CONTRACT
+                      </span>
+                      <span style={{ fontSize: "13px", fontWeight: 800, color: "#09090b" }}>
+                        Ari Executive Q&amp;A Integration &amp; edit_table_blocks Layout
+                      </span>
+                    </div>
+                    <div style={{ display: "flex", gap: "6px" }}>
+                      <code style={{ fontSize: "11px", background: "#f1f5f9", padding: "2px 6px", borderRadius: "4px" }}>ovio cfo --provision</code>
+                      <code style={{ fontSize: "11px", background: "#f1f5f9", padding: "2px 6px", borderRadius: "4px" }}>ovio cfo --what-if gpt-4o</code>
+                      <code style={{ fontSize: "11px", background: "#f1f5f9", padding: "2px 6px", borderRadius: "4px" }}>ovio cfo --ari</code>
+                    </div>
+                  </div>
+                  <div style={{ fontSize: "12px", color: "#64748b", lineHeight: 1.55 }}>
+                    Connects live Neatlogs OpenTelemetry token actuals to cfo.ai scenario tables (<code>Audit_Run_Ledger</code> &amp; <code>Adjudication_Decision_Trail</code>). Allows Ari to answer executive inquiries regarding run ROI, per-vendor clawback rationale, and what-if model repricing headroom while preserving &gt;99% gross margins.
                   </div>
                 </div>
               </div>

@@ -45,8 +45,11 @@ While existing ERP tools claim "100% population testing," they produce thousands
 * **Cloud Repository Mirror**: `/et/gh:mirrors:.../neat-hack` on `aws-ap-south-1.entire.io`.
 
 ### C. cfo.ai (Financial Reality & Unit Economics Modeling)
-* **Scenario Engine**: Embedded directly in `cfo_model.json`, `core/cfo.py`, and `business/`.
-* **Dynamic Drivers**: Models recovery yield across AP volume tiers ($10M to $500M), contingency fees (18%), auditor hourly offsets ($85/hr), and inference COGS ($0.0003 per pair).
+* **Scenario Engine & Decision Contract**: Embedded directly in `cfo_model.json`, `core/cfo.py`, and `core/cfo_sync.py`.
+* **Resilient `edit_table_blocks` Provisioning (`ovio cfo --provision`)**: Pre-validates payloads against supported layout, re-inspects table reads post-creation, and prevents silent onboarding failure.
+* **Append-Only Run & Decision Ledgers**: Emits `Audit_Run_Ledger` and `Adjudication_Decision_Trail` with unambiguous distinction between measured Neatlogs token actuals and list-price catalog assumptions.
+* **What-If Candidate Model Repricing (`ovio cfo --what-if <model>`)**: Reprices observed token consumption on candidate models (`nova-lite`, `gpt-4o`, `claude-3-5-sonnet`) to project gross margin headroom for Ari.
+* **Ari Conversational Context Guide (`ovio cfo --ari`)**: Injects rich semantic scenario guides, column contracts, and zero-token dismissal caveats so Ari can answer CFO-level questions with auditable provenance.
 * **Key Financial Outputs**:
   * **Net Cash Recovered:** $1,024,000 (80% recovery rate on $1.28M leakage)
   * **Annual Agent Operating Cost:** $41,400 (tokens + compute)
