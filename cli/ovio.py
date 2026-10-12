@@ -29,9 +29,21 @@ import typer
 
 # Initialize Typer App
 app = typer.Typer(
-    help="ovio — Autonomous AP & Treasury Recovery Agent powered by Neatlogs, Entire & cfo.ai",
+    help="""[bold #F5EE27]ovio[/bold #F5EE27] — Autonomous AP & Treasury Recovery Agent powered by [bold]Neatlogs[/bold], [bold]Entire[/bold] & [bold]cfo.ai[/bold].
+
+[bold #f9c425]Quick Start Commands:[/bold #f9c425]
+  • [green]ovio run --demo --limit 3 --mode investigator[/green]     Run benchmark Los Angeles recovery sweep
+  • [green]ovio run --file <path.csv>[/green]                          Audit custom municipal or corporate ledger
+  • [green]ovio doctor[/green]                                              Validate live Neatlogs collector reachability & trace stream
+  • [green]ovio cfo[/green]                                                 Display CFO.ai recovery yield, unit economics & token ROI
+  • [green]ovio rescue[/green]                                              Execute autonomous working capital & cashflow rescue
+  • [green]ovio gate[/green]                                                Run pre-flight environment & zero-leakage safety gate
+  • [green]ovio checkpoint[/green]                                          List Entire continuous memory state snapshots
+  • [green]ovio trail[/green]                                               Inspect Entire Trail evaluation harness & runners
+  • [green]ovio graph[/green]                                               Search AST codebase relationships with Entire Graph""",
     add_completion=False,
-    invoke_without_command=True
+    invoke_without_command=True,
+    rich_markup_mode="rich"
 )
 
 # ─────────────────────────────────────────────────────────────
@@ -710,6 +722,34 @@ def run_cmd(
     print(rule())
     print(f" {paint('AUDIT COMPLETE:', GREEN, BOLD)} All traces streamed live to Neatlogs ({result['elapsed_seconds']}s elapsed).")
     shutdown_telemetry()
+    print()
+
+
+@app.command("help")
+def help_cmd(ctx: typer.Context):
+    """
+    Display comprehensive command summary, options, and live execution examples.
+    """
+    print(banner("autonomous accounts payable recovery agent"))
+    print(rule())
+    print(head(" AVAILABLE COMMANDS & USAGE"))
+    print(kv("ovio run", "Run autonomous audit sweep (--file, --demo, --limit, --mode)"))
+    print(kv("ovio doctor", "Probe Neatlogs collector latency & verify telemetry connection"))
+    print(kv("ovio rescue", "Run autonomous cashflow & working capital rescue agent"))
+    print(kv("ovio gate", "Pre-flight verification of repository, datasets & keys"))
+    print(kv("ovio cfo", "Display CFO.ai unit economics, token pricing & ROI model"))
+    print(kv("ovio checkpoint", "List Entire continuous memory audit checkpoints"))
+    print(kv("ovio trail", "Inspect Entire Trail configuration & evaluation runners"))
+    print(kv("ovio graph", "Search codebase AST structure with Entire Graph"))
+    print(rule())
+    print(head(" QUICK EXECUTION EXAMPLES"))
+    print(f"  {paint('ovio run --demo --limit 3 --mode investigator', ACCENT, BOLD)}")
+    print(f"  {paint('ovio run --file data/samples/live_google_download.csv', ACCENT, BOLD)}")
+    print(f"  {paint('ovio doctor', ACCENT, BOLD)}")
+    print(f"  {paint('ovio cfo', ACCENT, BOLD)}")
+    print(f"  {paint('ovio rescue', ACCENT, BOLD)}")
+    print(rule())
+    print(f" {paint('Tip:', SIGNAL, BOLD)} Run {paint('ovio <command> --help', ACCENT)} for flag-level details.")
     print()
 
 

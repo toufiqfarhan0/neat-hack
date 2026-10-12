@@ -9,7 +9,7 @@ cli_dir = root_dir / "cli"
 sys.path.insert(0, str(root_dir))
 sys.path.insert(0, str(cli_dir))
 
-from ovio import app
+from cli.ovio import app
 
 def main():
     app()
