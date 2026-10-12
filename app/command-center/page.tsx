@@ -427,33 +427,61 @@ export default function CommandCenterPage() {
                   type="button"
                   onClick={() => setActiveTab("upload")}
                   style={{
-                    padding: "8px 16px",
+                    padding: "8px 14px",
                     borderRadius: "6px",
                     fontSize: "13px",
                     fontWeight: 700,
                     cursor: "pointer",
                     border: "1px solid " + (activeTab === "upload" ? "#000000" : "#e4e4e7"),
                     background: activeTab === "upload" ? "#000000" : "#ffffff",
-                    color: activeTab === "upload" ? "#ffffff" : "#71717a"
+                    color: activeTab === "upload" ? "#ffffff" : "#71717a",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px"
                   }}
                 >
-                  2. Upload Custom CSV
+                  <span>2. Upload Custom CSV</span>
+                  <span style={{ 
+                    fontSize: "10px", 
+                    fontWeight: 800, 
+                    padding: "2px 6px", 
+                    borderRadius: "4px", 
+                    background: activeTab === "upload" ? "#27272a" : "#f4f4f5", 
+                    color: activeTab === "upload" ? "#ffffff" : "#71717a",
+                    letterSpacing: "0.03em"
+                  }}>
+                    Demo Preview
+                  </span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTab("paste")}
                   style={{
-                    padding: "8px 16px",
+                    padding: "8px 14px",
                     borderRadius: "6px",
                     fontSize: "13px",
                     fontWeight: 700,
                     cursor: "pointer",
                     border: "1px solid " + (activeTab === "paste" ? "#000000" : "#e4e4e7"),
                     background: activeTab === "paste" ? "#000000" : "#ffffff",
-                    color: activeTab === "paste" ? "#ffffff" : "#71717a"
+                    color: activeTab === "paste" ? "#ffffff" : "#71717a",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px"
                   }}
                 >
-                  3. Paste Financial Situation
+                  <span>3. Paste Financial Situation</span>
+                  <span style={{ 
+                    fontSize: "10px", 
+                    fontWeight: 800, 
+                    padding: "2px 6px", 
+                    borderRadius: "4px", 
+                    background: activeTab === "paste" ? "#27272a" : "#f4f4f5", 
+                    color: activeTab === "paste" ? "#ffffff" : "#71717a",
+                    letterSpacing: "0.03em"
+                  }}>
+                    Demo Preview
+                  </span>
                 </button>
               </div>
 
@@ -549,44 +577,114 @@ export default function CommandCenterPage() {
 
             {/* TAB CONTENT 2: FILE UPLOAD */}
             {activeTab === "upload" && (
-              <div style={{ textAlign: "center", padding: "32px", border: "2px dashed #e4e4e7", borderRadius: "10px", background: "#fafafa" }}>
-                <Upload size={36} style={{ margin: "0 auto 12px", color: "#09090b" }} />
-                <h4 style={{ fontSize: "16px", fontWeight: 800, color: "#09090b", margin: "0 0 6px" }}>
-                  Upload your custom invoice ledger CSV
-                </h4>
-                <p style={{ fontSize: "13px", color: "#71717a", maxWidth: "480px", margin: "0 auto 18px", lineHeight: 1.5 }}>
-                  Supports QuickBooks, Xero, NetSuite, SAP, and custom vendor checkbook exports. Once uploaded, you will be automatically moved to the Financial Brief section.
-                </p>
-                <label style={{ 
-                  display: "inline-flex", 
-                  alignItems: "center", 
-                  gap: "8px", 
-                  padding: "11px 22px", 
-                  borderRadius: "8px", 
-                  background: "#000000", 
-                  color: "#ffffff", 
-                  cursor: "pointer", 
-                  fontSize: "13.5px", 
-                  fontWeight: 700 
+              <div>
+                <div style={{
+                  background: "#fffbeb",
+                  border: "1px solid #fde68a",
+                  borderRadius: "10px",
+                  padding: "14px 18px",
+                  marginBottom: "18px",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: "12px"
                 }}>
-                  <Upload size={14} />
-                  <span>Browse CSV Files</span>
-                  <input type="file" accept=".csv" onChange={handleFileUpload} style={{ display: "none" }} />
-                </label>
-
-                {customFile && (
-                  <div style={{ marginTop: "18px", padding: "10px 16px", borderRadius: "8px", background: "#f0fdf4", border: "1px solid #bbf7d0", display: "inline-flex", alignItems: "center", gap: "10px" }}>
-                    <FileSpreadsheet size={16} color="#16a34a" />
-                    <span style={{ fontSize: "13px", fontWeight: 700, color: "#166534" }}>{customFile.name} ({customFile.size})</span>
-                    <button type="button" onClick={() => setCustomFile(null)} style={{ background: "none", border: "none", color: "#71717a", cursor: "pointer", display: "inline-flex", alignItems: "center", padding: 0 }}><X size={14} /></button>
+                  <AlertCircle size={18} color="#d97706" style={{ marginTop: "2px", flexShrink: 0 }} />
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", marginBottom: "4px" }}>
+                      <span style={{ fontSize: "11px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.04em", background: "#fef3c7", color: "#92400e", padding: "2px 8px", borderRadius: "4px" }}>
+                        UI Demo Preview
+                      </span>
+                      <span style={{ fontSize: "13px", fontWeight: 700, color: "#92400e" }}>
+                        Web Uploader is an interactive demo preview — For production audit runs, use the CLI
+                      </span>
+                    </div>
+                    <p style={{ fontSize: "12px", color: "#b45309", margin: "0 0 10px", lineHeight: 1.5 }}>
+                      This browser uploader previews client-side parsing and candidate detection. To run a real autonomous recovery sweep on custom enterprise CSV files with live Neatlogs OpenInference distributed tracing and Entire memory checkpoints, execute the production CLI command below. A full cloud-connected backend web app is on our product roadmap.
+                    </p>
+                    <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
+                      <code style={{ fontSize: "12px", background: "#ffffff", padding: "3px 9px", borderRadius: "5px", border: "1px solid #fcd34d", color: "#09090b", fontFamily: "monospace", fontWeight: 700 }}>
+                        ovio run --file path/to/your_ledger.csv
+                      </code>
+                      <Link href="/docs" style={{ fontSize: "12px", fontWeight: 700, color: "#92400e", textDecoration: "underline", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                        <Terminal size={13} /> View CLI Execution Guide &rarr;
+                      </Link>
+                    </div>
                   </div>
-                )}
+                </div>
+
+                <div style={{ textAlign: "center", padding: "32px", border: "2px dashed #e4e4e7", borderRadius: "10px", background: "#fafafa" }}>
+                  <Upload size={36} style={{ margin: "0 auto 12px", color: "#09090b" }} />
+                  <h4 style={{ fontSize: "16px", fontWeight: 800, color: "#09090b", margin: "0 0 6px" }}>
+                    Upload your custom invoice ledger CSV
+                  </h4>
+                  <p style={{ fontSize: "13px", color: "#71717a", maxWidth: "480px", margin: "0 auto 18px", lineHeight: 1.5 }}>
+                    Supports QuickBooks, Xero, NetSuite, SAP, and custom vendor checkbook exports. Once uploaded, you will be automatically moved to the Financial Brief section.
+                  </p>
+                  <label style={{ 
+                    display: "inline-flex", 
+                    alignItems: "center", 
+                    gap: "8px", 
+                    padding: "11px 22px", 
+                    borderRadius: "8px", 
+                    background: "#000000", 
+                    color: "#ffffff", 
+                    cursor: "pointer", 
+                    fontSize: "13.5px", 
+                    fontWeight: 700 
+                  }}>
+                    <Upload size={14} />
+                    <span>Browse CSV Files</span>
+                    <input type="file" accept=".csv" onChange={handleFileUpload} style={{ display: "none" }} />
+                  </label>
+
+                  {customFile && (
+                    <div style={{ marginTop: "18px", padding: "10px 16px", borderRadius: "8px", background: "#f0fdf4", border: "1px solid #bbf7d0", display: "inline-flex", alignItems: "center", gap: "10px" }}>
+                      <FileSpreadsheet size={16} color="#16a34a" />
+                      <span style={{ fontSize: "13px", fontWeight: 700, color: "#166534" }}>{customFile.name} ({customFile.size})</span>
+                      <button type="button" onClick={() => setCustomFile(null)} style={{ background: "none", border: "none", color: "#71717a", cursor: "pointer", display: "inline-flex", alignItems: "center", padding: 0 }}><X size={14} /></button>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
 
             {/* TAB CONTENT 3: PASTE FINANCIAL BRIEF (EMPTY BOX BY DEFAULT) */}
             {activeTab === "paste" && (
               <div>
+                <div style={{
+                  background: "#fffbeb",
+                  border: "1px solid #fde68a",
+                  borderRadius: "10px",
+                  padding: "14px 18px",
+                  marginBottom: "18px",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: "12px"
+                }}>
+                  <AlertCircle size={18} color="#d97706" style={{ marginTop: "2px", flexShrink: 0 }} />
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", marginBottom: "4px" }}>
+                      <span style={{ fontSize: "11px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.04em", background: "#fef3c7", color: "#92400e", padding: "2px 8px", borderRadius: "4px" }}>
+                        cfo.ai Scenario Preview
+                      </span>
+                      <span style={{ fontSize: "13px", fontWeight: 700, color: "#92400e" }}>
+                        Financial Brief is a UI demo preview — Execute live working capital rescue via CLI
+                      </span>
+                    </div>
+                    <p style={{ fontSize: "12px", color: "#b45309", margin: "0 0 10px", lineHeight: 1.5 }}>
+                      This brief box simulates cfo.ai 90-day cash floor liquidity intervention in the browser. To trigger real automated working capital execution with live telemetry streaming to Neatlogs, run the CLI command below. An enterprise web dashboard with direct banking/ERP webhooks is currently on our product roadmap.
+                    </p>
+                    <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
+                      <code style={{ fontSize: "12px", background: "#ffffff", padding: "3px 9px", borderRadius: "5px", border: "1px solid #fcd34d", color: "#09090b", fontFamily: "monospace", fontWeight: 700 }}>
+                        ovio rescue
+                      </code>
+                      <Link href="/docs" style={{ fontSize: "12px", fontWeight: 700, color: "#92400e", textDecoration: "underline", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                        <Terminal size={13} /> View CLI Rescue Guide &rarr;
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Shows attached file if user uploaded one */}
                 {customFile ? (
                   <div style={{
