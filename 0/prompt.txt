@@ -1,0 +1,114 @@
+done now!!
+
+---
+
+🚨 neatHack submissions open today at 7 PM IST!
+
+You've built something. Now it's almost time to show it off.
+
+⏰ Submission window: 7:00–11:55 PM IST
+
+Here's what you need to do:
+
+1️⃣ Quote-tweet the official @neatlogs launch post on X.
+
+We'll share the link at 7 PM IST.
+
+Your quote-tweet must include tags for @neatlogs, @EntireHQ, and @arithecfo
+
+2️⃣ Complete the submission form.
+
+We'll share that link at 7 PM too.
+
+⚠️ IMPORTANT: Both steps are mandatory. You MUST quote-tweet the official launch post and tag all three accounts. This is the only way our systems can detect your submission. The form alone doesn't count.
+
+⭐ Want bonus points? Make sure your demo video clearly explains the problem you're solving and how your solution works.
+
+🔥 We’ll engage with the first 50 quote-tweets, so get everything ready now!
+
+
+#neatHack SUBMISSIONS ARE OPEN! It's time to show us what you've built. Deadline: 11:55 PM IST tonight STEP 1 — Quote-tweet the official neatlogs launch post [https://x.com/bettersayAJ/status/2109639214723932495](https://x.com/bettersayAJ/status/2109639214723932495) Don’t forget to tag @neatlogs, @EntireHQ, and @arithecfo STEP 2 — Submit your project [https://neatlogs.com/submission](https://neatlogs.com/submission) Fill out the form and paste your quote-tweet link. READ THIS BEFORE SUBMITTING: You MUST: Quote-tweet the official launch post. Tag all three accounts in your quote-tweet. Complete the submission form. Our systems detect submissions using the quote-tweet and tags. Miss either, and your submission won't be detected. Bonus points: Clearly explain your problem statement and solution in your demo video. We’ll engage with the first 50 quote-tweets. Don't wait until the deadline! Submissions close at 11:55 PM IST. Watch this channel for any final cutoff updates. Now go ship something interesting. Good luck!
+
+
+
+
+now i want you to give me an end to end our project don't miss anything like everything i want to show in the demo how we have used the neat logs and how we have used the entrie and also how we have used the cfo ai and there is no limit of the time so we can go upto 3-4 min video!! and i want to record scene by scene give me in a table format 
+
+note: i"ll run the all the commads like how can judge run our app like the cli commads for our app 
+
+
+no more code changes please
+
+---
+
+🚨 neatHack submissions open today at 7 PM IST!
+
+You've built something. Now it's almost time to show it off.
+
+⏰ Submission window: 7:00–11:55 PM IST
+
+Here's what you need to do:
+
+1️⃣ Quote-tweet the official @neatlogs launch post on X.
+
+We'll share the link at 7 PM IST.
+
+Your quote-tweet must include tags for @neatlogs, @EntireHQ, and @arithecfo
+
+2️⃣ Complete the submission form.
+
+We'll share that link at 7 PM too.
+
+⚠️ IMPORTANT: Both steps are mandatory. You MUST quote-tweet the official launch post and tag all three accounts. This is the only way our systems can detect your submission. The form alone doesn't count.
+
+⭐ Want bonus points? Make sure your demo video clearly explains the problem you're solving and how your solution works.
+
+🔥 We’ll engage with the first 50 quote-tweets, so get everything ready now!
+
+
+#neatHack SUBMISSIONS ARE OPEN! It's time to show us what you've built. Deadline: 11:55 PM IST tonight STEP 1 — Quote-tweet the official neatlogs launch post [https://x.com/bettersayAJ/status/2109639214723932495](https://x.com/bettersayAJ/status/2109639214723932495) Don’t forget to tag @neatlogs, @EntireHQ, and @arithecfo STEP 2 — Submit your project [https://neatlogs.com/submission](https://neatlogs.com/submission) Fill out the form and paste your quote-tweet link. READ THIS BEFORE SUBMITTING: You MUST: Quote-tweet the official launch post. Tag all three accounts in your quote-tweet. Complete the submission form. Our systems detect submissions using the quote-tweet and tags. Miss either, and your submission won't be detected. Bonus points: Clearly explain your problem statement and solution in your demo video. We’ll engage with the first 50 quote-tweets. Don't wait until the deadline! Submissions close at 11:55 PM IST. Watch this channel for any final cutoff updates. Now go ship something interesting. Good luck!
+
+
+
+
+now i want you to give me an end to end our project don't miss anything like everything i want to show in the demo how we have used the neat logs and how we have used the entrie and also how we have used the cfo ai and there is no limit of the time so we can go upto 3-4 min video!! and i want to record scene by scene give me in a table format 
+
+note: i"ll run the all the commads like how can judge run our app like the cli commads for our app and importantly you have whole context what we have build 
+
+and also please start with hI guys 
+
+
+no more code changes please
+
+---
+
+PS C:\Users\toufi\Desktop\neatlogs-hack> ovio graph "clawback"                        
+
+ ██████╗ ██╗   ██╗██╗ ██████╗ 
+██╔═══██╗██║   ██║██║██╔═══██╗
+██║   ██║██║   ██║██║██║   ██║
+██║   ██║╚██╗ ██╔╝██║██║   ██║
+╚██████╔╝ ╚████╔╝ ██║╚██████╔╝
+ ╚═════╝   ╚═══╝  ╚═╝ ╚═════╝ 
+
+ ENTIRE GRAPH CODE RELATION SEARCH  v1.0.0
+ INTEGRATED SPONSORS: Neatlogs · Entire · cfo.ai
+────────────────────────────────────────────────────────────────────────
+ ENTIRE GRAPH SEARCH: "clawback"
+────────────────────────────────────────────────────────────────────────
+Exception in thread Thread-1 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Program Files\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "C:\Program Files\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Program Files\Python311\Lib\subprocess.py", line 1597, in _readerthread
+    buffer.append(fh.read())
+                  ^^^^^^^^^
+  File "C:\Program Files\Python311\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 5615: character maps to <undefined>
+ Failed to execute entire-graph: 'NoneType' object has no attribute 'strip'
+
+why this error here

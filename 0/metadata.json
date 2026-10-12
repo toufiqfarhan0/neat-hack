@@ -1,0 +1,47 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4R7ZCVZPXF1MNYKSN208KWA",
+  "session_id": "45f215bc-78e0-4e7b-bedf-b112d4595a4b",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-12T14:23:59.7074899Z",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "cli/ovio.py"
+  ],
+  "agent": "Antigravity",
+  "model": "",
+  "turn_id": "0c68b32da3a5",
+  "checkpoint_transcript_start": 7425,
+  "transcript_lines_at_start": 7425,
+  "session_metrics": {
+    "turn_count": 131
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-12T14:23:59.0812169Z",
+    "agent_lines": 0,
+    "agent_removed": 2,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 1024,
+    "total_committed": 4,
+    "total_lines_changed": 1031,
+    "agent_percentage": 0.19398642095053348,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 1088,
+      "user_lines_removed": 1024,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "data/cfo_scenario_state.json": 1088
+      },
+      "user_removed_per_file": {
+        "data/cfo_scenario_state.json": 1024
+      }
+    }
+  ]
+}
