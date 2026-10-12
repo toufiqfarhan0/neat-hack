@@ -14,7 +14,11 @@ import {
   ExternalLink,
   ChevronRight,
   FileText,
-  DollarSign
+  DollarSign,
+  GitCommit,
+  GitBranch,
+  Search,
+  CheckCircle2
 } from 'lucide-react';
 
 export default function DocsPage() {
@@ -498,6 +502,122 @@ export default function DocsPage() {
                   <li><strong>Live Entire Web Session:</strong> <a href="https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b" target="_blank" rel="noopener noreferrer" style={{ color: '#09090b', fontWeight: 700 }}>Inspect Full Session (53 Checkpoints · 33h Engineering History) on Entire.io ↗</a></li>
                 </ul>
               </div>
+
+              {/* ENTIRE THREE CORE PLATFORM PILLARS */}
+              <div style={{ background: '#ffffff', border: '1px solid #c7d2fe', borderRadius: '8px', padding: '18px', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 800, background: '#e0e7ff', color: '#4338ca', padding: '2px 8px', borderRadius: '4px' }}>
+                      ARCHITECTURE PILLARS
+                    </span>
+                    <span style={{ fontSize: '14px', fontWeight: 800, color: '#09090b' }}>
+                      Checkpoints, Code Graph &amp; Open-Source Agent Tooling
+                    </span>
+                  </div>
+                  <a
+                    href="https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: '12px', fontWeight: 700, color: '#4338ca', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                  >
+                    <span>Inspect 53 Checkpoints Trajectory</span>
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
+                  {/* Pillar 1: Checkpoints */}
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <GitCommit size={15} color="#4338ca" />
+                        <span style={{ fontSize: '13px', fontWeight: 800, color: '#09090b' }}>1. Checkpoints</span>
+                      </div>
+                      <span style={{ fontSize: '10.5px', fontWeight: 800, background: '#dcfce7', color: '#166534', padding: '1px 6px', borderRadius: '4px' }}>
+                        53 SEALED
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', color: '#475569', lineHeight: 1.5, marginBottom: '8px' }}>
+                      <strong>Show progress and key decisions:</strong> 33 hours of continuous engineering history tracking 4 decisive architectural milestones:
+                    </div>
+                    <ul style={{ fontSize: '11px', color: '#64748b', lineHeight: 1.45, margin: '0 0 10px 0', paddingLeft: '16px' }}>
+                      <li>Zero-token O(N) linear hash blocking (eliminates 82% of false alarms)</li>
+                      <li>Transition from brittle single-shot prompting to multi-tool investigator</li>
+                      <li>Neatlogs closed-loop fixes for 3 critical incidents (Scores 74, 64, 71)</li>
+                      <li>cfo.ai Ari decision contract and resilient table provisioning</li>
+                    </ul>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '4px', padding: '6px 8px', fontSize: '11px', fontFamily: 'monospace' }}>
+                      <span>ovio checkpoint</span>
+                      <button 
+                        onClick={() => copyToClipboard('ovio checkpoint')}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: '#64748b' }}
+                      >
+                        {copiedCmd === 'ovio checkpoint' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Pillar 2: entire-graph */}
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <Search size={15} color="#4338ca" />
+                        <span style={{ fontSize: '13px', fontWeight: 800, color: '#09090b' }}>2. entire-graph</span>
+                      </div>
+                      <span style={{ fontSize: '10.5px', fontWeight: 800, background: '#e0e7ff', color: '#3730a3', padding: '1px 6px', borderRadius: '4px' }}>
+                        ZERO EGRESS
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', color: '#475569', lineHeight: 1.5, marginBottom: '8px' }}>
+                      <strong>Find code or assess risky changes:</strong> Native <code>ovio graph &lt;query&gt;</code> CLI command wraps <code>entire graph search</code> locally without sending source code off-premises.
+                    </div>
+                    <ul style={{ fontSize: '11px', color: '#64748b', lineHeight: 1.45, margin: '0 0 10px 0', paddingLeft: '16px' }}>
+                      <li><strong>Find Code:</strong> Traverses dependencies across <code>core/blocking.py</code>, <code>core/investigator.py</code>, and <code>core/cfo.py</code> in sub-second time.</li>
+                      <li><strong>Assess Risky Changes:</strong> Evaluates downstream impacts before mutating treasury clawback thresholds or <code>guardrail.clawback_gate</code>.</li>
+                    </ul>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '4px', padding: '6px 8px', fontSize: '11px', fontFamily: 'monospace' }}>
+                      <span>ovio graph &quot;clawback&quot;</span>
+                      <button 
+                        onClick={() => copyToClipboard('ovio graph "clawback"')}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: '#64748b' }}
+                      >
+                        {copiedCmd === 'ovio graph "clawback"' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Pillar 3: Open-source builds */}
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <Terminal size={15} color="#4338ca" />
+                        <span style={{ fontSize: '13px', fontWeight: 800, color: '#09090b' }}>3. Open-Source Builds</span>
+                      </div>
+                      <span style={{ fontSize: '10.5px', fontWeight: 800, background: '#fef3c7', color: '#92400e', padding: '1px 6px', borderRadius: '4px' }}>
+                        CLI &amp; AGENT
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', color: '#475569', lineHeight: 1.5, marginBottom: '8px' }}>
+                      <strong>Working features on Entire CLI &amp; External Agents:</strong> Production features built directly on Entire protocols:
+                    </div>
+                    <ul style={{ fontSize: '11px', color: '#64748b', lineHeight: 1.45, margin: '0 0 10px 0', paddingLeft: '16px' }}>
+                      <li>Custom envelope generator in <code>core/checkpoint.py</code> implementing <code>entire.io/checkpoint/v1</code></li>
+                      <li>CLI commands <code>ovio checkpoint</code>, <code>ovio trail</code>, and <code>ovio graph</code> in <code>cli/ovio.py</code></li>
+                      <li>6 active evaluators in <code>.entire/runners/</code> testing confidence, drift, risk, and security</li>
+                      <li>Git trailer hook integration in <code>.entire/settings.json</code> with <code>&quot;commit_linking&quot;: &quot;always&quot;</code></li>
+                    </ul>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '4px', padding: '6px 8px', fontSize: '11px', fontFamily: 'monospace' }}>
+                      <span>ovio trail</span>
+                      <button 
+                        onClick={() => copyToClipboard('ovio trail')}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: '#64748b' }}
+                      >
+                        {copiedCmd === 'ovio trail' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* 3. cfo.ai */}
@@ -642,6 +762,64 @@ export default function DocsPage() {
                 </div>
                 <div style={{ background: '#fafafa', border: '1px solid #e4e4e7', borderRadius: '6px', padding: '10px 14px', fontSize: '12px', color: '#3f3f46', lineHeight: 1.6 }}>
                   <strong>Explicit Ari Decision Caveats:</strong> Ari distinguishes measured Neatlogs OpenTelemetry tokens from catalog list-price estimates, understands that contingency fees (18%) are collected post-recovery rather than deducted upfront, and confirms why false alarms cost $0 in prompt tokens due to deterministic $O(N)$ filtering. Run <code>ovio cfo --ari</code> to inspect the full injected prompt guide.
+                </div>
+              </div>
+
+              {/* ARI LIVE STRESS-TEST FINDINGS */}
+              <div style={{ background: '#ffffff', border: '1px solid #bbf7d0', borderRadius: '8px', padding: '16px', marginTop: '16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', flexWrap: 'wrap', gap: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 800, background: '#dcfce7', color: '#15803d', padding: '2px 8px', borderRadius: '4px' }}>
+                      CFO.AI LIVE VALIDATION
+                    </span>
+                    <span style={{ fontSize: '14px', fontWeight: 800, color: '#09090b' }}>
+                      Ari (AI CFO) Live Stress-Test &amp; Financial Model Verdicts
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '11px', fontWeight: 700, color: '#16a34a', fontFamily: 'monospace' }}>
+                    Validated on cfo.ai
+                  </span>
+                </div>
+                <p style={{ fontSize: '12.5px', color: '#52525b', lineHeight: 1.5, margin: '0 0 12px 0' }}>
+                  Interactive scenario modeling on <strong>cfo.ai</strong> with <strong>Ari</strong> (the autonomous AI CFO) benchmarked OVIO against institutional recovery standards (PRGX, Apexanalytix) and confirmed unit economics:
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '10px', marginBottom: '12px' }}>
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '10px 14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#09090b' }}>5.2x LTV/CAC Growth Engine</span>
+                      <span style={{ fontSize: '10.5px', fontWeight: 800, background: '#dcfce7', color: '#166534', padding: '1px 5px', borderRadius: '4px' }}>TIER 2</span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', color: '#64748b', lineHeight: 1.5 }}>
+                      Ari evaluated our 3 tiers and determined Tier 2 (Continuous Treasury Shield, $42k/yr + 10%) has the highest acquisition efficiency at <strong>5.2x LTV/CAC</strong> ($104,251 net contribution after CAC). Recommended Year 1 mix: <strong>50% Tier 1 / 40% Tier 2 / 10% Tier 3</strong>.
+                    </div>
+                  </div>
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '10px 14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#09090b' }}>5.6x Inference Explosion Shield</span>
+                      <span style={{ fontSize: '10.5px', fontWeight: 800, background: '#e0e7ff', color: '#3730a3', padding: '1px 5px', borderRadius: '4px' }}>ARCHITECTURE</span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', color: '#64748b', lineHeight: 1.5 }}>
+                      Ari analyzed model upgrades and proved that our deterministic O(N) blocking prevents a <strong>5.6x surge in model calls</strong>. With loaded human controller review at $80/hr ($1.33/min), blocking false alarms protects operational gross margins from eroding.
+                    </div>
+                  </div>
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '10px 14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#09090b' }}>$1.22M Cash Safety Trough</span>
+                      <span style={{ fontSize: '10.5px', fontWeight: 800, background: '#fef3c7', color: '#92400e', padding: '1px 5px', borderRadius: '4px' }}>MONTH 7–9 BREAK-EVEN</span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', color: '#64748b', lineHeight: 1.5 }}>
+                      In our 24-month seed projection ($1.5M seed), Ari verified that with a 2-month collection lag, only $280,000 is consumed at the trough (leaving <strong>$1.22M in cash reserves</strong> at Month 8) before cash-flow break-even. Supports <strong>21.6 months</strong> with zero revenue.
+                    </div>
+                  </div>
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '10px 14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#09090b' }}>AR-First Liquidity Rescue</span>
+                      <span style={{ fontSize: '10.5px', fontWeight: 800, background: '#f3e8ff', color: '#6b21a8', padding: '1px 5px', borderRadius: '4px' }}>90-DAY RESCUE</span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', color: '#64748b', lineHeight: 1.5 }}>
+                      Ari stress-tested <code>ovio rescue</code> and recommended AR-first collection outreach with parallel AP vendor extensions, incorporating rolling 13-week cash forecasting to prevent the day-60 cash cliff.
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

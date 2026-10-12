@@ -38,11 +38,25 @@ While existing ERP tools claim "100% population testing," they produce thousands
   * **[Multi-Tool Investigator Trace (20 Spans)](https://app.neatlogs.com/traces/3d720906babf7ed470e690f68c4eedc5?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)**
   * **[Single-Shot Baseline Trace (11 Spans)](https://app.neatlogs.com/traces/dd024eda5ca251867f7f23cf768e6651?orgId=9cfd22d9-563d-4c78-a34b-221750ec3bcf&projectId=b789b79e-7320-4c15-a378-4cf7cfb8d240)**
 
-### B. Entire.io (Continuous Agent Provenance & Checkpoint Memory)
+### B. Entire.io (Continuous Agent Provenance, Code Graph & Open Tooling)
 * **Session Tracking**: Tracked under Antigravity CLI / IDE session `45f215bc-78e0-4e7b-bedf-b112d4595a4b`.
 * **27 Checkpoints Captured on `main`**: Every single commit automatically carries an `Entire-Checkpoint: <ID>` Git trailer linked to the session's prompt turns, tool calls, code diffs, and 6 Trail evaluators.
 * **Submission Session URL**: [https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b](https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b) (Full Interactive Trajectory with 53 Checkpoints).
 * **Cloud Repository Mirror**: `/et/gh:mirrors:.../neat-hack` on `aws-ap-south-1.entire.io`.
+
+#### Core Entire Platform Pillars:
+1. **Checkpoints (Show Progress & Key Decisions)**:
+   - Tracks 33 hours of continuous engineering progress across **53 session checkpoints**.
+   - Captures 4 decisive architectural milestones: $O(N)$ zero-token decoy pruning, multi-tool investigator transition, 3 closed-loop Neatlogs incident fixes (Scores 74, 64, 71), and cfo.ai Ari decision contract.
+   - CLI verification: `ovio checkpoint` and `ovio checkpoint --explain <id>`.
+2. **entire-graph (Find Code or Assess Risky Changes)**:
+   - Native Typer command: `ovio graph "<query>"` wraps `entire graph search --query <query> --repo . --format text` without code egress.
+   - Used to navigate complex cross-file AP logic and assess risk before modifying treasury clawback guardrails (`guardrail.clawback_gate`).
+   - Implementation: [`cli/ovio.py#L394-L430`](cli/ovio.py#L394-L430).
+3. **Open-Source Builds (Working CLI & Evaluators)**:
+   - Custom `entire.io/checkpoint/v1` envelope engine in [`core/checkpoint.py`](core/checkpoint.py).
+   - 6 active evaluators in [`.entire/runners/`](.entire/runners/) (`trail-confidence`, `trail-drift`, `trail-review`, `trail-risk`, `trail-security`, `trail-summary`).
+   - CLI commands `ovio checkpoint`, `ovio trail`, `ovio graph`. Git trailer auto-linking in [`.entire/settings.json`](.entire/settings.json).
 
 ### C. cfo.ai (Financial Reality & Unit Economics Modeling)
 * **Scenario Engine & Decision Contract**: Embedded directly in `cfo_model.json`, `core/cfo.py`, and `core/cfo_sync.py`.
@@ -50,13 +64,17 @@ While existing ERP tools claim "100% population testing," they produce thousands
 * **Append-Only Run & Decision Ledgers**: Emits `Audit_Run_Ledger` and `Adjudication_Decision_Trail` with unambiguous distinction between measured Neatlogs token actuals and list-price catalog assumptions.
 * **What-If Candidate Model Repricing (`ovio cfo --what-if <model>`)**: Reprices observed token consumption on candidate models (`nova-lite`, `gpt-4o`, `claude-3-5-sonnet`) to project gross margin headroom for Ari.
 * **Ari Conversational Context Guide (`ovio cfo --ari`)**: Injects rich semantic scenario guides, column contracts, and zero-token dismissal caveats so Ari can answer CFO-level questions with auditable provenance.
-* **Key Financial Outputs**:
+* **Key Financial Outputs & Ari Live Platform Validation**:
   * **Net Cash Recovered:** $1,024,000 (80% recovery rate on $1.28M leakage)
   * **Annual Agent Operating Cost:** $41,400 (tokens + compute)
   * **Net Annual Value Created:** $982,600
-  * **ROI Multiple:** 24.7x
-  * **Payback Period:** 14.6 days
-  * **EBITDA Lift:** +0.48%
+  * **ROI Multiple:** 24.7x Enterprise ROI | **Payback Period:** 14.6 days | **EBITDA Lift:** +0.48%
+* **Live Stress-Testing with Ari (cfo.ai AI CFO)**:
+  * **18% Contingency Fee Validation**: Verified against PRGX 10–40% industry recovery benchmarks when billed on settled cash refunds.
+  * **5.2x LTV/CAC Growth Engine**: Identified Tier 2 (Continuous Treasury Shield) as the primary growth engine ($104k net contribution after CAC) with a recommended Year 1 mix of 50% Tier 1 / 40% Tier 2 / 10% Tier 3.
+  * **5.6x Inference Explosion Shield**: Proved that deterministic O(N) hash blocking prevents a 5.6x surge in model calls, protecting operational margins given $80/hr human review costs.
+  * **$1.22M Cash Trough at Break-Even**: Confirmed that our $1.5M seed consumes only $280k at the cash trough (Month 8 balance = $1.22M) before achieving sustained break-even at Month 7–9 (supports 21.6 months at zero revenue).
+  * **AR-First Liquidity Rescue**: Evaluated `ovio rescue` and established an AR-first collection outreach with parallel AP vendor extensions to defend cash floors past the day-60 cash cliff.
 
 ---
 

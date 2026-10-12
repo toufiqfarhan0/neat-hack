@@ -416,9 +416,9 @@ export default function LandingPage() {
               <div style={{ width: "36px", height: "36px", borderRadius: "8px", background: "#09090b", color: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px" }}>
                 <TrendingUp size={18} />
               </div>
-              <h3 style={{ fontSize: "16px", fontWeight: 800, color: "#09090b", marginBottom: "6px" }}>5. CFO.ai Decision Ledger</h3>
+              <h3 style={{ fontSize: "16px", fontWeight: 800, color: "#09090b", marginBottom: "6px" }}>5. CFO.ai &amp; Ari Decision Model</h3>
               <p style={{ fontSize: "13px", color: "#52525b", lineHeight: 1.5 }}>
-                Provisions <code>edit_table_blocks</code> scenario tables, logs forensic rationale for Ari, and models what-if token repricing.
+                Validated live by Ari on cfo.ai: confirms 5.2x LTV/CAC on Tier 2, 5.6x inference explosion shield, and a $1.22M cash safety trough at Month 7–9 break-even.
               </p>
             </div>
           </div>

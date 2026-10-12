@@ -657,10 +657,42 @@ The Neatlogs cloud observability platform continuously evaluates live audit requ
   - `trail-summary.json`: Verifies executive findings summary integrity.
 * **Zero-Egress Code Graph Search (`ovio graph`)**: Queries semantic codebase relations and structural dependencies without transmitting repository code off-premises.
 
-#### How Effectively We Are Using Entire:
-* **Immutable Regulatory Replay**: Treasury clawbacks require evidence that withstands court or inspector general review. Any Entire checkpoint can be retrieved months later to prove the exact code version, raw ledger inputs, and model reasoning that cleared innocent vendors.
-* **Session Provenance**: Bound to Antigravity session `45f215bc-78e0-4e7b-bedf-b112d4595a4b` across 27+ Git commit checkpoints.
-* **Live Submission Link**: **[View Full Session (53 Checkpoints · 33h Engineering History)](https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b)**.
+#### Deep Sponsor Integration Breakdown:
+
+##### 1. Checkpoints — Progress & Key Decisions
+* **Continuous Engineering Trajectory**: Fully tracked across **53 session checkpoints** spanning 33 hours of continuous engineering history on the Entire cloud mirror.
+* **Key Decisions Documented in Checkpoints**:
+  1. *Zero-Token Pruning*: Implementing $O(N)$ linear hash blocking to eliminate 82% of false-alarm decoys before invoking LLM inference.
+  2. *Autonomous Multi-Tool Investigator*: Transitioning from single-shot LLM prompting to multi-tool verification (PO ceilings, draw schedules, sibling distribution).
+  3. *Neatlogs Closed-Loop Remediation*: Resolving 3 production incidents (Score 74 JSON schema drift, Score 64 line-splits, Score 71 canonical invoice matching).
+  4. *cfo.ai Ari Decision Contract*: Provisioning idempotent `edit_table_blocks` tables and append-only decision trail for Ari.
+* **Verification & Evidence**:
+  - **Live Entire Session (53 Checkpoints · 33h Trajectory)**: [https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b](https://entire.io/gh/toufiqfarhan0/neat-hack/session/45f215bc-78e0-4e7b-bedf-b112d4595a4b)
+  - **CLI Inspection**: Run `ovio checkpoint` to list all sealed checkpoints, or `ovio checkpoint --explain <id>` for deep forensic provenance.
+  - **Engine Source**: [`core/checkpoint.py`](file:///c:/Users/toufi/Desktop/neatlogs-hack/core/checkpoint.py)
+
+##### 2. entire-graph — Code Navigation & Assessing Risky Changes
+* **Zero-Egress Structural Search**: Integrated `ovio graph "<query>"` into the primary CLI ([`cli/ovio.py`](file:///c:/Users/toufi/Desktop/neatlogs-hack/cli/ovio.py#L394-L430)), wrapping `entire graph search --query <query> --repo . --format text`.
+* **Find Code**: Instantly traverses semantic cross-module relations (e.g. tracking how `core/blocking.py` candidates flow into `core/investigator.py` and settle in `core/cfo.py`) without transmitting source code off-premises.
+* **Assess Risky Changes**: Evaluates full downstream call trees and impacts before altering high-risk treasury thresholds or modifying the pre-dispatch gate ([`core/guardrails.py`](file:///c:/Users/toufi/Desktop/neatlogs-hack/core/guardrails.py)), guaranteeing that clawback authorization rules cannot accidentally break innocent vendor dismissals.
+* **Verification & Evidence**:
+  - **CLI Command**: Run `ovio graph "blocking"` or `ovio graph "clawback"`
+  - **CLI Implementation**: [`cli/ovio.py#L394-L430`](file:///c:/Users/toufi/Desktop/neatlogs-hack/cli/ovio.py#L394-L430)
+  - **Agent Guide Configuration**: [`.entire/agent-guide.md`](file:///c:/Users/toufi/Desktop/neatlogs-hack/.entire/agent-guide.md)
+
+##### 3. Open-Source Builds — CLI, Graph & External Agent Features
+* **Custom Envelope Generator**: Implemented `entire.io/checkpoint/v1` envelope generation in [`core/checkpoint.py`](file:///c:/Users/toufi/Desktop/neatlogs-hack/core/checkpoint.py), persisting pre/post audit snapshots to `.entire_checkpoints/`.
+* **First-Class CLI Tooling**: Native Typer commands in [`cli/ovio.py`](file:///c:/Users/toufi/Desktop/neatlogs-hack/cli/ovio.py):
+  - `ovio checkpoint`: Lists and inspects audit checkpoints.
+  - `ovio trail`: Executes all 6 automated Entire Trail evaluators in sequence.
+  - `ovio graph <query>`: Executes local zero-egress Entire Graph search.
+* **6 Automated Trail Evaluators**: Configured in [`.entire/runners/`](file:///c:/Users/toufi/Desktop/neatlogs-hack/.entire/runners) (`trail-confidence`, `trail-drift`, `trail-review`, `trail-risk`, `trail-security`, `trail-summary`).
+* **Git Trailer Integration**: Automated in [`.entire/settings.json`](file:///c:/Users/toufi/Desktop/neatlogs-hack/.entire/settings.json) with `"commit_linking": "always"` to attach `Entire-Checkpoint: <ID>` trailers to every commit.
+* **Verification & Evidence**:
+  - **Checkpoint Engine**: [`core/checkpoint.py`](file:///c:/Users/toufi/Desktop/neatlogs-hack/core/checkpoint.py)
+  - **CLI Integration**: [`cli/ovio.py`](file:///c:/Users/toufi/Desktop/neatlogs-hack/cli/ovio.py)
+  - **6 Trail Runners**: [`.entire/runners/`](file:///c:/Users/toufi/Desktop/neatlogs-hack/.entire/runners)
+  - **Settings Config**: [`.entire/settings.json`](file:///c:/Users/toufi/Desktop/neatlogs-hack/.entire/settings.json)
 
 ---
 
@@ -673,10 +705,15 @@ The Neatlogs cloud observability platform continuously evaluates live audit requ
 * **24-Month Runway Forecasting (`ovio cfo`)**: Simulates 24-month financial runway across Base, Bull, and Bear scenarios, modeling initial seed funding ($1.5M), operational burn ramps, and break-even milestones.
 * **Cryptographic Evidence Dossier ([`app/command-center/page.tsx`](file:///c:/Users/toufi/Desktop/neatlogs-hack/app/command-center/page.tsx))**: Emits SHA-256 sealed JSON forensic evidence packets with live Neatlogs trace links, Entire continuous memory snapshots, and CLI gate verification commands.
 
-#### How Effectively We Are Using cfo.ai:
-* **Quantified Enterprise ROI**: Proves that an autonomous AP agent auditing $128M in annual disbursements generates **$1,024,000 net recovered cash** against **$41,400 in fully-loaded operating costs**, delivering a **24.7x Enterprise ROI** and a **14.6-day payback period**.
-* **Live Municipal Audit Yield**: On the live Chicago municipal download (`live_google_download.csv`), identified **$349,935.35 gross leakage**, generating **$62,988.36 in contingency fee revenue** against **$0.00090 in token inference COGS** (1,788 tokens) &rarr; **386,668,895.0x recovery yield**.
-* **>99% Contingency Gross Margins**: Proves that combining deterministic $O(N)$ filtering with targeted LLM residual adjudication keeps inference costs below $0.001 per audit, guaranteeing near-infinite operational margins on contingency recovery fees.
+#### How cfo.ai Shaped Our Business Plan & Unit Economics:
+* **Direct Business Model Integration**: cfo.ai directly anchored OVIO's unit economics and commercial monetization architecture through the native `cfo_model.json` schema ([docs.cfo.ai](https://docs.cfo.ai)), fully detailed in [`CFO_BUSINESS_PLAN.md`](file:///c:/Users/toufi/Desktop/neatlogs-hack/CFO_BUSINESS_PLAN.md).
+* **3 Commercial Monetization Tiers**:
+  1. *Contingency Recovery*: Zero upfront commitment, 18% fee on actual bank wires clawed back.
+  2. *Continuous Treasury Shield*: $42,000/yr platform fee + 10% contingency on residual catches.
+  3. *Enterprise Sovereign*: $120,000/yr platform fee + 5% contingency for dedicated self-hosted municipal deployments.
+* **Quantified 24.7x Enterprise ROI**: Auditing $128M in annual disbursements generates **$1,024,000 net recovered cash** against **$41,400 in fully-loaded operating costs**, yielding a **24.7x Enterprise ROI** and a **14.6-day payback period**.
+* **Live Municipal Token Yield**: On the live Chicago municipal download (`live_google_download.csv`), identified **$349,935.35 gross leakage**, generating **$62,988.36 in contingency fee revenue** against **$0.00090 in token inference COGS** (1,788 tokens) &rarr; **386,668,895.0x recovery yield** and **>99% gross margins**.
+* **Autonomous 90-Day Cashflow Rescue (`ovio rescue`)**: Takes starting liquidity (cash, AR, overdue AR, AP, OpEx) and dynamically simulates 4 intervention scenarios (AR Acceleration vs AP Deferral) to protect corporate cash floors without debt.
 
 #### 🚀 Decision-Level Ledger, Resilient Scenario Provisioning (`edit_table_blocks`) & Ari Integration:
 To allow **Ari** (cfo.ai's autonomous financial agent) to answer organization-CFO inquiries with verifiable, decision-level precision, OVIO implements a dedicated decision contract (`core/cfo_sync.py`) conforming to cfo.ai's live schema:
@@ -687,6 +724,14 @@ To allow **Ari** (cfo.ai's autonomous financial agent) to answer organization-CF
   3. `Pricing_Assumptions`: Canonical provider rate cards and contingency fee baselines used for what-if scenarios.
 * **Candidate Model What-If Repricing Simulator (`ovio cfo --what-if <model>`)**: Reprices an observed audit's exact Neatlogs token consumption across candidate models (`nova-lite`, `gpt-4o`, `gpt-4o-mini`, `claude-3-5-sonnet`) to project inference COGS delta and gross margin headroom.
 * **Structured Scenario Context for Ari (`ovio cfo --ari`)**: Injects rich semantic scenario documentation explaining table semantics, column interpretations, and explicit caveats (e.g. why legitimate line-splits cost 0 tokens, and how contingency fees are collected post-recovery).
+
+#### 🤖 Ari (cfo.ai AI CFO) Live Platform Stress-Test Findings:
+Interactive stress-testing on [cfo.ai](https://cfo.ai) with **Ari** (the autonomous AI CFO) validated OVIO's financial architecture across 5 strategic dimensions:
+1. **18% Contingency Fee Commercial Validation**: Ari benchmarked our pricing against enterprise audit recovery standards ([PRGX’s 10%–40% contingency range](https://www.prgx.com/guides/ap-recovery-audit-services-guide/)), verifying that 18% is commercially sound when fee billing is tied strictly to settled cash refunds.
+2. **5.2x LTV/CAC on Tier 2 (`Continuous Treasury Shield`)**: Modeling customer lifetime value across our 3 tiers revealed that Tier 2 delivers the highest acquisition efficiency with a **5.2x LTV/CAC ratio** and **$104,251 net contribution after CAC** (vs. 1.7x for Tier 1 and 2.5x for Tier 3). Ari recommended a Year 1 cohort acquisition mix of **50% Tier 1 / 40% Tier 2 / 10% Tier 3**.
+3. **5.6x Inference Explosion Shield via Zero-Token Blocking**: Ari evaluated model upgrades (Haiku &rarr; GPT-4o-mini &rarr; GPT-4o &rarr; Sonnet 3.5) and proved that our deterministic $O(N)$ hash blocking prevents a **5.6x surge in model calls**. Ari emphasized that loaded human controller review ($80/hr = $1.33/min) is the primary cost driver—making front-end false alarm elimination essential for preserving 75%+ gross margins.
+4. **$1.22M Cash Safety Trough & Month 7–9 Break-Even**: In our 24-month seed projection ($1.5M seed), Ari modeled a 2-month collection lag, showing only **$280,000 consumed at the cash trough** (leaving **$1,220,000 in bank reserves** at Month 8) before achieving sustained cash-flow break-even at Month 7–9. Even in a catastrophic zero-revenue scenario, the seed extends for **21.6 months**.
+5. **AR-First Liquidity Rescue Strategy**: In our 90-day working capital simulation (`ovio rescue`), Ari recommended an AR-first collection outreach coupled with parallel vendor AP deferrals, while incorporating rolling 13-week cash visibility to prevent the "day-60 cash cliff."
 
 #### 💼 How the CFO Enters the Picture Across Every Ovio Command (Step-by-Step):
 1. **`ovio run` &rarr; Real-Time Recovery Economics & Auto-Sync**:
